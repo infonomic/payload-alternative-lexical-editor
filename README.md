@@ -90,11 +90,28 @@ The configuration in this repo is using the `beforeChange` strategy, although th
 
 ## Getting Started
 
+### To run the editor examples from within this repo:
+
 1. Clone this repo
 2. If you don't already have an instance of MongoDB running locally we've provided a docker composer file and a shell start script. To start `cd mongodb` from the project root. `mkdir data` and then `./mongo.sh up` to start a local instance of MongoDB with a fresh database.
 3. In the `apps/next` directory - copy `.env.example` to `.env` (Note: Don't deploy this to production or a public service without changing your PAYLOAD_SECRET).
 4. From the root - run `pnpm install` followed by `pnpm dev`.
 5. To run a production build - from the root run `pnpm build` followed by `pnpm start`.
+
+### To install and run the editor in your own project.
+
+1. `pnpm add @infonomic/payload-alternative-lexical-editor` or `npm install @infonomic/payload-alternative-lexical-editor`
+2. Configure the editor in `payload.config.ts` 
+
+```ts
+import { lexicalEditor } from '@infonomic/payload-alternative-lexical-editor'
+
+...
+// @ts-expect-error: our return type for editorConfig is different
+editor: lexicalEditor(),
+...
+```
+Follow the examples in this repo under apps/next for configuration options and settings for the editor (turning  editor features on or off).
 
 Thoughts, suggestions or contributions more than welcome. We hope that some of this helps. 
 
