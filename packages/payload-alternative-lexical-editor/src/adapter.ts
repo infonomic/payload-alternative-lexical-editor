@@ -43,14 +43,14 @@ export function lexicalEditor(args?: LexicalEditorProps): LexicalRichTextAdapter
 
   return {
     CellComponent: {
-      path: '/_payload/adapters/richtext-lexical/cell/rsc-entry#RscEntryLexicalCell',
+      path: '@infonomic/payload-alternative-lexical-editor/cell/rsc-entry#RscEntryLexicalCell',
       serverProps: {
         admin: args?.admin,
         editorConfig,
       },
     },
     FieldComponent: {
-      path: '/_payload/adapters/richtext-lexical/field/rsc-entry#RscEntryLexicalField',
+      path: '@infonomic/payload-alternative-lexical-editor/field/rsc-entry#RscEntryLexicalField',
       serverProps: {
         admin: args?.admin,
         editorConfig,
@@ -59,8 +59,12 @@ export function lexicalEditor(args?: LexicalEditorProps): LexicalRichTextAdapter
     editorConfig,
     i18n: undefined,
     generateImportMap: ({ addToImportMap }: any) => {
-      addToImportMap('/_payload/adapters/richtext-lexical/cell/rsc-entry#RscEntryLexicalCell')
-      addToImportMap('/_payload/adapters/richtext-lexical/field/rsc-entry#RscEntryLexicalField')
+      addToImportMap(
+        '@infonomic/payload-alternative-lexical-editor/cell/rsc-entry#RscEntryLexicalCell'
+      )
+      addToImportMap(
+        '@infonomic/payload-alternative-lexical-editor/field/rsc-entry#RscEntryLexicalField'
+      )
     },
     generateSchemaMap: undefined,
     hooks: {

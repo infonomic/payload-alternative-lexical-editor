@@ -1,6 +1,7 @@
+import { lexicalEditor } from '@infonomic/payload-alternative-lexical-editor'
 import type { Block } from 'payload'
 
-import { lexicalEditor } from '../../adapters/richtext-lexical'
+import { collectionAliases } from '@/infonomic.config'
 import { blockFields } from '../../fields/block'
 
 export const PhotoBlock: Block = {
@@ -55,6 +56,7 @@ export const PhotoBlock: Block = {
             condition: (_, siblingData) => siblingData.useSourcePhotoCaption === false,
           },
           editor: lexicalEditor({
+            collectionAliases,
             settings: (config) => {
               config.options.textAlignment = false
               config.options.tablePlugin = false

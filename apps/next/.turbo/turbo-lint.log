@@ -1,6 +1,0 @@
-
-
-> @infonomic/next@1.0.0 lint /home/tony/Clients/Infonomic/Projects/Payload/payload-alternative-lexical-editor/apps/next
-> biome check --write --unsafe --diagnostic-level=error
-
-[0m[34mChecked [0m[0m[34m186[0m[0m[34m [0m[0m[34mfiles[0m[0m[34m in [0m[0m[34m187[0m[0m[2m[34mms[0m[0m[34m.[0m[0m[34m No fixes applied.[0m

@@ -26,6 +26,14 @@
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js"
     },
+    "./field/rsc-entry": {
+      "types": "./dist/field/rsc-entry.d.ts",
+      "import": "./dist/field/rsc-entry.js"
+    },
+    "./cell/rsc-entry": {
+      "types": "./dist/cell/rsc-entry.d.ts",
+      "import": "./dist/cell/rsc-entry.js"
+    },
     "./package.json": "./package.json"
   },
   "files": [
@@ -33,7 +41,7 @@
   ],
   "scripts": {
     "dev": "chokidar 'src/**/*' -c 'npm-run-all build'",
-    "build": "tsc -p tsconfig.json && tsc-alias",
+    "build": "tsc -p tsconfig.json && tsc-alias && node copy-assets.js",
     "lint": "biome check --write --unsafe --diagnostic-level=error",
     "clean": "rimraf node_modules dist build .turbo",
     "test": "LOG_LEVEL=off tsx --env-file=.env --test $(find . -name \"*.test.ts\")",

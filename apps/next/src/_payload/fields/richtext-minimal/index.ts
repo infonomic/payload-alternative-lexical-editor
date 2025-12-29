@@ -1,9 +1,11 @@
+import type { LexicalRichTextAdapter } from '@infonomic/payload-alternative-lexical-editor'
+import { lexicalEditor } from '@infonomic/payload-alternative-lexical-editor'
 import type { Field } from 'payload'
 
 import { collectionAliases } from '@/infonomic.config'
-import { lexicalEditor } from '../../adapters/richtext-lexical'
 import deepMerge from '../../utilities/deepMerge'
-import type { LexicalRichTextAdapter } from '../../adapters/richtext-lexical/types'
+
+// import type { LexicalRichTextAdapter } from '../../adapters/richtext-lexical/types'
 
 type Options = Partial<Field> & { editor?: LexicalRichTextAdapter }
 

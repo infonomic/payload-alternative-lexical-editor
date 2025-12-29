@@ -20,6 +20,7 @@
     "node": "^18.20.2 || >=20.6.0"
   },
   "dependencies": {
+    "@infonomic/payload-alternative-lexical-editor": "workspace:*",
     "@lexical/clipboard": "0.39.0",
     "@lexical/code": "0.39.0",
     "@lexical/hashtag": "0.39.0",

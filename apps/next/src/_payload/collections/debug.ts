@@ -1,8 +1,9 @@
+import { lexicalEditor } from '@infonomic/payload-alternative-lexical-editor'
 import type { CollectionConfig } from 'payload'
 
 import { isAdmin, isAdminOrEditor, publishedOnly } from '@/_payload/access'
 import { slugField } from '@/_payload/fields/slug'
-import { lexicalEditor } from '../adapters/richtext-lexical'
+import { collectionAliases } from '@/infonomic.config'
 
 export const Debug: CollectionConfig = {
   slug: 'debug',
@@ -44,6 +45,7 @@ export const Debug: CollectionConfig = {
       label: 'RichText',
       type: 'richText',
       editor: lexicalEditor({
+        collectionAliases,
         settings: (config) => {
           config.options.debug = true
           return config

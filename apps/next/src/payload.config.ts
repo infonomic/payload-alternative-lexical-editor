@@ -1,13 +1,12 @@
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
+import { lexicalEditor } from '@infonomic/payload-alternative-lexical-editor'
 import { mongooseAdapter } from '@payloadcms/db-mongodb'
 import { buildConfig } from 'payload'
-// import { lexicalEditor } from '@payloadcms/richtext-lexical'
 import { en } from 'payload/i18n/en'
 import sharp from 'sharp'
 
-import { lexicalEditor } from '@/_payload/adapters/richtext-lexical'
 import { collectionAliases } from '@/infonomic.config'
 
 const filename = fileURLToPath(import.meta.url)
