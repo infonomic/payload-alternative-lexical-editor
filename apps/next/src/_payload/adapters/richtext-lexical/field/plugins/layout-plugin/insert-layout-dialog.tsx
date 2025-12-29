@@ -1,4 +1,5 @@
 'use client'
+
 /**
  * Copyright (c) Meta Platforms, Inc. and affiliates.
  *
@@ -6,14 +7,14 @@
  * LICENSE file in the root directory of this source tree.
  *
  */
-import * as React from 'react'
+import type * as React from 'react'
 import { useState } from 'react'
 
-import { LexicalEditor } from 'lexical'
+import type { LexicalEditor } from 'lexical'
 
-import { INSERT_LAYOUT_COMMAND } from './layout-plugin'
 import Button from '../../ui/button'
 import DropDown, { DropDownItem } from '../../ui/dropdown'
+import { INSERT_LAYOUT_COMMAND } from './layout-plugin'
 
 const LAYOUTS = [
   { label: '2 columns (equal width)', value: '1fr 1fr' },
@@ -21,12 +22,12 @@ const LAYOUTS = [
   { label: '2 columns (75% - 25%)', value: '3fr 1fr' },
   { label: '3 columns (equal width)', value: '1fr 1fr 1fr' },
   { label: '3 columns (25% - 50% - 25%)', value: '1fr 2fr 1fr' },
-  { label: '4 columns (equal width)', value: '1fr 1fr 1fr 1fr' }
+  { label: '4 columns (equal width)', value: '1fr 1fr 1fr 1fr' },
 ]
 
 export function InsertLayoutDialog({
   activeEditor,
-  onClose
+  onClose,
 }: {
   activeEditor: LexicalEditor
   onClose: () => void

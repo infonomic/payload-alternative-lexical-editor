@@ -1,4 +1,5 @@
 'use client'
+
 /**
  * Copyright (c) Meta Platforms, Inc. and affiliates.
  *
@@ -6,8 +7,8 @@
  * LICENSE file in the root directory of this source tree.
  *
  */
-import * as React from 'react'
-import { type HTMLInputTypeAttribute } from 'react'
+import type * as React from 'react'
+import type { HTMLInputTypeAttribute } from 'react'
 
 import './input.css'
 
@@ -26,7 +27,7 @@ export default function TextInput({
   onChange,
   placeholder = '',
   'data-test-id': dataTestId,
-  type = 'text'
+  type = 'text',
 }: Props): React.JSX.Element {
   return (
     <div className="Input__wrapper">

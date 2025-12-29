@@ -1,11 +1,11 @@
-import path from 'path'
+import path from 'node:path'
 
-import { ValidationError } from 'payload'
 import type { CollectionBeforeValidateHook } from 'payload'
+import { ValidationError } from 'payload'
 
 // This regex matches strings containing only alphanumeric characters,
 // underscores and dashes.
-const FILENAME_REGEX = /^[\w.\-]+$/
+const FILENAME_REGEX = /^[\w.-]+$/
 
 // Returns an appropriate error message for invalid filenames, and returns null
 // if filename is valid.

@@ -12,16 +12,16 @@ import { MarkNode } from '@lexical/mark'
 import { OverflowNode } from '@lexical/overflow'
 import { HorizontalRuleNode } from '@lexical/react/LexicalHorizontalRuleNode'
 import { HeadingNode, QuoteNode } from '@lexical/rich-text'
-import { TableNode, TableCellNode, TableRowNode } from '@lexical/table'
+import { TableCellNode, TableNode, TableRowNode } from '@lexical/table'
+import type { Klass, LexicalNode } from 'lexical'
+
 import { AdmonitionNode } from './admonition-node/admonition-node'
 import { InlineImageNode } from './inline-image-node/inline-image-node'
 import { LayoutContainerNode } from './layout-container-node/layout-container-node'
 import { LayoutItemNode } from './layout-container-node/layout-item-node'
 import { AutoLinkNode, LinkNode } from './link-nodes'
-import { YouTubeNode } from './youtube-node'
 import { VimeoNode } from './vimeo-node'
-
-import type { Klass, LexicalNode } from 'lexical'
+import { YouTubeNode } from './youtube-node'
 
 export const Nodes: Array<Klass<LexicalNode>> = [
   HeadingNode,
@@ -43,5 +43,5 @@ export const Nodes: Array<Klass<LexicalNode>> = [
   YouTubeNode,
   VimeoNode,
   LayoutContainerNode,
-  LayoutItemNode
+  LayoutItemNode,
 ]

@@ -101,15 +101,15 @@
   pointer-events: none;
 }
 
-html[data-theme=dark] .AdmonitionNode__contentEditable {
+html[data-theme="dark"] .AdmonitionNode__contentEditable {
   color: #eeeeee;
   caret-color: auto;
 }
 
-html[data-theme=dark] .LexicalEditor__admonition .AdmonitionNode__contentEditable {
+html[data-theme="dark"] .LexicalEditor__admonition .AdmonitionNode__contentEditable {
   background-color: #222222;
 }
 
-html[data-theme=dark] .AdmonitionNode__placeholder {
+html[data-theme="dark"] .AdmonitionNode__placeholder {
   color: #888;
 }

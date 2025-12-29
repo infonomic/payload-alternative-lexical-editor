@@ -1,28 +1,25 @@
 'use client'
-import * as React from 'react'
+
+import type * as React from 'react'
 import { useEffect } from 'react'
 
-import { formatDrawerSlug } from '@payloadcms/ui'
-import { useEditDepth } from '@payloadcms/ui'
-import { useModal } from '@payloadcms/ui'
-
 import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext'
-import { mergeRegister, $insertNodeToNearestRoot } from '@lexical/utils'
+import { $insertNodeToNearestRoot, mergeRegister } from '@lexical/utils'
+import { formatDrawerSlug, useEditDepth, useModal } from '@payloadcms/ui'
 import {
   $getSelection,
   $isRangeSelection,
   COMMAND_PRIORITY_EDITOR,
+  COMMAND_PRIORITY_NORMAL,
   createCommand,
   type LexicalCommand,
-  COMMAND_PRIORITY_NORMAL
 } from 'lexical'
 
-import { AdmonitionDrawer } from './admonition-drawer'
 import { useEditorConfig } from '../../config/editor-config-context'
 import { $createAdmonitionNode, AdmonitionNode } from '../../nodes/admonition-node'
-
-import type { AdmonitionData } from './types'
+import { AdmonitionDrawer } from './admonition-drawer'
 import type { AdmonitionAttributes } from '../../nodes/admonition-node/types'
+import type { AdmonitionData } from './types'
 
 export type InsertAdmonitionPayload = Readonly<AdmonitionAttributes>
 
@@ -44,12 +41,12 @@ export function AdmonitionPlugin(): React.JSX.Element {
       console.error('Error: useModal() from Payload did not work correctly')
     },
     closeModal,
-    isModalOpen
+    isModalOpen,
   } = useModal()
 
   const admonitionDrawerSlug = formatDrawerSlug({
     slug: `lexicalRichText-admonition-insert-${uuid}`,
-    depth: editDepth
+    depth: editDepth,
   })
 
   useEffect(() => {
@@ -98,7 +95,7 @@ export function AdmonitionPlugin(): React.JSX.Element {
     if (title != null && admonitionType != null) {
       const admonitionPayload: AdmonitionAttributes = {
         admonitionType,
-        title
+        title,
       }
 
       editor.dispatchCommand(INSERT_ADMONITION_COMMAND, admonitionPayload)

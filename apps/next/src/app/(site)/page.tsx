@@ -1,7 +1,7 @@
+import Link from 'next/link'
+
 import { Background } from '@/components/Background'
 import { Badge } from '@/components/Badge'
-import Link from 'next/link'
-import React from 'react'
 
 const Page = () => {
   return (
@@ -14,8 +14,8 @@ const Page = () => {
             <Link href="https://payloadcms.com/" target="_blank">
               Payload
             </Link>{' '}
-            — a headless CMS. Payload is running at <Link href="/admin">/admin</Link>. An
-            example of a custom route running the Local API can be found at{' '}
+            — a headless CMS. Payload is running at <Link href="/admin">/admin</Link>. An example of
+            a custom route running the Local API can be found at{' '}
             <Link href="/my-route">/my-route</Link>.
           </p>
           <p>You can use the Local API in your server components like this:</p>

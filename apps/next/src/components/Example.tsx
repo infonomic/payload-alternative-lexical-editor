@@ -1,6 +1,8 @@
-import configPromise from '@/payload.config'
+import type React from 'react'
+
 import { getPayload } from 'payload'
-import React from 'react'
+
+import configPromise from '@/payload.config'
 
 const Example: React.FC = async () => {
   const payload = await getPayload({ config: configPromise })

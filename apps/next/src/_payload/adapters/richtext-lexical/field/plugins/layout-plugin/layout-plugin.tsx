@@ -1,4 +1,5 @@
 'use client'
+
 /**
  * Copyright (c) Meta Platforms, Inc. and affiliates.
  *
@@ -11,25 +12,24 @@ import { useEffect } from 'react'
 
 import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext'
 import { $insertNodeToNearestRoot, mergeRegister } from '@lexical/utils'
+import type { ElementNode, LexicalCommand, LexicalNode, NodeKey } from 'lexical'
 import {
   $createParagraphNode,
   $getNodeByKey,
   COMMAND_PRIORITY_EDITOR,
-  createCommand
+  createCommand,
 } from 'lexical'
 
 import {
   $createLayoutContainerNode,
   $isLayoutContainerNode,
-  LayoutContainerNode
+  LayoutContainerNode,
 } from '../../nodes/layout-container-node/layout-container-node'
 import {
   $createLayoutItemNode,
   $isLayoutItemNode,
-  LayoutItemNode
+  LayoutItemNode,
 } from '../../nodes/layout-container-node/layout-item-node'
-
-import type { ElementNode, LexicalCommand, LexicalNode, NodeKey } from 'lexical'
 
 export const INSERT_LAYOUT_COMMAND: LexicalCommand<string> = createCommand<string>()
 

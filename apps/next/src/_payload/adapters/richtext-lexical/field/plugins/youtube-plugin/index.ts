@@ -1,4 +1,5 @@
 'use client'
+
 /**
  * Copyright (c) Meta Platforms, Inc. and affiliates.
  *
@@ -11,7 +12,7 @@ import { useEffect } from 'react'
 
 import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext'
 import { $insertNodeToNearestRoot } from '@lexical/utils'
-import { COMMAND_PRIORITY_EDITOR, createCommand, LexicalCommand } from 'lexical'
+import { COMMAND_PRIORITY_EDITOR, createCommand, type LexicalCommand } from 'lexical'
 
 import { $createYouTubeNode, YouTubeNode } from '../../nodes/youtube-node'
 

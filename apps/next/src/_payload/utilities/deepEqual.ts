@@ -39,7 +39,7 @@ export function deepEqual(obj1: any, obj2: any, nested = 0, parentKey = 'top >')
       // console.warn('Not equal because of: ' + key + ' not in obj2');
       return false // other object doesn't have this prop
     }
-    if (key in obj2 && !deepEqual(obj1[key], obj2[key], nested + 1, parentKey + ' ' + key)) {
+    if (key in obj2 && !deepEqual(obj1[key], obj2[key], nested + 1, `${parentKey} ${key}`)) {
       // console.warn('Not equal because of: ' + key + ' not equal');
       return false
     }

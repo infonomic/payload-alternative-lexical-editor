@@ -1,5 +1,6 @@
 'use client'
-import React from 'react'
+
+import type React from 'react'
 
 export function MediaCollectionDescription(): React.JSX.Element {
   return (

@@ -44,10 +44,7 @@ export function cloneDeep<T>(object: T, cache = new WeakMap<any, any>()): T {
     cache.set(object, clonedObject)
 
     for (const key in object) {
-      if (
-        Object.prototype.hasOwnProperty.call(object, key) ||
-        Object.getOwnPropertySymbols(object).includes(key as any)
-      ) {
+      if (Object.hasOwn(object, key) || Object.getOwnPropertySymbols(object).includes(key as any)) {
         clonedObject[key] = cloneDeep(object[key], cache)
       }
     }

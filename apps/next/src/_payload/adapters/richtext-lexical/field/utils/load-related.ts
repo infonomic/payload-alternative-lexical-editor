@@ -1,6 +1,4 @@
-import type { GeneratedTypes } from 'payload'
-
-import type { Payload, RequestContext } from 'payload'
+import type { GeneratedTypes, Payload, RequestContext } from 'payload'
 
 export async function loadRelated<T extends keyof GeneratedTypes['collections']>(
   payload: Payload,
@@ -14,7 +12,7 @@ export async function loadRelated<T extends keyof GeneratedTypes['collections']>
       collection: relationTo,
       id: value,
       depth,
-      locale
+      locale,
     })
     return relatedDoc
   } catch (error) {
@@ -36,11 +34,11 @@ export async function loadRelatedWithContext<T extends keyof GeneratedTypes['col
     if (context[contextKey] == null) {
       context[contextKey] = [value]
     } else {
-      // @ts-ignore
+      // @ts-expect-error
       if (context[contextKey].includes(value)) {
         return null
       } else {
-        // @ts-ignore
+        // @ts-expect-error
         context[contextKey].push(value)
       }
     }
@@ -50,7 +48,7 @@ export async function loadRelatedWithContext<T extends keyof GeneratedTypes['col
       collection: relationTo,
       id: value,
       depth,
-      locale
+      locale,
     })
     return relatedDoc
   } catch (error) {

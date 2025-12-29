@@ -1,4 +1,5 @@
 'use client'
+
 /**
  * Copyright (c) Meta Platforms, Inc. and affiliates.
  *
@@ -6,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  *
  */
-import * as React from 'react'
+import type * as React from 'react'
 
 import cx from 'classnames'
 
@@ -17,7 +18,7 @@ import './placeholder.css'
 // appear inside caption areas for images.
 export default function PlaceholderInline({
   children,
-  className
+  className,
 }: {
   children: React.ReactNode
   className?: string

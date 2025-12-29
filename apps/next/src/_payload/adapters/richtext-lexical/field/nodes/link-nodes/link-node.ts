@@ -8,27 +8,25 @@
 
 import { addClassNamesToElement, isHTMLAnchorElement } from '@lexical/utils'
 import {
+  $applyNodeReplacement,
   $createTextNode,
+  $getSelection,
+  $isElementNode,
+  $isRangeSelection,
+  createCommand,
   type DOMConversionMap,
   type DOMConversionOutput,
   type EditorConfig,
+  ElementNode,
   type LexicalCommand,
   type LexicalNode,
   type NodeKey,
   type NodeSelection,
   type RangeSelection,
-  type SerializedElementNode,
-  $applyNodeReplacement,
-  $getSelection,
-  $isElementNode,
-  $isRangeSelection,
-  createCommand,
-  ElementNode,
-  type Spread,
 } from 'lexical'
 
 import { sanitizeUrl } from '../../utils/url'
-import { type SerializedAutoLinkNode } from './auto-link-node'
+import type { SerializedAutoLinkNode } from './auto-link-node'
 import type { LinkAttributes, SerializedLinkNode } from './types'
 
 /** @noInheritDoc */
@@ -87,7 +85,7 @@ export class LinkNode extends ElementNode {
     }
 
     if (this.__attributes?.rel != null) {
-      element.rel += ' ' + this.__attributes?.rel
+      element.rel += ` ${this.__attributes?.rel}`
     }
 
     addClassNamesToElement(element, config.theme.link)
@@ -95,7 +93,7 @@ export class LinkNode extends ElementNode {
     return element
   }
 
-  updateDOM(prevNode: LinkNode, anchor: HTMLAnchorElement, config: EditorConfig): boolean {
+  updateDOM(prevNode: LinkNode, anchor: HTMLAnchorElement, _config: EditorConfig): boolean {
     const url = this.__attributes?.url
     const newTab = this.__attributes?.newTab
     const rel = this.__attributes?.rel
@@ -140,7 +138,7 @@ export class LinkNode extends ElementNode {
     }
 
     if (newTab !== prevNode.__attributes?.newTab) {
-      if (newTab != null && newTab == true) {
+      if (newTab != null && newTab === true) {
         anchor.target = '_blank'
         if (this.__attributes?.linkType === 'custom') {
           anchor.rel = manageRel(anchor.rel, 'add', 'noopener')
@@ -168,7 +166,7 @@ export class LinkNode extends ElementNode {
 
   static importDOM(): DOMConversionMap | null {
     return {
-      a: (node: Node) => ({
+      a: (_node: Node) => ({
         conversion: convertAnchorElement,
         priority: 1,
       }),
@@ -230,9 +228,9 @@ export class LinkNode extends ElementNode {
   }
 
   extractWithChild(
-    child: LexicalNode,
+    _child: LexicalNode,
     selection: RangeSelection | NodeSelection,
-    destination: 'clone' | 'html',
+    _destination: 'clone' | 'html'
   ): boolean {
     if (!$isRangeSelection(selection)) {
       return false
@@ -397,7 +395,7 @@ function $getLinkAncestor(node: LexicalNode): null | LinkNode {
 
 function $getAncestor(
   node: LexicalNode,
-  predicate: (ancestor: LexicalNode) => boolean,
+  predicate: (ancestor: LexicalNode) => boolean
 ): null | LexicalNode {
   let parent: null | LexicalNode = node
   while (parent !== null && (parent = parent.getParent()) !== null && !predicate(parent));

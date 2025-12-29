@@ -1,6 +1,8 @@
-import cx from 'classnames'
 import type React from 'react'
+
+import cx from 'classnames'
 import './globals.scss'
+
 import { Inter } from 'next/font/google'
 
 const inter = Inter({

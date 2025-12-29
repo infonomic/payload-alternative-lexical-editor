@@ -1,4 +1,5 @@
 'use client'
+
 /**
  * Copyright (c) Meta Platforms, Inc. and affiliates.
  *
@@ -16,16 +17,16 @@ import {
   $isElementNode,
   $isRangeSelection,
   COMMAND_PRIORITY_LOW,
-  PASTE_COMMAND
+  PASTE_COMMAND,
 } from 'lexical'
 
 import {
+  $toggleLink,
   type LinkAttributes,
   LinkNode,
-  $toggleLink,
-  TOGGLE_LINK_COMMAND
+  TOGGLE_LINK_COMMAND,
 } from '../../../nodes/link-nodes'
-import { validateUrl, encodeRelativeUrl } from '../../../utils/url'
+import { validateUrl } from '../../../utils/url'
 
 export function LinkPlugin(): null {
   const [editor] = useLexicalComposerContext()
@@ -77,7 +78,7 @@ export function LinkPlugin(): null {
               if (!selection.getNodes().some((node) => $isElementNode(node))) {
                 const linkAttributes: LinkAttributes = {
                   linkType: 'custom',
-                  url: clipboardText
+                  url: clipboardText,
                 }
                 editor.dispatchCommand(TOGGLE_LINK_COMMAND, linkAttributes)
                 event.preventDefault()

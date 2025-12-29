@@ -14,7 +14,7 @@ export function getPreferredSize(
       mimeType: doc.mimeType as string,
       filesize: doc.filesize as number,
       filename: doc.filename as string,
-      url: doc.url as string
+      url: doc.url as string,
     }
   } else if (doc.sizes?.[preferred as keyof object]?.filename != null) {
     return doc.sizes[preferred as keyof object]
@@ -25,7 +25,7 @@ export function getPreferredSize(
       mimeType: doc.mimeType as string,
       filesize: doc.filesize as number,
       filename: doc.filename as string,
-      url: doc.url as string
+      url: doc.url as string,
     }
   } else {
     return null

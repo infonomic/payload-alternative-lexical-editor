@@ -35,6 +35,6 @@ export default function simpleDiffWithCursor(
   return {
     index: left,
     insert: b.slice(left, bLength - right),
-    remove: aLength - left - right
+    remove: aLength - left - right,
   }
 }

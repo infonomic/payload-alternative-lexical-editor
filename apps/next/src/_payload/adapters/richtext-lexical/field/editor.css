@@ -13,7 +13,9 @@
   position: relative;
   line-height: 1.7;
   font-weight: 400;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 }
 
 .editor-shell .editor-container {
@@ -104,7 +106,7 @@
 }
 
 .editor-dev-button::after {
-  content: '';
+  content: "";
   position: absolute;
   top: 10px;
   right: 10px;
@@ -147,12 +149,12 @@
   box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.4);
 }
 
-.test-recorder-button+.test-recorder-button {
+.test-recorder-button + .test-recorder-button {
   margin-left: 4px;
 }
 
 .test-recorder-button::after {
-  content: '';
+  content: "";
   position: absolute;
   top: 8px;
   right: 8px;
@@ -411,7 +413,6 @@ i.vimeo {
   background-image: url(images/icons/vimeo.svg);
 }
 
-
 i.table {
   background-image: url(images/icons/table.svg);
   margin-bottom: unset;
@@ -588,7 +589,9 @@ i.prettier-error {
   z-index: 100;
   display: block;
   position: fixed;
-  box-shadow: 0 12px 28px 0 rgba(0, 0, 0, 0.2), 0 2px 4px 0 rgba(0, 0, 0, 0.1),
+  box-shadow:
+    0 12px 28px 0 rgba(0, 0, 0, 0.2),
+    0 2px 4px 0 rgba(0, 0, 0, 0.1),
     inset 0 0 0 1px rgba(255, 255, 255, 0.5);
   border-radius: 8px;
   min-height: 40px;
@@ -666,19 +669,19 @@ i.prettier-error {
 
 @media screen and (max-width: 1100px) {
   .dropdown-button-text {
-    display: none !important;
+    display: none;
   }
 
-  .dialog-dropdown>.dropdown-button-text {
-    display: flex !important;
+  .dialog-dropdown > .dropdown-button-text {
+    display: flex;
   }
 
   .font-size .dropdown-button-text {
-    display: flex !important;
+    display: flex;
   }
 
   .code-language .dropdown-button-text {
-    display: flex !important;
+    display: flex;
   }
 }
 
@@ -825,11 +828,11 @@ i.prettier-error {
   transition: transform 0.2s;
 }
 
-.switch button[aria-checked='true'] {
+.switch button[aria-checked="true"] {
   background-color: rgb(24, 119, 242);
 }
 
-.switch button[aria-checked='true'] span {
+.switch button[aria-checked="true"] span {
   transform: translateX(20px);
 }
 
@@ -951,8 +954,6 @@ i.prettier-error {
   left: -6px;
   cursor: nw-resize;
 }
-
-
 
 .actions {
   position: absolute;
@@ -1343,7 +1344,7 @@ button.item.dropdown-item-active i {
 }
 
 .editor-shell hr:after {
-  content: '';
+  content: "";
   display: block;
   height: 2px;
   background-color: #ccc;
@@ -1379,7 +1380,7 @@ button.item.dropdown-item-active i {
 }
 
 .LexicalEditorTheme__blockCursor:after {
-  content: '';
+  content: "";
   display: block;
   position: absolute;
   top: -2px;
@@ -1395,13 +1396,12 @@ button.item.dropdown-item-active i {
 }
 
 .dialog-dropdown {
-  background-color: #eee !important;
+  background-color: #eee;
   margin-bottom: 10px;
   width: 100%;
 }
 
-html[data-theme='dark'] {
-
+html[data-theme="dark"] {
   .toolbar i,
   .toolbar span {
     filter: invert(1) brightness(1.2);
@@ -1473,7 +1473,7 @@ html[data-theme='dark'] {
   }
 
   .dialog-dropdown {
-    background-color: #222 !important;
+    background-color: #222;
     margin-bottom: 10px;
     width: 100%;
   }

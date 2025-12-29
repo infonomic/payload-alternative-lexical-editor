@@ -1,4 +1,5 @@
 'use client'
+
 /**
  * Portions copyright (c) Meta Platforms, Inc.
  * and affiliates and is based on examples found here
@@ -10,17 +11,13 @@
  *
  */
 
-import React, { useEffect } from 'react'
-
-import { formatDrawerSlug } from '@payloadcms/ui'
-import { useEditDepth } from '@payloadcms/ui'
-import { useConfig } from '@payloadcms/ui'
-import { useModal } from '@payloadcms/ui'
-
-import { requests } from '@payloadcms/ui/utilities/api'
+import type React from 'react'
+import { useEffect } from 'react'
 
 import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext'
-import { $wrapNodeInElement, mergeRegister, $insertNodeToNearestRoot } from '@lexical/utils'
+import { $wrapNodeInElement, mergeRegister } from '@lexical/utils'
+import { formatDrawerSlug, useConfig, useEditDepth, useModal } from '@payloadcms/ui'
+import { requests } from '@payloadcms/ui/utilities/api'
 import {
   $createParagraphNode,
   $createRangeSelection,
@@ -32,27 +29,26 @@ import {
   COMMAND_PRIORITY_EDITOR,
   COMMAND_PRIORITY_HIGH,
   COMMAND_PRIORITY_LOW,
+  COMMAND_PRIORITY_NORMAL,
   createCommand,
   DRAGOVER_COMMAND,
   DRAGSTART_COMMAND,
   DROP_COMMAND,
   type LexicalCommand,
   type LexicalEditor,
-  COMMAND_PRIORITY_NORMAL
 } from 'lexical'
 
-import { InlineImageDrawer } from './inline-image-drawer'
-import { getPreferredSize } from './utils'
 import { useEditorConfig } from '../../config/editor-config-context'
 import {
   $createInlineImageNode,
   $isInlineImageNode,
-  InlineImageNode
+  InlineImageNode,
 } from '../../nodes/inline-image-node'
 import { CAN_USE_DOM } from '../../shared/canUseDOM'
-
+import { InlineImageDrawer } from './inline-image-drawer'
+import { getPreferredSize } from './utils'
 import type { InlineImageAttributes } from '../../nodes/inline-image-node/types'
-import { InlineImageData } from './types'
+import type { InlineImageData } from './types'
 
 export type InsertInlineImagePayload = Readonly<InlineImageAttributes>
 
@@ -74,7 +70,7 @@ export function InlineImagePlugin({ collection }: { collection: string }): React
   const { config } = useConfig()
   const {
     serverURL,
-    routes: { api }
+    routes: { api },
   } = config
 
   const {
@@ -82,12 +78,12 @@ export function InlineImagePlugin({ collection }: { collection: string }): React
       console.error('Error: useModal() from FacelessUI did not work correctly')
     },
     closeModal,
-    isModalOpen
+    isModalOpen,
   } = useModal()
 
   const inlineImageDrawerSlug = formatDrawerSlug({
     slug: `rich-text-inline-image-insert-lexical-${uuid}`,
-    depth: editDepth
+    depth: editDepth,
   })
 
   useEffect(() => {
@@ -166,7 +162,7 @@ export function InlineImagePlugin({ collection }: { collection: string }): React
               altText: data?.altText,
               position: data?.position,
               size: data?.size,
-              showCaption: data?.showCaption
+              showCaption: data?.showCaption,
             }
 
             // We don't set width or height for SVG images
@@ -200,7 +196,7 @@ export function InlineImagePlugin({ collection }: { collection: string }): React
         altText: undefined,
         position: undefined,
         size: undefined,
-        showCaption: undefined
+        showCaption: undefined,
       }}
       onSubmit={(data: InlineImageData) => {
         void handleModalSubmit(data)
@@ -241,9 +237,9 @@ function onDragStart(event: DragEvent): boolean {
         key: node.getKey(),
         showCaption: node.__showCaption,
         src: node.__src,
-        width: node.__width
+        width: node.__width,
       },
-      type: 'image'
+      type: 'image',
     })
   )
 

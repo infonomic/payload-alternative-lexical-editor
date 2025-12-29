@@ -1,4 +1,5 @@
 'use client'
+
 /**
  * Copyright (c) Meta Platforms, Inc. and affiliates.
  *
@@ -7,14 +8,14 @@
  *
  */
 
-import * as React from 'react'
+import type * as React from 'react'
 import { useCallback, useMemo, useState } from 'react'
 
 import Modal from '../ui/modal'
 
 export default function useModal(): [
   React.JSX.Element | null,
-  (title: string, showModal: (onClose: () => void) => React.JSX.Element) => void
+  (title: string, showModal: (onClose: () => void) => React.JSX.Element) => void,
 ] {
   const [modalContent, setModalContent] = useState<null | {
     closeOnClickOutside: boolean
@@ -48,7 +49,7 @@ export default function useModal(): [
       setModalContent({
         closeOnClickOutside,
         content: getContent(onClose),
-        title
+        title,
       })
     },
     [onClose]

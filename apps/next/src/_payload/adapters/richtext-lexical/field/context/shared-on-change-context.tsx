@@ -1,5 +1,6 @@
 'use client'
-import * as React from 'react'
+
+import type * as React from 'react'
 import { createContext, type ReactNode, useContext, useMemo } from 'react'
 
 import type { EditorState, LexicalEditor } from 'lexical'
@@ -12,7 +13,7 @@ const Context: React.Context<ContextType> = createContext({})
 
 export const SharedOnChangeContext = ({
   children,
-  onChange
+  onChange,
 }: {
   children: ReactNode
   onChange: (editorState: EditorState, editor: LexicalEditor, tags: Set<string>) => void

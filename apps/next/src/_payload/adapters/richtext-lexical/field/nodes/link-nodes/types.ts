@@ -1,4 +1,4 @@
-import type { Spread, SerializedElementNode } from 'lexical'
+import type { SerializedElementNode, Spread } from 'lexical'
 
 export interface LinkAttributes {
   url?: string

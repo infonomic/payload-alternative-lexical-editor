@@ -1,4 +1,5 @@
 'use client'
+
 /**
  * Copyright (c) Meta Platforms, Inc. and affiliates.
  *
@@ -7,9 +8,8 @@
  *
  */
 
-import * as React from 'react'
-import { ReactPortal, useCallback, useEffect, useRef, useState } from 'react'
-import { createPortal } from 'react-dom'
+import type * as React from 'react'
+import { type ReactPortal, useCallback, useEffect, useRef, useState } from 'react'
 
 import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext'
 import { useLexicalEditable } from '@lexical/react/useLexicalEditable'
@@ -28,12 +28,13 @@ import {
   $isTableSelection,
   $unmergeCell,
   getTableObserverFromTableElement,
-  HTMLTableElementWithWithTableSelectionState,
+  type HTMLTableElementWithWithTableSelectionState,
   TableCellHeaderStates,
   TableCellNode,
-  TableRowNode,
-  TableSelection
+  type TableRowNode,
+  type TableSelection,
 } from '@lexical/table'
+import type { ElementNode, LexicalEditor } from 'lexical'
 import {
   $createParagraphNode,
   $getRoot,
@@ -41,14 +42,13 @@ import {
   $isElementNode,
   $isParagraphNode,
   $isRangeSelection,
-  $isTextNode
+  $isTextNode,
 } from 'lexical'
+import { createPortal } from 'react-dom'
 
 import useModal from '../../hooks/useModal'
 import invariant from '../../shared/invariant'
 import ColorPicker from '../../ui/color-picker'
-
-import type { ElementNode, LexicalEditor } from 'lexical'
 
 function computeSelectionCount(selection: TableSelection): {
   columns: number
@@ -57,7 +57,7 @@ function computeSelectionCount(selection: TableSelection): {
   const selectionShape = selection.getShape()
   return {
     columns: selectionShape.toX - selectionShape.fromX + 1,
-    rows: selectionShape.toY - selectionShape.fromY + 1
+    rows: selectionShape.toY - selectionShape.fromY + 1,
   }
 }
 
@@ -166,14 +166,14 @@ function TableActionMenu({
   setIsMenuOpen,
   contextRef,
   cellMerge,
-  showColorPickerModal
+  showColorPickerModal,
 }: TableCellActionMenuProps): React.ReactPortal {
   const [editor] = useLexicalComposerContext()
   const dropDownRef = useRef<HTMLDivElement | null>(null)
   const [tableCellNode, updateTableCellNode] = useState(_tableCellNode)
   const [selectionCounts, updateSelectionCounts] = useState({
     columns: 1,
-    rows: 1
+    rows: 1,
   })
   const [canMergeCells, setCanMergeCells] = useState(false)
   const [canUnmergeCell, setCanUnmergeCell] = useState(false)
@@ -245,7 +245,7 @@ function TableActionMenu({
       // dropDownElement.style.top = `${topPosition + +window.pageYOffset}px`
       dropDownElement.style.top = `${topPosition}px`
     }
-  }, [contextRef, dropDownRef, editor])
+  }, [contextRef, editor])
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent): void {
@@ -652,7 +652,7 @@ function TableActionMenu({
 
 function TableCellActionMenuContainer({
   anchorElem,
-  cellMerge
+  cellMerge,
 }: {
   anchorElem: HTMLElement
   cellMerge: boolean
@@ -737,7 +737,7 @@ function TableCellActionMenuContainer({
         menuButtonDOM.style.transform = 'translate(-10000px, -10000px)'
       }
     }
-  }, [menuButtonRef, tableCellNode, editor, anchorElem])
+  }, [tableCellNode, editor, anchorElem])
 
   const prevTableCellDOM = useRef(tableCellNode)
 
@@ -747,7 +747,7 @@ function TableCellActionMenuContainer({
     }
 
     prevTableCellDOM.current = tableCellNode
-  }, [prevTableCellDOM, tableCellNode])
+  }, [tableCellNode])
 
   return (
     <div className="table-cell-action-button-container" ref={menuButtonRef}>
@@ -785,7 +785,7 @@ function TableCellActionMenuContainer({
 
 export function TableActionMenuPlugin({
   anchorElem = document.body,
-  cellMerge = false
+  cellMerge = false,
 }: {
   anchorElem?: HTMLElement
   cellMerge?: boolean

@@ -1,15 +1,14 @@
+import type { EditorConfig as LexicalEditorConfig, SerializedEditorState } from 'lexical'
 import type {
-  DefaultCellComponentProps,
   DefaultServerCellComponentProps,
   RichTextAdapter,
   RichTextFieldClient,
   RichTextFieldClientProps,
-  ServerFieldBase
+  ServerFieldBase,
 } from 'payload'
+
+import type { InitialLexicalFormState } from './field/build-initial-state'
 import type { ClientEditorConfig, EditorConfig, EditorSettings } from './field/config/types'
-import type { SerializedEditorState } from 'lexical'
-import type { EditorConfig as LexicalEditorConfig } from 'lexical'
-import { InitialLexicalFormState } from './field/build-initial-state'
 
 export interface LexicalEditorProps {
   admin?: LexicalFieldAdminProps
@@ -46,7 +45,6 @@ export type LexicalRichTextFieldProps = {
   editorConfig: ClientEditorConfig
 } & Pick<ServerFieldBase, 'permissions'> &
   RichTextFieldClientProps<SerializedEditorState, AdapterProps, object>
-
 
 export type LexicalRichTextCellProps = DefaultServerCellComponentProps<
   RichTextFieldClient<SerializedEditorState, AdapterProps, object>,

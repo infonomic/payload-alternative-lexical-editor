@@ -14,10 +14,10 @@ export const publishedOn: PublishedOn = (overrides = {}) =>
       defaultValue: () => new Date(),
       admin: {
         date: {
-          pickerAppearance: 'dayAndTime'
+          pickerAppearance: 'dayAndTime',
         },
-        position: 'sidebar'
-      }
+        position: 'sidebar',
+      },
     },
     overrides
   )

@@ -1,4 +1,3 @@
-
 import type { EditorConfig as LexicalEditorConfig } from 'lexical'
 
 import type { LexicalFieldAdminProps } from '../../types'

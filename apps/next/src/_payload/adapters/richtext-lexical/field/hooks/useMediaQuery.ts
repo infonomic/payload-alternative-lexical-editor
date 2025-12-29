@@ -14,7 +14,7 @@ const useMediaQuery = (query: string): boolean | null => {
     return () => {
       mediaMatch.removeEventListener('change', handler)
     }
-  }, [setMatches, matches, query])
+  }, [matches, query])
 
   return matches
 }

@@ -1,4 +1,4 @@
-import { type AdmonitionType } from '../../nodes/admonition-node/types'
+import type { AdmonitionType } from '../../nodes/admonition-node/types'
 
 export interface AdmonitionData {
   admonitionType: AdmonitionType

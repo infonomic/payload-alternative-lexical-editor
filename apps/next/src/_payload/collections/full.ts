@@ -1,4 +1,5 @@
-import { type CollectionConfig } from 'payload'
+import type { CollectionConfig } from 'payload'
+
 import { isAdmin, isAdminOrEditor, publishedOnly } from '@/_payload/access'
 import { slugField } from '@/_payload/fields/slug'
 

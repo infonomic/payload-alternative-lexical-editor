@@ -18,10 +18,10 @@ export const blockFields = ({ name, fields, overrides }: Args): Field =>
         hideGutter: true,
         style: {
           margin: 0,
-          padding: 0
-        }
+          padding: 0,
+        },
       },
-      fields
+      fields,
     },
     overrides as object
   )

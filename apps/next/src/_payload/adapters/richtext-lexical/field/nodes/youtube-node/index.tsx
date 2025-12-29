@@ -6,14 +6,13 @@
  *
  */
 
-import * as React from 'react'
+import type * as React from 'react'
 
 import { BlockWithAlignableContents } from '@lexical/react/LexicalBlockWithAlignableContents'
 import {
   DecoratorBlockNode,
-  SerializedDecoratorBlockNode
+  type SerializedDecoratorBlockNode,
 } from '@lexical/react/LexicalDecoratorBlockNode'
-
 import type {
   DOMConversionMap,
   DOMConversionOutput,
@@ -23,7 +22,7 @@ import type {
   LexicalEditor,
   LexicalNode,
   NodeKey,
-  Spread
+  Spread,
 } from 'lexical'
 
 type YouTubeComponentProps = Readonly<{
@@ -40,14 +39,14 @@ function YouTubeComponent({
   className,
   format,
   nodeKey,
-  videoID
+  videoID,
 }: YouTubeComponentProps): React.JSX.Element {
   return (
     <BlockWithAlignableContents className={className} format={format} nodeKey={nodeKey}>
       <iframe
         style={{
           aspectRatio: '16 / 9',
-          width: '100%'
+          width: '100%',
         }}
         src={`https://www.youtube-nocookie.com/embed/${videoID}`}
         frameBorder="0"
@@ -97,7 +96,7 @@ export class YouTubeNode extends DecoratorBlockNode {
       ...super.exportJSON(),
       type: 'youtube',
       version: 1,
-      videoID: this.__id
+      videoID: this.__id,
     }
   }
 
@@ -130,9 +129,9 @@ export class YouTubeNode extends DecoratorBlockNode {
         }
         return {
           conversion: convertYoutubeElement,
-          priority: 1
+          priority: 1,
         }
-      }
+      },
     }
   }
 
@@ -155,7 +154,7 @@ export class YouTubeNode extends DecoratorBlockNode {
     const embedBlockTheme = config.theme.embedBlock ?? {}
     const className = {
       base: embedBlockTheme.base ?? '',
-      focus: embedBlockTheme.focus ?? ''
+      focus: embedBlockTheme.focus ?? '',
     }
     return (
       <YouTubeComponent

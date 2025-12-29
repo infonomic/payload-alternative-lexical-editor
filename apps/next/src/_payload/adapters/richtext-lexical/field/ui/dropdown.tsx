@@ -1,4 +1,6 @@
 'use client'
+
+import * as React from 'react'
 /**
  * Copyright (c) Meta Platforms, Inc. and affiliates.
  *
@@ -7,7 +9,7 @@
  *
  */
 import { type ReactNode, useCallback, useEffect, useMemo, useRef, useState } from 'react'
-import * as React from 'react'
+
 import { createPortal } from 'react-dom'
 
 interface DropDownContextType {
@@ -20,7 +22,7 @@ export function DropDownItem({
   children,
   className,
   onClick,
-  title
+  title,
 }: {
   children: React.ReactNode
   className: string
@@ -42,7 +44,7 @@ export function DropDownItem({
       // @ts-expect-error: TODO
       registerItem(ref)
     }
-  }, [ref, registerItem])
+  }, [registerItem])
 
   return (
     <button className={className} onClick={onClick} ref={ref} title={title} type="button">
@@ -54,7 +56,7 @@ export function DropDownItem({
 function DropDownItems({
   children,
   dropDownRef,
-  onClose
+  onClose,
 }: {
   children: React.ReactNode
   dropDownRef: React.Ref<HTMLDivElement>
@@ -63,12 +65,9 @@ function DropDownItems({
   const [items, setItems] = useState<Array<React.RefObject<HTMLButtonElement>>>()
   const [highlightedItem, setHighlightedItem] = useState<React.RefObject<HTMLButtonElement>>()
 
-  const registerItem = useCallback(
-    (itemRef: React.RefObject<HTMLButtonElement>) => {
-      setItems((prev) => (prev != null ? [...prev, itemRef] : [itemRef]))
-    },
-    [setItems]
-  )
+  const registerItem = useCallback((itemRef: React.RefObject<HTMLButtonElement>) => {
+    setItems((prev) => (prev != null ? [...prev, itemRef] : [itemRef]))
+  }, [])
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>): void => {
     if (items == null) return
@@ -97,7 +96,7 @@ function DropDownItems({
 
   const contextValue = useMemo(
     () => ({
-      registerItem
+      registerItem,
     }),
     [registerItem]
   )
@@ -128,7 +127,7 @@ export default function DropDown({
   buttonClassName,
   buttonIconClassName,
   children,
-  stopCloseOnClickSelf
+  stopCloseOnClickSelf,
 }: {
   disabled?: boolean
   buttonAriaLabel?: string
@@ -158,7 +157,7 @@ export default function DropDown({
       dropDown.style.top = `${top + 40}px`
       dropDown.style.left = `${Math.min(left, window.innerWidth - dropDown.offsetWidth - 20)}px`
     }
-  }, [dropDownRef, buttonRef, showDropDown])
+  }, [showDropDown])
 
   useEffect(() => {
     const button = buttonRef.current
@@ -167,7 +166,7 @@ export default function DropDown({
       const handle = (event: MouseEvent): void => {
         const target = event.target
         if (stopCloseOnClickSelf != null) {
-          if (dropDownRef?.current != null && dropDownRef.current.contains(target as Node)) {
+          if (dropDownRef?.current?.contains(target as Node)) {
             return
           }
         }
@@ -181,7 +180,7 @@ export default function DropDown({
         document.removeEventListener('click', handle)
       }
     }
-  }, [dropDownRef, buttonRef, showDropDown, stopCloseOnClickSelf])
+  }, [showDropDown, stopCloseOnClickSelf])
 
   return (
     <>

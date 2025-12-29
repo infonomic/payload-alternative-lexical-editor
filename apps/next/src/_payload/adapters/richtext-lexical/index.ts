@@ -7,24 +7,19 @@
  * Adapted from https://github.com/payloadcms/payload/tree/main/packages/richtext-lexical
  */
 
+import type { JSONSchema4 } from 'json-schema'
 import { withNullableJSONSchemaType } from 'payload'
 
 import { defaultEditorConfig } from './field/config/default'
-
-import { populateLexicalLinks } from './field/lexical-before-change-populate-links'
 import { populateLexicalMedia } from './field/lexical-after-read-populate-media'
-
+import { populateLexicalLinks } from './field/lexical-before-change-populate-links'
 import { cloneDeep } from './field/utils/cloneDeep'
 import { richTextValidate } from './validate/validate-server'
-
-import type { ServerEditorConfig, EditorSettings } from './field/config/types'
-import type { JSONSchema4 } from 'json-schema'
-import type { LexicalRichTextAdapter } from './types'
-import type { LexicalEditorProps } from './types'
+import type { EditorSettings, ServerEditorConfig } from './field/config/types'
+import type { LexicalEditorProps, LexicalRichTextAdapter } from './types'
 
 // TODO: sanitize / validate all inputs (okay for now as we control all inputs)
 export function lexicalEditor(args?: LexicalEditorProps): LexicalRichTextAdapter {
-
   let settings: EditorSettings | null
   if (args?.settings != null) {
     settings =
@@ -81,7 +76,7 @@ export function lexicalEditor(args?: LexicalEditorProps): LexicalRichTextAdapter
       interfaceNameDefinitions,
       isRequired,
     }) => {
-      let outputSchema: JSONSchema4 = {
+      const outputSchema: JSONSchema4 = {
         // This schema matches the SerializedEditorState type so far, that it's possible to cast SerializedEditorState to this schema without any errors.
         // In the future, we should
         // 1) allow recursive children

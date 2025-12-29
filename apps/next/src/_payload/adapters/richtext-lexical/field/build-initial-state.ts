@@ -10,7 +10,6 @@ import type {
   SanitizedFieldPermissions,
 } from 'payload'
 
-
 export type InitialLexicalFormState = {
   [nodeID: string]: {
     [key: string]: any

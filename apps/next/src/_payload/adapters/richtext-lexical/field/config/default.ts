@@ -1,12 +1,11 @@
 import type { EditorConfig as LexicalEditorConfig } from 'lexical'
 
-import type { EditorSettings, EditorConfig } from './types'
-
 import { theme } from '../themes/lexical-editor-theme'
+import type { EditorConfig, EditorSettings } from './types'
 
 export const defaultEditorLexicalConfig: LexicalEditorConfig = {
   namespace: 'LexicalRichText',
-  theme
+  theme,
 }
 
 export const DEFAULT_EDITOR_SETTINGS: EditorSettings = {
@@ -46,13 +45,13 @@ export const DEFAULT_EDITOR_SETTINGS: EditorSettings = {
     floatingLinkEditorPlugin: true,
     floatingTextFormatToolbarPlugin: false,
     autoEmbedPlugin: true,
-    debug: false
+    debug: false,
   },
   inlineImageUploadCollection: 'media',
-  placeholderText: 'Enter some rich text...'
+  placeholderText: 'Enter some rich text...',
 }
 
 export const defaultEditorConfig: EditorConfig = {
   settings: DEFAULT_EDITOR_SETTINGS,
-  lexical: defaultEditorLexicalConfig
+  lexical: defaultEditorLexicalConfig,
 }

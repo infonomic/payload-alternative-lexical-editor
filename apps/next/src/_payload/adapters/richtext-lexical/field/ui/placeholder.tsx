@@ -1,4 +1,5 @@
 'use client'
+
 /**
  * Copyright (c) Meta Platforms, Inc. and affiliates.
  *
@@ -6,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  *
  */
-import * as React from 'react'
+import type * as React from 'react'
 
 import cx from 'classnames'
 
@@ -16,7 +17,7 @@ import { useEditorConfig } from '../config/editor-config-context'
 
 export function Placeholder({
   children,
-  className
+  className,
 }: {
   children: React.ReactNode
   className?: string

@@ -1,38 +1,38 @@
-import { ClientField } from 'payload'
-import type { CollectionSlug, FormState, OptionObject } from 'payload'
-import { InlineImageData } from './types'
+import type { ClientField, CollectionSlug, FormState, OptionObject } from 'payload'
+
+import type { InlineImageData } from './types'
 
 export const positionOptions: OptionObject[] = [
   {
     label: 'Left',
-    value: 'left'
+    value: 'left',
   },
   {
     label: 'Right',
-    value: 'right'
+    value: 'right',
   },
   {
     label: 'Full',
-    value: 'full'
+    value: 'full',
   },
   {
     label: 'Wide',
-    value: 'wide'
-  }
+    value: 'wide',
+  },
 ]
 
 export const sizeOptions: OptionObject[] = [
   {
     label: 'Small',
-    value: 'small'
+    value: 'small',
   },
   {
     label: 'Medium',
-    value: 'medium'
+    value: 'medium',
   },
   {
     label: 'Auto',
-    value: 'auto'
+    value: 'auto',
   },
 ]
 
@@ -56,7 +56,7 @@ export const getFields = (imageCollection: CollectionSlug): ClientField[] => [
     required: true,
     label: 'Alt Text',
     localized: false,
-    type: 'text'
+    type: 'text',
   },
   {
     name: 'position',
@@ -64,9 +64,9 @@ export const getFields = (imageCollection: CollectionSlug): ClientField[] => [
     label: 'Position',
     required: true,
     options: positionOptions,
-    type: 'select'
+    type: 'select',
   },
-  // @ts-ignore 
+  // @ts-expect-error
   {
     name: 'size',
     localized: false,
@@ -75,15 +75,16 @@ export const getFields = (imageCollection: CollectionSlug): ClientField[] => [
     options: sizeOptions,
     type: 'select',
     admin: {
-      description: 'If an inline image is placed in an editor column layout, its position should be set to \'full\' and size should be set to \'medium\' for 75% columns, and \'small\' for equal width and 25% columns. Otherwise set size to \'auto\'.',
-    }
+      description:
+        "If an inline image is placed in an editor column layout, its position should be set to 'full' and size should be set to 'medium' for 75% columns, and 'small' for equal width and 25% columns. Otherwise set size to 'auto'.",
+    },
   },
   {
     name: 'showCaption',
     label: 'Show Caption',
     localized: false,
-    type: 'checkbox'
-  }
+    type: 'checkbox',
+  },
 ]
 
 export function getInitialState(data: InlineImageData | undefined): FormState {
@@ -99,19 +100,19 @@ export function getInitialState(data: InlineImageData | undefined): FormState {
     image: {
       value: data?.id,
       initialValue: data?.id,
-      valid: true
+      valid: true,
     },
     altText: {
       value: data?.altText,
       initialValue: data?.altText,
-      valid: true
+      valid: true,
     },
     position: {
       value: data?.position ?? 'full',
       initialValue: data?.position ?? 'full',
-      valid: true
+      valid: true,
     },
-     size: {
+    size: {
       value: data?.size ?? 'auto',
       initialValue: data?.size ?? 'auto',
       valid: true,
@@ -119,8 +120,8 @@ export function getInitialState(data: InlineImageData | undefined): FormState {
     showCaption: {
       value: data?.showCaption ?? false,
       initialValue: data?.showCaption ?? false,
-      valid: true
-    }
+      valid: true,
+    },
   }
 }
 
@@ -141,7 +142,12 @@ export function validateFields(fields: FormState): { valid: boolean; fields: For
   }
 
   if (fields.position != null) {
-    if(fields.position.value !== 'left' && fields.position.value !== 'right' && fields.position.value !== 'full' && fields.position.value !== 'wide') {
+    if (
+      fields.position.value !== 'left' &&
+      fields.position.value !== 'right' &&
+      fields.position.value !== 'full' &&
+      fields.position.value !== 'wide'
+    ) {
       fields.position.valid = false
     } else {
       fields.position.valid = true
@@ -149,8 +155,12 @@ export function validateFields(fields: FormState): { valid: boolean; fields: For
   }
 
   if (fields.size != null) {
-    if(fields.size.value !== 'small' && fields.size.value !== 'medium' && fields.size.value !== 'auto') {
-    fields.size.valid = false
+    if (
+      fields.size.value !== 'small' &&
+      fields.size.value !== 'medium' &&
+      fields.size.value !== 'auto'
+    ) {
+      fields.size.valid = false
     } else {
       fields.size.valid = true
     }
@@ -159,6 +169,6 @@ export function validateFields(fields: FormState): { valid: boolean; fields: For
   // Return
   return {
     valid,
-    fields
+    fields,
   }
 }

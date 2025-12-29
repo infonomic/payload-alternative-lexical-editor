@@ -1,6 +1,6 @@
-import { formatPagePath } from './formatPagePath'
-
 import type { Payload } from 'payload'
+
+import { formatPagePath } from './formatPagePath'
 
 export const regeneratePage = async ({
   doc,
@@ -17,7 +17,7 @@ export const regeneratePage = async ({
     const res = await fetch(
       `${process.env.PAYLOAD_PUBLIC_APP_URL as string}/api/revalidate?secret=${
         process.env.PAYLOAD_PRIVATE_NEXTJS_REVALIDATION_KEY as string
-      }&path=${path}`,
+      }&path=${path}`
     )
 
     if (res.ok) {
@@ -25,7 +25,7 @@ export const regeneratePage = async ({
     } else {
       payload.logger.error(`Error revalidating path ${path}`)
     }
-  } catch (err: unknown) {
+  } catch (_err: unknown) {
     payload.logger.error(`Error hitting revalidate route for ${path}`)
   }
 }

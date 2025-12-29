@@ -7,13 +7,13 @@
  * Adapted from https://github.com/payloadcms/payload/tree/main/packages/richtext-lexical
  */
 
-import type { SerializedLexicalNode } from 'lexical'
-import type { Payload } from 'payload'
+import type React from 'react'
 
 import { getTranslation, type I18nClient } from '@payloadcms/translations'
 import { Link } from '@payloadcms/ui'
+import type { SerializedLexicalNode } from 'lexical'
+import type { Payload } from 'payload'
 import { formatAdminURL } from 'payload/shared'
-import React from 'react'
 
 import type { EditorConfig } from '../field/config/types.js'
 import type { LexicalFieldAdminProps, LexicalRichTextCellProps } from '../types.js'
@@ -21,7 +21,7 @@ import type { LexicalFieldAdminProps, LexicalRichTextCellProps } from '../types.
 function recurseEditorState(
   editorState: SerializedLexicalNode[],
   textContent: React.ReactNode[],
-  i: number = 0,
+  i: number = 0
 ): React.ReactNode[] {
   for (const node of editorState) {
     i++

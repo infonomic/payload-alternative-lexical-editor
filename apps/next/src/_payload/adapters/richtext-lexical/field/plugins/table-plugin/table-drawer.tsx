@@ -1,4 +1,5 @@
 'use client'
+
 /**
  * Copyright (c) Meta Platforms, Inc. and affiliates.
  *
@@ -6,16 +7,12 @@
  * LICENSE file in the root directory of this source tree.
  *
  */
-import * as React from 'react'
+import type * as React from 'react'
 import { useEffect, useState } from 'react'
-
-import { Button } from '@payloadcms/ui'
-import { Drawer } from '@payloadcms/ui'
-import { useModal } from '@payloadcms/ui'
-import { TextInput } from '@payloadcms/ui'
 
 import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext'
 import { INSERT_TABLE_COMMAND } from '@lexical/table'
+import { Button, Drawer, TextInput, useModal } from '@payloadcms/ui'
 
 const baseClass = 'rich-text-table-modal'
 
@@ -41,7 +38,7 @@ export function TableDrawer({ drawerSlug }: { drawerSlug: string }): React.JSX.E
   const handleOnSubmit = (): void => {
     activeEditor.dispatchCommand(INSERT_TABLE_COMMAND, {
       columns,
-      rows
+      rows,
     })
 
     closeModal(drawerSlug)
@@ -59,33 +56,30 @@ export function TableDrawer({ drawerSlug }: { drawerSlug: string }): React.JSX.E
 
   return (
     <Drawer slug={drawerSlug} key={drawerSlug} className={baseClass} title="Add table">
-      <React.Fragment>
-        <TextInput
-          path="rows"
-          placeholder={'# of rows (1-500)'}
-          label="Rows"
-          onChange={handleOnRowsChange}
-          value={rows}
-          data-test-id="table-modal-rows"
-        />
-        <TextInput
-          path="columns"
-          placeholder={'# of columns (1-50)'}
-          label="Columns"
-          onChange={handleOnColumnsChange}
-          value={columns}
-          data-test-id="table-modal-columns"
-        />
-        <div
-          className="rich-text-table-modal__modal-actions"
-          data-test-id="table-model-confirm-insert"
-        >
-          <Button disabled={isDisabled} onClick={handleOnSubmit}>
-            Confirm
-          </Button>
-        </div>
-      </React.Fragment>
+      <TextInput
+        path="rows"
+        placeholder={'# of rows (1-500)'}
+        label="Rows"
+        onChange={handleOnRowsChange}
+        value={rows}
+        data-test-id="table-modal-rows"
+      />
+      <TextInput
+        path="columns"
+        placeholder={'# of columns (1-50)'}
+        label="Columns"
+        onChange={handleOnColumnsChange}
+        value={columns}
+        data-test-id="table-modal-columns"
+      />
+      <div
+        className="rich-text-table-modal__modal-actions"
+        data-test-id="table-model-confirm-insert"
+      >
+        <Button disabled={isDisabled} onClick={handleOnSubmit}>
+          Confirm
+        </Button>
+      </div>
     </Drawer>
   )
 }
-

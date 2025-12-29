@@ -11,7 +11,7 @@ export const publishedOnly: Access<User> = ({ req: { user } }) => {
   // Otherwise - return query constraint
   return {
     _status: {
-      equals: 'published'
-    }
+      equals: 'published',
+    },
   }
 }

@@ -44,11 +44,11 @@ export const theme: EditorThemeClasses = {
     symbol: 'LexicalEditorTheme__tokenProperty',
     tag: 'LexicalEditorTheme__tokenProperty',
     url: 'LexicalEditorTheme__tokenOperator',
-    variable: 'LexicalEditorTheme__tokenVariable'
+    variable: 'LexicalEditorTheme__tokenVariable',
   },
   embedBlock: {
     base: 'LexicalEditorTheme__embedBlock',
-    focus: 'LexicalEditorTheme__embedBlockFocus'
+    focus: 'LexicalEditorTheme__embedBlockFocus',
   },
   hashtag: 'LexicalEditorTheme__hashtag',
   heading: {
@@ -57,7 +57,7 @@ export const theme: EditorThemeClasses = {
     h3: 'LexicalEditorTheme__h3',
     h4: 'LexicalEditorTheme__h4',
     h5: 'LexicalEditorTheme__h5',
-    h6: 'LexicalEditorTheme__h6'
+    h6: 'LexicalEditorTheme__h6',
   },
   image: 'editor-image',
   inlineImage: 'LexicalEditor__inline-image',
@@ -71,16 +71,16 @@ export const theme: EditorThemeClasses = {
     listitemChecked: 'LexicalEditorTheme__listItemChecked',
     listitemUnchecked: 'LexicalEditorTheme__listItemUnchecked',
     nested: {
-      listitem: 'LexicalEditorTheme__nestedListItem'
+      listitem: 'LexicalEditorTheme__nestedListItem',
     },
     olDepth: [
       'LexicalEditorTheme__ol1',
       'LexicalEditorTheme__ol2',
       'LexicalEditorTheme__ol3',
       'LexicalEditorTheme__ol4',
-      'LexicalEditorTheme__ol5'
+      'LexicalEditorTheme__ol5',
     ],
-    ul: 'LexicalEditorTheme__ul'
+    ul: 'LexicalEditorTheme__ul',
   },
   ltr: 'LexicalEditorTheme__ltr',
   mark: 'LexicalEditorTheme__mark',
@@ -110,6 +110,6 @@ export const theme: EditorThemeClasses = {
     subscript: 'LexicalEditorTheme__textSubscript',
     superscript: 'LexicalEditorTheme__textSuperscript',
     underline: 'LexicalEditorTheme__textUnderline',
-    underlineStrikethrough: 'LexicalEditorTheme__textUnderlineStrikethrough'
-  }
+    underlineStrikethrough: 'LexicalEditorTheme__textUnderlineStrikethrough',
+  },
 }

@@ -1,7 +1,7 @@
 import type { Field } from 'payload'
 
 import deepMerge from '../../utilities/deepMerge'
-import { User } from '@/payload-types'
+import type { User } from '@/payload-types'
 
 type Editor = (overrides?: Partial<Field>) => Field
 
@@ -16,8 +16,8 @@ export const editor: Editor = (overrides = {}) =>
         return user.id
       },
       admin: {
-        position: 'sidebar'
-      }
+        position: 'sidebar',
+      },
     },
     overrides
   )

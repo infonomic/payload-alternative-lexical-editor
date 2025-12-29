@@ -1,9 +1,9 @@
 import type {
   LexicalEditor,
-  Spread,
   NodeKey,
   SerializedEditor,
   SerializedLexicalNode,
+  Spread,
 } from 'lexical'
 
 export type Position = 'left' | 'right' | 'full' | 'wide' | 'default' | undefined

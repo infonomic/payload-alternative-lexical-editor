@@ -1,20 +1,20 @@
 'use client'
+
 import * as React from 'react'
 
-import { $applyNodeReplacement, createEditor, DecoratorNode } from 'lexical'
-
-import { APPLY_VALUE_TAG } from '../../constants'
-
-import type { AdmonitionType, AdmonitionAttributes, SerializedAdmonitionNode } from './types'
 import type {
   DOMConversionMap,
   DOMConversionOutput,
   DOMExportOutput,
   EditorConfig,
+  LexicalEditor,
   LexicalNode,
   NodeKey,
-  LexicalEditor
 } from 'lexical'
+import { $applyNodeReplacement, createEditor, DecoratorNode } from 'lexical'
+
+import { APPLY_VALUE_TAG } from '../../constants'
+import type { AdmonitionAttributes, AdmonitionType, SerializedAdmonitionNode } from './types'
 
 const AdmonitionNodeComponent = React.lazy(async () => await import('./admonition-node-component'))
 
@@ -45,7 +45,7 @@ export class AdmonitionNode extends DecoratorNode<React.JSX.Element> {
     const { admonitionType, title, content } = serializedNode
     const node = $createAdmonitionNode({
       admonitionType,
-      title
+      title,
     })
     const nestedEditor = node.__content
 
@@ -56,17 +56,17 @@ export class AdmonitionNode extends DecoratorNode<React.JSX.Element> {
           nestedEditor.setEditorState(editorState)
         }
       },
-      { tag: APPLY_VALUE_TAG },
+      { tag: APPLY_VALUE_TAG }
     )
     return node
   }
 
   static importDOM(): DOMConversionMap | null {
     return {
-      div: (node: Node) => ({
+      div: (_node: Node) => ({
         conversion: convertAdmonitionElement,
-        priority: 0
-      })
+        priority: 0,
+      }),
     }
   }
 
@@ -95,7 +95,7 @@ export class AdmonitionNode extends DecoratorNode<React.JSX.Element> {
       title: this.__title,
       content: this.__content.toJSON(),
       type: 'admonition',
-      version: 1
+      version: 1,
     }
   }
 
@@ -178,7 +178,7 @@ export function $createAdmonitionNode({
   admonitionType,
   title,
   content,
-  key
+  key,
 }: AdmonitionAttributes): AdmonitionNode {
   return $applyNodeReplacement(new AdmonitionNode(admonitionType, title, content, key))
 }

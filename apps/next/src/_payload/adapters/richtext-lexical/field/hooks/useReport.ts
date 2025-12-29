@@ -57,6 +57,6 @@ export default function useReport(): (arg0: string) => ReturnType<typeof setTime
       timer.current = setTimeout(cleanup, 1000)
       return timer.current
     },
-    [cleanup],
+    [cleanup]
   )
 }

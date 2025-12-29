@@ -7,9 +7,8 @@
  */
 
 import { addClassNamesToElement } from '@lexical/utils'
-import { ElementNode } from 'lexical'
-
 import type { DOMConversionMap, EditorConfig, LexicalNode, SerializedElementNode } from 'lexical'
+import { ElementNode } from 'lexical'
 
 export type SerializedLayoutItemNode = SerializedElementNode
 
@@ -50,7 +49,7 @@ export class LayoutItemNode extends ElementNode {
     return {
       ...super.exportJSON(),
       type: 'layout-item',
-      version: 1
+      version: 1,
     }
   }
 }

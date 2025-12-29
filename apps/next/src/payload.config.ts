@@ -1,12 +1,13 @@
 import path from 'node:path'
-import { lexicalEditor } from '@/_payload/adapters/richtext-lexical'
-// import { lexicalEditor } from '@payloadcms/richtext-lexical'
-import { en } from 'payload/i18n/en'
-
 import { fileURLToPath } from 'node:url'
+
 import { mongooseAdapter } from '@payloadcms/db-mongodb'
 import { buildConfig } from 'payload'
+// import { lexicalEditor } from '@payloadcms/richtext-lexical'
+import { en } from 'payload/i18n/en'
 import sharp from 'sharp'
+
+import { lexicalEditor } from '@/_payload/adapters/richtext-lexical'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -30,7 +31,7 @@ export default buildConfig({
       prefillOnly: true,
     },
   },
-  // @ts-ignore: return type for editorConfig is different
+  // @ts-expect-error: return type for editorConfig is different
   editor: lexicalEditor(),
   collections: [Pages, Full, Minimal, Compact, Debug, Media, Users],
   secret: process.env.PAYLOAD_SECRET || '',

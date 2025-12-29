@@ -1,4 +1,5 @@
 'use client'
+
 /**
  * Copyright (c) Meta Platforms, Inc. and affiliates.
  *
@@ -7,12 +8,11 @@
  *
  */
 
-import * as React from 'react'
+import type * as React from 'react'
 import { createContext, type ReactNode, useContext, useMemo } from 'react'
 
-import { createEmptyHistoryState } from '@lexical/react/LexicalHistoryPlugin'
-
 import type { HistoryState } from '@lexical/react/LexicalHistoryPlugin'
+import { createEmptyHistoryState } from '@lexical/react/LexicalHistoryPlugin'
 
 interface ContextShape {
   historyState?: HistoryState

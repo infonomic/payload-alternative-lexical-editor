@@ -1,3 +1,6 @@
+import type React from 'react'
+
+import { renderField } from '@payloadcms/ui/forms/renderField'
 import type { SerializedLexicalNode } from 'lexical'
 import type {
   ClientComponentProps,
@@ -7,19 +10,10 @@ import type {
   ServerComponentProps,
 } from 'payload'
 
-import { renderField } from '@payloadcms/ui/forms/renderField'
-import React from 'react'
-
-import type { ServerEditorConfig } from './config/types.js'
-
-import type {
-  LexicalFieldAdminProps,
-  LexicalRichTextFieldProps,
-} from '../types.js'
-
-
-import { RichTextField } from './index'
 import { buildInitialState } from './build-initial-state'
+import { RichTextField } from './index'
+import type { LexicalFieldAdminProps, LexicalRichTextFieldProps } from '../types.js'
+import type { ServerEditorConfig } from './config/types.js'
 
 export const RscEntryLexicalField: React.FC<
   {
@@ -58,9 +52,8 @@ export const RscEntryLexicalField: React.FC<
     })
   }
 
-  
   const admin: LexicalFieldAdminProps = {}
-  
+
   if (args.admin?.hideGutter) {
     admin.hideGutter = true
   }

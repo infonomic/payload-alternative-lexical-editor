@@ -1,4 +1,5 @@
 'use client'
+
 /**
  * Copyright (c) Meta Platforms, Inc. and affiliates.
  *
@@ -7,28 +8,27 @@
  *
  */
 
+import type * as React from 'react'
 import { useMemo, useState } from 'react'
-import * as React from 'react'
-import * as ReactDOM from 'react-dom'
 
 import {
   AutoEmbedOption,
-  EmbedConfig,
-  EmbedMatchResult,
+  type EmbedConfig,
+  type EmbedMatchResult,
   LexicalAutoEmbedPlugin,
-  URL_MATCHER
+  URL_MATCHER,
 } from '@lexical/react/LexicalAutoEmbedPlugin'
 import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext'
+import type { LexicalEditor } from 'lexical'
+import * as ReactDOM from 'react-dom'
 
 import useModal from '../../hooks/useModal'
 import Button from '../../ui/button'
 import { DialogActions } from '../../ui/dialog'
+import { INSERT_VIMEO_COMMAND } from '../vimeo-plugin'
 // import { INSERT_FIGMA_COMMAND } from '../FigmaPlugin'
 // import { INSERT_TWEET_COMMAND } from '../TwitterPlugin'
 import { INSERT_YOUTUBE_COMMAND } from '../youtube-plugin'
-import { INSERT_VIMEO_COMMAND } from '../vimeo-plugin'
-
-import type { LexicalEditor } from 'lexical'
 
 interface PlaygroundEmbedConfig extends EmbedConfig {
   // Human readable name of the embeded content e.g. Tweet or Google Map.
@@ -70,14 +70,14 @@ export const YoutubeEmbedConfig: PlaygroundEmbedConfig = {
     if (id != null) {
       return {
         id,
-        url
+        url,
       }
     }
 
     return null
   },
 
-  type: 'youtube-video'
+  type: 'youtube-video',
 }
 
 export const VimeoEmbedConfig: PlaygroundEmbedConfig = {
@@ -101,14 +101,14 @@ export const VimeoEmbedConfig: PlaygroundEmbedConfig = {
     if (id != null) {
       return {
         id,
-        url
+        url,
       }
     }
 
     return null
   },
 
-  type: 'vimeo-video'
+  type: 'vimeo-video',
 }
 
 // export const TwitterEmbedConfig: PlaygroundEmbedConfig = {
@@ -184,7 +184,7 @@ function AutoEmbedMenuItem({
   isSelected,
   onClick,
   onMouseEnter,
-  option
+  option,
 }: {
   index: number
   isSelected: boolean
@@ -202,9 +202,8 @@ function AutoEmbedMenuItem({
       tabIndex={-1}
       className={className}
       ref={option.setRefElement}
-      role="option"
       aria-selected={isSelected}
-      id={'typeahead-item-' + index}
+      id={`typeahead-item-${index}`}
       onMouseEnter={onMouseEnter}
       onClick={onClick}
     >
@@ -217,7 +216,7 @@ function AutoEmbedMenu({
   options,
   selectedItemIndex,
   onOptionClick,
-  onOptionMouseEnter
+  onOptionMouseEnter,
 }: {
   selectedItemIndex: number | null
   onOptionClick: (option: AutoEmbedOption, index: number) => void
@@ -258,7 +257,7 @@ const debounce = (callback: (text: string) => void, delay: number): ((text: stri
 
 export function AutoEmbedDialog({
   embedConfig,
-  onClose
+  onClose,
 }: {
   embedConfig: PlaygroundEmbedConfig
   onClose: () => void
@@ -334,11 +333,11 @@ export function AutoEmbedPlugin(): React.JSX.Element {
   ): AutoEmbedOption[] => {
     return [
       new AutoEmbedOption('Dismiss', {
-        onSelect: dismissFn
+        onSelect: dismissFn,
       }),
       new AutoEmbedOption(`Embed ${activeEmbedConfig.contentName}`, {
-        onSelect: embedFn
-      })
+        onSelect: embedFn,
+      }),
     ]
   }
 
@@ -359,7 +358,7 @@ export function AutoEmbedPlugin(): React.JSX.Element {
                   className="typeahead-popover auto-embed-menu"
                   style={{
                     marginLeft: anchorElementRef.current.style.width,
-                    width: 200
+                    width: 200,
                   }}
                 >
                   <AutoEmbedMenu

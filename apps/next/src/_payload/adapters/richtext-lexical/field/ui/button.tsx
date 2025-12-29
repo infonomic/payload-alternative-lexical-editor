@@ -1,4 +1,5 @@
 'use client'
+
 /**
  * Copyright (c) Meta Platforms, Inc. and affiliates.
  *
@@ -6,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  *
  */
-import * as React from 'react'
+import type * as React from 'react'
 
 import './button.css'
 
@@ -19,7 +20,7 @@ export default function Button({
   onClick,
   disabled,
   small,
-  title
+  title,
 }: {
   'data-test-id'?: string
   children: React.ReactNode

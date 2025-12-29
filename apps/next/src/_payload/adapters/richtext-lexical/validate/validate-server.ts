@@ -1,4 +1,4 @@
-import type { SerializedEditorState, } from 'lexical'
+import type { SerializedEditorState } from 'lexical'
 import type { RichTextField, Validate } from 'payload'
 
 import { hasText } from './hasText'
@@ -12,7 +12,7 @@ export const richTextValidate: Validate<
 > = async (value, options) => {
   const {
     req: { t },
-    required
+    required,
   } = options
 
   if (required && hasText(value) === false) {

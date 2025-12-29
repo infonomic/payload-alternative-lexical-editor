@@ -191,15 +191,15 @@
   pointer-events: none;
 }
 
-html[data-theme='dark'] .InlineImageNode__contentEditable {
+html[data-theme="dark"] .InlineImageNode__contentEditable {
   color: #eeeeee;
   caret-color: auto;
 }
 
-html[data-theme='dark'] .LexicalEditor__inline-image .InlineImageNode__caption_container {
+html[data-theme="dark"] .LexicalEditor__inline-image .InlineImageNode__caption_container {
   background-color: #222222;
 }
 
-html[data-theme='dark'] .InlineImageNode__placeholder {
+html[data-theme="dark"] .InlineImageNode__placeholder {
   color: #888;
 }

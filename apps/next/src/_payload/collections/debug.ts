@@ -1,7 +1,8 @@
-import { lexicalEditor } from '../adapters/richtext-lexical'
-import { type CollectionConfig } from 'payload'
+import type { CollectionConfig } from 'payload'
+
 import { isAdmin, isAdminOrEditor, publishedOnly } from '@/_payload/access'
 import { slugField } from '@/_payload/fields/slug'
+import { lexicalEditor } from '../adapters/richtext-lexical'
 
 export const Debug: CollectionConfig = {
   slug: 'debug',

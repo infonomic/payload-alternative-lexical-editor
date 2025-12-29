@@ -1,5 +1,6 @@
-import path from 'path'
-import { fileURLToPath } from 'url'
+import path from 'node:path'
+import { fileURLToPath } from 'node:url'
+
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
@@ -7,7 +8,6 @@ import type { CollectionConfig } from 'payload'
 
 import { isAdmin, isAdminOrEditor } from '../access'
 import { validateFilename } from '../validation/validate-filename'
-import { MediaCollectionDescription } from './components/media-collection-description'
 
 const getAdminThumbnail = ({ doc }: any): string | null => {
   const mimeType = doc.mimeType as string

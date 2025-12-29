@@ -1,13 +1,7 @@
 'use client'
-import * as React from 'react'
+
+import type * as React from 'react'
 import { Suspense, useCallback, useEffect, useRef, useState } from 'react'
-
-import { formatDrawerSlug } from '@payloadcms/ui'
-import { useEditDepth } from '@payloadcms/ui'
-import { useConfig } from '@payloadcms/ui'
-import { requests } from '@payloadcms/ui/utilities/api'
-
-import { useModal } from '@payloadcms/ui'
 
 import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext'
 import { LexicalErrorBoundary } from '@lexical/react/LexicalErrorBoundary'
@@ -17,7 +11,10 @@ import { OnChangePlugin } from '@lexical/react/LexicalOnChangePlugin'
 import { RichTextPlugin } from '@lexical/react/LexicalRichTextPlugin'
 import { useLexicalNodeSelection } from '@lexical/react/useLexicalNodeSelection'
 import { mergeRegister } from '@lexical/utils'
+import { formatDrawerSlug, useConfig, useEditDepth, useModal } from '@payloadcms/ui'
+import { requests } from '@payloadcms/ui/utilities/api'
 import cx from 'classnames'
+import type { BaseSelection, LexicalEditor, NodeKey, NodeSelection, RangeSelection } from 'lexical'
 import {
   $getNodeByKey,
   $getSelection,
@@ -30,27 +27,26 @@ import {
   KEY_DELETE_COMMAND,
   KEY_ENTER_COMMAND,
   KEY_ESCAPE_COMMAND,
-  SELECTION_CHANGE_COMMAND
+  SELECTION_CHANGE_COMMAND,
 } from 'lexical'
 
-import { $isInlineImageNode } from './inline-image-node'
+import { APPLY_VALUE_TAG } from '../../constants'
 import { useSharedHistoryContext } from '../../context/shared-history-context'
 import { useSharedOnChange } from '../../context/shared-on-change-context'
 import { FloatingTextFormatToolbarPlugin } from '../../plugins/floating-text-format-toolbar-plugin/index'
 import { InlineImageDrawer } from '../../plugins/inline-image-plugin/inline-image-drawer'
 import { getPreferredSize } from '../../plugins/inline-image-plugin/utils'
-import { FloatingLinkEditorPlugin } from '../../plugins/link-plugin/link/floating-link-editor'
 import { LinkPlugin } from '../../plugins/link-plugin/link'
+import { FloatingLinkEditorPlugin } from '../../plugins/link-plugin/link/floating-link-editor'
 import ContentEditableInline from '../../ui/content-editable-inline'
 import PlaceholderInline from '../../ui/placeholder-inline'
-import { APPLY_VALUE_TAG } from '../../constants'
-
+import { $isInlineImageNode } from './inline-image-node'
 import type { InlineImageNode } from './inline-image-node'
-import type { Position, Size, InlineImageAttributes } from './types'
-import type { LexicalEditor, NodeKey, NodeSelection, RangeSelection, BaseSelection } from 'lexical'
+import type { InlineImageAttributes, Position, Size } from './types'
 
 import './inline-image-node-component.css'
-import { InlineImageData } from '../../plugins/inline-image-plugin/types'
+
+import type { InlineImageData } from '../../plugins/inline-image-plugin/types'
 
 const imageCache = new Set()
 
@@ -77,7 +73,7 @@ function LazyImage({
   className,
   imageRef,
   width,
-  height
+  height,
 }: {
   id: string
   collection: string
@@ -105,7 +101,7 @@ function LazyImage({
       data-position={position}
       data-size={size}
       style={{
-        display: 'block'
+        display: 'block',
       }}
       draggable="false"
     />
@@ -123,7 +119,7 @@ export default function InlineImageComponent({
   height,
   showCaption,
   caption,
-  nodeKey
+  nodeKey,
 }: {
   id: string
   collection: string
@@ -150,28 +146,28 @@ export default function InlineImageComponent({
   const { config } = useConfig()
   const {
     serverURL,
-    routes: { api }
+    routes: { api },
   } = config
 
   const editorState = editor.getEditorState()
   const activeEditorRef = useRef<LexicalEditor | null>(null)
   const node = editorState.read(() => $getNodeByKey(nodeKey) as InlineImageNode)
 
-  const debugTagLogCountRef = useRef<number>(0)
+  const _debugTagLogCountRef = useRef<number>(0)
 
   const {
     toggleModal = () => {
       console.error('Error: useModal() from Payload did not work correctly')
     },
     closeModal,
-    isModalOpen
+    isModalOpen,
   } = useModal()
 
   // NOTE: set the slug suffix to the document ID so that
   // each image in the editor gets its own slug and modal
   const inlineImageDrawerSlug = formatDrawerSlug({
     slug: `rich-text-inline-image-update-lexical-${id}`,
-    depth: editDepth
+    depth: editDepth,
   })
 
   const onDelete = useCallback(
@@ -290,7 +286,7 @@ export default function InlineImageComponent({
       isMounted = false
       unregister()
     }
-  }, [clearSelection, editor, isSelected, nodeKey, onDelete, onEnter, onEscape, setSelected])
+  }, [clearSelection, editor, isSelected, onDelete, onEnter, onEscape, setSelected])
 
   const draggable = isSelected && $isNodeSelection(selection)
   const isFocused = isSelected
@@ -319,7 +315,7 @@ export default function InlineImageComponent({
               altText: data?.altText,
               position: data?.position,
               size: data?.size,
-              showCaption: data?.showCaption
+              showCaption: data?.showCaption,
             }
 
             // We don't set width or height for SVG images
@@ -357,90 +353,88 @@ export default function InlineImageComponent({
   // https://github.com/facebook/lexical/discussions/3640
   return (
     <Suspense fallback={null}>
-      <>
-        <span draggable={draggable} className={classNames}>
-          <button
-            type="button"
-            className="image-edit-button"
-            ref={buttonRef}
-            onClick={handleToggleModal}
-          >
-            Edit
-          </button>
-          <LazyImage
-            id={id}
-            collection={collection}
-            src={src}
-            position={position}
-            size={size}
-            altText={altText}
-            imageRef={imageRef}
-            width={width}
-            height={height}
-          />
-          {showCaption && (
-            <span className="InlineImageNode__caption_container">
-              <LexicalNestedComposer initialEditor={caption}>
-                <OnChangePlugin
-                  ignoreSelectionChange={true}
-                  onChange={(nestedEditorState, nestedEditor, nestedTags) => {
-                    // if (process.env.NODE_ENV === 'production' && debugTagLogCountRef.current < 10) {
-                    //   debugTagLogCountRef.current++
-                    //   // eslint-disable-next-line no-console
-                    //   console.log('[lexical][nested][inline-image] tags', Array.from(nestedTags))
-                    // }
+      <span draggable={draggable} className={classNames}>
+        <button
+          type="button"
+          className="image-edit-button"
+          ref={buttonRef}
+          onClick={handleToggleModal}
+        >
+          Edit
+        </button>
+        <LazyImage
+          id={id}
+          collection={collection}
+          src={src}
+          position={position}
+          size={size}
+          altText={altText}
+          imageRef={imageRef}
+          width={width}
+          height={height}
+        />
+        {showCaption && (
+          <span className="InlineImageNode__caption_container">
+            <LexicalNestedComposer initialEditor={caption}>
+              <OnChangePlugin
+                ignoreSelectionChange={true}
+                onChange={(_nestedEditorState, _nestedEditor, nestedTags) => {
+                  // if (process.env.NODE_ENV === 'production' && debugTagLogCountRef.current < 10) {
+                  //   debugTagLogCountRef.current++
+                  //   // eslint-disable-next-line no-console
+                  //   console.log('[lexical][nested][inline-image] tags', Array.from(nestedTags))
+                  // }
 
-                    if (nestedTags.has(APPLY_VALUE_TAG)) return
-                    if (nestedTags.has('focus') && nestedTags.size === 1) return
+                  if (nestedTags.has(APPLY_VALUE_TAG)) return
+                  if (nestedTags.has('focus') && nestedTags.size === 1) return
 
-                    // Note: Shared 'onChange' context provider so that
-                    // caption change events can be registered with the parent
-                    // editor - in turn triggering the parent editor onChange
-                    // event, and therefore updating editorState and the field
-                    // value in Payload (Save Draft and Publish Changes will then
-                    // become 'enabled' from the caption as well as the parent
-                    // editor content.)
+                  // Note: Shared 'onChange' context provider so that
+                  // caption change events can be registered with the parent
+                  // editor - in turn triggering the parent editor onChange
+                  // event, and therefore updating editorState and the field
+                  // value in Payload (Save Draft and Publish Changes will then
+                  // become 'enabled' from the caption as well as the parent
+                  // editor content.)
 
-                    // Parent editor state - not the LexicalNestedComposer in this case
-                    // although there are other ways that this could be used.
-                    const editorState = editor.getEditorState()
-                    if (onChange != null) onChange(editorState, editor, nestedTags)
-                  }}
-                />
-                <LinkPlugin />
-                <FloatingLinkEditorPlugin />
-                <FloatingTextFormatToolbarPlugin />
-                <HistoryPlugin externalHistoryState={historyState} />
-                <RichTextPlugin
-                  contentEditable={
-                    <ContentEditableInline className="InlineImageNode__contentEditable" />
-                  }
-                  placeholder={
-                    <PlaceholderInline className="InlineImageNode__placeholder">
-                      Enter a caption...
-                    </PlaceholderInline>
-                  }
-                  ErrorBoundary={LexicalErrorBoundary}
-                />
-              </LexicalNestedComposer>
-            </span>
-          )}
-        </span>
-
-        {id != null && id.length > 0 && (
-          <InlineImageDrawer
-            isOpen={isModalOpen(inlineImageDrawerSlug)}
-            drawerSlug={inlineImageDrawerSlug}
-            data={{ id, altText, position, size, showCaption }}
-            onSubmit={(data: InlineImageData) => {
-              void handleModalSubmit(data)
-            }}
-            onClose={() => {
-              closeModal(inlineImageDrawerSlug)
-            }}
-          />
+                  // Parent editor state - not the LexicalNestedComposer in this case
+                  // although there are other ways that this could be used.
+                  const editorState = editor.getEditorState()
+                  if (onChange != null) onChange(editorState, editor, nestedTags)
+                }}
+              />
+              <LinkPlugin />
+              <FloatingLinkEditorPlugin />
+              <FloatingTextFormatToolbarPlugin />
+              <HistoryPlugin externalHistoryState={historyState} />
+              <RichTextPlugin
+                contentEditable={
+                  <ContentEditableInline className="InlineImageNode__contentEditable" />
+                }
+                placeholder={
+                  <PlaceholderInline className="InlineImageNode__placeholder">
+                    Enter a caption...
+                  </PlaceholderInline>
+                }
+                ErrorBoundary={LexicalErrorBoundary}
+              />
+            </LexicalNestedComposer>
+          </span>
         )}
-      </>
+      </span>
+
+      {id != null && id.length > 0 && (
+        <InlineImageDrawer
+          isOpen={isModalOpen(inlineImageDrawerSlug)}
+          drawerSlug={inlineImageDrawerSlug}
+          data={{ id, altText, position, size, showCaption }}
+          onSubmit={(data: InlineImageData) => {
+            void handleModalSubmit(data)
+          }}
+          onClose={() => {
+            closeModal(inlineImageDrawerSlug)
+          }}
+        />
+      )}
     </Suspense>
   )
 }

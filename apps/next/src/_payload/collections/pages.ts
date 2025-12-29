@@ -1,10 +1,10 @@
-import { type CollectionConfig } from 'payload'
+import type { CollectionConfig } from 'payload'
 
 import { isAdmin, isAdminOrEditor, publishedOnly } from '@/_payload/access'
-import { editor } from '@/_payload/fields/editor'
-import { publishedOn } from '@/_payload/fields/published-on'
 import { PhotoBlock } from '@/_payload/blocks/photo'
 import { RichTextBlock } from '@/_payload/blocks/richtext'
+import { editor } from '@/_payload/fields/editor'
+import { publishedOn } from '@/_payload/fields/published-on'
 import { slugField } from '@/_payload/fields/slug'
 
 export const Pages: CollectionConfig = {
@@ -24,18 +24,18 @@ export const Pages: CollectionConfig = {
   defaultSort: '-publishedOn',
   versions: {
     drafts: true,
-    maxPerDoc: 5
+    maxPerDoc: 5,
   },
   labels: {
     singular: 'Page',
-    plural: 'Pages'
+    plural: 'Pages',
   },
   access: {
     create: isAdminOrEditor,
     read: publishedOnly,
     readVersions: isAdminOrEditor,
     update: isAdminOrEditor,
-    delete: isAdmin
+    delete: isAdmin,
   },
 
   fields: [
@@ -49,18 +49,17 @@ export const Pages: CollectionConfig = {
               name: 'title',
               type: 'text',
               localized: true,
-              required: true
+              required: true,
             },
             {
               name: 'sub',
               type: 'textarea',
               localized: true,
               admin: {
-                description: "Optionally enter a sub-title, sub-tag, or 'lead' for this page."
-              }
+                description: "Optionally enter a sub-title, sub-tag, or 'lead' for this page.",
+              },
             },
-
-          ]
+          ],
         },
         {
           label: 'Content',
@@ -68,18 +67,15 @@ export const Pages: CollectionConfig = {
             {
               name: 'content',
               type: 'blocks',
-              blocks: [
-                RichTextBlock,
-                PhotoBlock,
-              ],
-              required: true
-            }
-          ]
-        }
-      ]
+              blocks: [RichTextBlock, PhotoBlock],
+              required: true,
+            },
+          ],
+        },
+      ],
     },
     slugField(),
     publishedOn(),
-    editor()
-  ]
+    editor(),
+  ],
 }

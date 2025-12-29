@@ -1,4 +1,5 @@
 'use client'
+
 /**
  * Copyright (c) Meta Platforms, Inc. and affiliates.
  *
@@ -6,19 +7,15 @@
  * LICENSE file in the root directory of this source tree.
  *
  */
-import * as React from 'react'
+import type * as React from 'react'
 import { useCallback, useEffect, useState } from 'react'
-
-import { useEditDepth } from '@payloadcms/ui'
-import { formatDrawerSlug } from '@payloadcms/ui'
-import { useModal as usePayloadModal } from '@payloadcms/ui'
 
 import {
   $createCodeNode,
   $isCodeNode,
   CODE_LANGUAGE_FRIENDLY_NAME_MAP,
   CODE_LANGUAGE_MAP,
-  getLanguageFriendlyName
+  getLanguageFriendlyName,
 } from '@lexical/code'
 import {
   $isListNode,
@@ -26,7 +23,7 @@ import {
   INSERT_ORDERED_LIST_COMMAND,
   INSERT_UNORDERED_LIST_COMMAND,
   ListNode,
-  REMOVE_LIST_COMMAND
+  REMOVE_LIST_COMMAND,
 } from '@lexical/list'
 import { INSERT_EMBED_COMMAND } from '@lexical/react/LexicalAutoEmbedPlugin'
 import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext'
@@ -37,16 +34,18 @@ import {
   $createQuoteNode,
   $isHeadingNode,
   $isQuoteNode,
-  type HeadingTagType
+  type HeadingTagType,
 } from '@lexical/rich-text'
-import { $isParentElementRTL, $setBlocksType } from '@lexical/selection'
+import { $setBlocksType } from '@lexical/selection'
 import { $isTableNode } from '@lexical/table'
 import {
   $findMatchingParent,
   $getNearestBlockElementAncestorOrThrow,
   $getNearestNodeOfType,
-  mergeRegister
+  mergeRegister,
 } from '@lexical/utils'
+import { formatDrawerSlug, useEditDepth, useModal as usePayloadModal } from '@payloadcms/ui'
+import type { LexicalEditor, NodeKey } from 'lexical'
 import {
   $createParagraphNode,
   $getNodeByKey,
@@ -65,16 +64,12 @@ import {
   OUTDENT_CONTENT_COMMAND,
   REDO_COMMAND,
   SELECTION_CHANGE_COMMAND,
-  UNDO_COMMAND
+  UNDO_COMMAND,
 } from 'lexical'
 
 import { useEditorConfig } from '../../config/editor-config-context'
 import useModal from '../../hooks/useModal'
-import {
-  $isLinkNode,
-  type LinkAttributes,
-  TOGGLE_LINK_COMMAND
-} from '../../nodes/link-nodes'
+import { $isLinkNode, type LinkAttributes, TOGGLE_LINK_COMMAND } from '../../nodes/link-nodes'
 import { IS_APPLE } from '../../shared/environment'
 import DropDown, { DropDownItem } from '../../ui/dropdown'
 import { getSelectedNode } from '../../utils/getSelectedNode'
@@ -84,8 +79,6 @@ import { EmbedConfigs } from '../auto-embed-plugin'
 import { OPEN_INLINE_IMAGE_MODAL_COMMAND } from '../inline-image-plugin'
 import { InsertLayoutDialog } from '../layout-plugin/insert-layout-dialog'
 import { OPEN_TABLE_MODAL_COMMAND } from '../table-plugin'
-
-import type { LexicalEditor, NodeKey } from 'lexical'
 
 const blockTypeToBlockName = {
   bullet: 'Bulleted List',
@@ -99,12 +92,12 @@ const blockTypeToBlockName = {
   h6: 'Heading 6',
   number: 'Numbered List',
   paragraph: 'Normal',
-  quote: 'Quote'
+  quote: 'Quote',
 }
 
 const rootTypeToRootName = {
   root: 'Root',
-  table: 'Table'
+  table: 'Table',
 }
 
 function getCodeLanguageOptions(): Array<[string, string]> {
@@ -128,7 +121,7 @@ function BlockFormatDropDown({
   editor,
   blockType,
   rootType,
-  disabled = false
+  disabled = false,
 }: {
   blockType: keyof typeof blockTypeToBlockName
   rootType: keyof typeof rootTypeToRootName
@@ -137,8 +130,8 @@ function BlockFormatDropDown({
 }): React.JSX.Element {
   const {
     config: {
-      options: { checkListPlugin, listPlugin, codeHighlightPlugin }
-    }
+      options: { checkListPlugin, listPlugin, codeHighlightPlugin },
+    },
   } = useEditorConfig()
 
   const formatParagraph = (): void => {
@@ -222,19 +215,19 @@ function BlockFormatDropDown({
     <DropDown
       disabled={disabled}
       buttonClassName="toolbar-item block-controls"
-      buttonIconClassName={'icon block-type ' + blockType}
+      buttonIconClassName={`icon block-type ${blockType}`}
       buttonLabel={blockTypeToBlockName[blockType]}
       buttonAriaLabel="Formatting options for text style"
     >
       <DropDownItem
-        className={'item ' + dropDownActiveClass(blockType === 'paragraph')}
+        className={`item ${dropDownActiveClass(blockType === 'paragraph')}`}
         onClick={formatParagraph}
       >
         <i className="icon paragraph" />
         <span className="text">Normal</span>
       </DropDownItem>
       <DropDownItem
-        className={'item ' + dropDownActiveClass(blockType === 'h1')}
+        className={`item ${dropDownActiveClass(blockType === 'h1')}`}
         onClick={() => {
           formatHeading('h1')
         }}
@@ -243,7 +236,7 @@ function BlockFormatDropDown({
         <span className="text">Heading 1</span>
       </DropDownItem>
       <DropDownItem
-        className={'item ' + dropDownActiveClass(blockType === 'h2')}
+        className={`item ${dropDownActiveClass(blockType === 'h2')}`}
         onClick={() => {
           formatHeading('h2')
         }}
@@ -252,7 +245,7 @@ function BlockFormatDropDown({
         <span className="text">Heading 2</span>
       </DropDownItem>
       <DropDownItem
-        className={'item ' + dropDownActiveClass(blockType === 'h3')}
+        className={`item ${dropDownActiveClass(blockType === 'h3')}`}
         onClick={() => {
           formatHeading('h3')
         }}
@@ -261,7 +254,7 @@ function BlockFormatDropDown({
         <span className="text">Heading 3</span>
       </DropDownItem>
       <DropDownItem
-        className={'item ' + dropDownActiveClass(blockType === 'h4')}
+        className={`item ${dropDownActiveClass(blockType === 'h4')}`}
         onClick={() => {
           formatHeading('h4')
         }}
@@ -272,14 +265,14 @@ function BlockFormatDropDown({
       {listPlugin && (
         <>
           <DropDownItem
-            className={'item ' + dropDownActiveClass(blockType === 'bullet')}
+            className={`item ${dropDownActiveClass(blockType === 'bullet')}`}
             onClick={formatBulletList}
           >
             <i className="icon bullet-list" />
             <span className="text">Bullet List</span>
           </DropDownItem>
           <DropDownItem
-            className={'item ' + dropDownActiveClass(blockType === 'number')}
+            className={`item ${dropDownActiveClass(blockType === 'number')}`}
             onClick={formatNumberedList}
           >
             <i className="icon numbered-list" />
@@ -290,7 +283,7 @@ function BlockFormatDropDown({
 
       {checkListPlugin && (
         <DropDownItem
-          className={'item ' + dropDownActiveClass(blockType === 'check')}
+          className={`item ${dropDownActiveClass(blockType === 'check')}`}
           onClick={formatCheckList}
         >
           <i className="icon check-list" />
@@ -299,7 +292,7 @@ function BlockFormatDropDown({
       )}
 
       <DropDownItem
-        className={'item ' + dropDownActiveClass(blockType === 'quote')}
+        className={`item ${dropDownActiveClass(blockType === 'quote')}`}
         onClick={formatQuote}
       >
         <i className="icon quote" />
@@ -307,7 +300,7 @@ function BlockFormatDropDown({
       </DropDownItem>
       {codeHighlightPlugin && (
         <DropDownItem
-          className={'item ' + dropDownActiveClass(blockType === 'code')}
+          className={`item ${dropDownActiveClass(blockType === 'code')}`}
           onClick={formatCode}
         >
           <i className="icon code" />
@@ -340,7 +333,7 @@ export function ToolbarPlugin(): React.JSX.Element {
   const [isCode, setIsCode] = useState(false)
   const [canUndo, setCanUndo] = useState(false)
   const [canRedo, setCanRedo] = useState(false)
-  const [isRTL, setIsRTL] = useState(false)
+  const [isRTL, _setIsRTL] = useState(false)
   const [codeLanguage, setCodeLanguage] = useState<string>('')
   const [isEditable, setIsEditable] = useState(() => editor.isEditable())
   const {
@@ -357,9 +350,9 @@ export function ToolbarPlugin(): React.JSX.Element {
         undoRedo,
         textStyle,
         inlineCode,
-        links
-      }
-    }
+        links,
+      },
+    },
   } = useEditorConfig()
   const { openModal } = usePayloadModal()
   const editDepth = useEditDepth()
@@ -424,7 +417,7 @@ export function ToolbarPlugin(): React.JSX.Element {
           }
           if ($isCodeNode(element)) {
             const language = element.getLanguage() as keyof typeof CODE_LANGUAGE_MAP
-            setCodeLanguage(language != null ? CODE_LANGUAGE_MAP[language] ?? language : '')
+            setCodeLanguage(language != null ? (CODE_LANGUAGE_MAP[language] ?? language) : '')
           }
         }
       }
@@ -490,7 +483,7 @@ export function ToolbarPlugin(): React.JSX.Element {
       },
       COMMAND_PRIORITY_NORMAL
     )
-  }, [activeEditor, isLink])
+  }, [activeEditor])
 
   const clearFormatting = useCallback(() => {
     activeEditor.update(() => {
@@ -537,7 +530,7 @@ export function ToolbarPlugin(): React.JSX.Element {
 
   const linkDrawerSlug = formatDrawerSlug({
     slug: `rich-text-link-lexical-${uuid}`,
-    depth: editDepth
+    depth: editDepth,
   })
 
   const insertLink = useCallback(() => {
@@ -551,7 +544,7 @@ export function ToolbarPlugin(): React.JSX.Element {
           if (selection.focus.offset !== selection.anchor.offset) {
             const linkAttributes: LinkAttributes = {
               linkType: 'custom',
-              url: 'https://'
+              url: 'https://',
             }
             editor.dispatchCommand(TOGGLE_LINK_COMMAND, linkAttributes)
             openModal(linkDrawerSlug)
@@ -675,7 +668,7 @@ export function ToolbarPlugin(): React.JSX.Element {
                   }}
                   className="item"
                 >
-                  <i className={'icon ' + (isRTL ? 'indent' : 'outdent')} />
+                  <i className={`icon ${isRTL ? 'indent' : 'outdent'}`} />
                   <span className="text">Outdent</span>
                 </DropDownItem>
                 <DropDownItem
@@ -684,7 +677,7 @@ export function ToolbarPlugin(): React.JSX.Element {
                   }}
                   className="item"
                 >
-                  <i className={'icon ' + (isRTL ? 'outdent' : 'indent')} />
+                  <i className={`icon ${isRTL ? 'outdent' : 'indent'}`} />
                   <span className="text">Indent</span>
                 </DropDownItem>
               </DropDown>
@@ -721,7 +714,7 @@ export function ToolbarPlugin(): React.JSX.Element {
             onClick={() => {
               activeEditor.dispatchCommand(FORMAT_TEXT_COMMAND, 'bold')
             }}
-            className={'toolbar-item spaced ' + (isBold ? 'active' : '')}
+            className={`toolbar-item spaced ${isBold ? 'active' : ''}`}
             title={IS_APPLE ? 'Bold (⌘B)' : 'Bold (Ctrl+B)'}
             type="button"
             aria-label={`Format text as bold. Shortcut: ${IS_APPLE ? '⌘B' : 'Ctrl+B'}`}
@@ -733,7 +726,7 @@ export function ToolbarPlugin(): React.JSX.Element {
             onClick={() => {
               activeEditor.dispatchCommand(FORMAT_TEXT_COMMAND, 'italic')
             }}
-            className={'toolbar-item spaced ' + (isItalic ? 'active' : '')}
+            className={`toolbar-item spaced ${isItalic ? 'active' : ''}`}
             title={IS_APPLE ? 'Italic (⌘I)' : 'Italic (Ctrl+I)'}
             type="button"
             aria-label={`Format text as italics. Shortcut: ${IS_APPLE ? '⌘I' : 'Ctrl+I'}`}
@@ -745,7 +738,7 @@ export function ToolbarPlugin(): React.JSX.Element {
             onClick={() => {
               activeEditor.dispatchCommand(FORMAT_TEXT_COMMAND, 'underline')
             }}
-            className={'toolbar-item spaced ' + (isUnderline ? 'active' : '')}
+            className={`toolbar-item spaced ${isUnderline ? 'active' : ''}`}
             title={IS_APPLE ? 'Underline (⌘U)' : 'Underline (Ctrl+U)'}
             type="button"
             aria-label={`Format text to underlined. Shortcut: ${IS_APPLE ? '⌘U' : 'Ctrl+U'}`}
@@ -758,7 +751,7 @@ export function ToolbarPlugin(): React.JSX.Element {
               onClick={() => {
                 activeEditor.dispatchCommand(FORMAT_TEXT_COMMAND, 'code')
               }}
-              className={'toolbar-item spaced ' + (isCode ? 'active' : '')}
+              className={`toolbar-item spaced ${isCode ? 'active' : ''}`}
               title="Insert code block"
               type="button"
               aria-label="Insert code block"
@@ -791,7 +784,7 @@ export function ToolbarPlugin(): React.JSX.Element {
               onClick={() => {
                 activeEditor.dispatchCommand(FORMAT_TEXT_COMMAND, 'strikethrough')
               }}
-              className={'item ' + dropDownActiveClass(isStrikethrough)}
+              className={`item ${dropDownActiveClass(isStrikethrough)}`}
               title="Strikethrough"
               aria-label="Format text with a strikethrough"
             >
@@ -802,7 +795,7 @@ export function ToolbarPlugin(): React.JSX.Element {
               onClick={() => {
                 activeEditor.dispatchCommand(FORMAT_TEXT_COMMAND, 'subscript')
               }}
-              className={'item ' + dropDownActiveClass(isSubscript)}
+              className={`item ${dropDownActiveClass(isSubscript)}`}
               title="Subscript"
               aria-label="Format text with a subscript"
             >
@@ -813,7 +806,7 @@ export function ToolbarPlugin(): React.JSX.Element {
               onClick={() => {
                 activeEditor.dispatchCommand(FORMAT_TEXT_COMMAND, 'superscript')
               }}
-              className={'item ' + dropDownActiveClass(isSuperscript)}
+              className={`item ${dropDownActiveClass(isSuperscript)}`}
               title="Superscript"
               aria-label="Format text with a superscript"
             >

@@ -36,8 +36,8 @@
   position: relative;
   margin-top: 15px;
   height: 150px;
-  background-image: linear-gradient(transparent, black),
-    linear-gradient(to right, white, transparent);
+  background-image:
+    linear-gradient(transparent, black), linear-gradient(to right, white, transparent);
   user-select: none;
 }
 .color-picker-saturation_cursor {

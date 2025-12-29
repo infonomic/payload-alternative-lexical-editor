@@ -1,4 +1,5 @@
 'use client'
+
 /**
  * Copyright (c) Meta Platforms, Inc. and affiliates.
  *
@@ -6,8 +7,9 @@
  * LICENSE file in the root directory of this source tree.
  *
  */
-import * as React from 'react'
+import type * as React from 'react'
 import { type ReactNode, useEffect, useRef } from 'react'
+
 import { createPortal } from 'react-dom'
 
 import './modal.css'
@@ -16,7 +18,7 @@ function PortalImpl({
   onClose,
   children,
   title,
-  closeOnClickOutside
+  closeOnClickOutside,
 }: {
   children: ReactNode
   closeOnClickOutside: boolean
@@ -88,7 +90,7 @@ export default function Modal({
   onClose,
   children,
   title,
-  closeOnClickOutside = false
+  closeOnClickOutside = false,
 }: {
   children: ReactNode
   closeOnClickOutside?: boolean

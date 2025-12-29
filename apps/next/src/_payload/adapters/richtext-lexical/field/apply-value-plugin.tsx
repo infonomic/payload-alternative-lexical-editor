@@ -1,6 +1,6 @@
 'use client'
 
-import * as React from 'react'
+import type * as React from 'react'
 import { useEffect, useRef } from 'react'
 
 import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext'
@@ -42,7 +42,7 @@ export function ApplyValuePlugin({
       () => {
         editor.setEditorState(nextState)
       },
-      { tag: APPLY_VALUE_TAG },
+      { tag: APPLY_VALUE_TAG }
     )
 
     let cancelled = false

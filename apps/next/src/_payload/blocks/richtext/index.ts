@@ -6,7 +6,7 @@ export const RichTextBlock: Block = {
   slug: 'richTextBlock',
   labels: {
     singular: 'Rich Text',
-    plural: 'Rich Text'
+    plural: 'Rich Text',
   },
   interfaceName: 'RichTextBlock',
   fields: [
@@ -18,7 +18,7 @@ export const RichTextBlock: Block = {
           type: 'richText',
           label: 'Rich Text',
           localized: true,
-          required: false
+          required: false,
         },
         {
           name: 'constrainedWidth',
@@ -28,10 +28,10 @@ export const RichTextBlock: Block = {
           admin: {
             className: 'rich-text-constrained-width',
             description:
-              "Constrain the width of the rich text block. Normally rich text will be constrained to 920px. Only turn this setting off if you're sure you want full-width unconstrained text."
-          }
-        }
-      ]
-    })
-  ]
+              "Constrain the width of the rich text block. Normally rich text will be constrained to 920px. Only turn this setting off if you're sure you want full-width unconstrained text.",
+          },
+        },
+      ],
+    }),
+  ],
 }

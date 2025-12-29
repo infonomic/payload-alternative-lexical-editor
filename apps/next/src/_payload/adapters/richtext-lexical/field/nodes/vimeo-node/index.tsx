@@ -6,14 +6,13 @@
  *
  */
 
-import * as React from 'react'
+import type * as React from 'react'
 
 import { BlockWithAlignableContents } from '@lexical/react/LexicalBlockWithAlignableContents'
 import {
   DecoratorBlockNode,
-  SerializedDecoratorBlockNode
+  type SerializedDecoratorBlockNode,
 } from '@lexical/react/LexicalDecoratorBlockNode'
-
 import type {
   DOMConversionMap,
   DOMConversionOutput,
@@ -23,7 +22,7 @@ import type {
   LexicalEditor,
   LexicalNode,
   NodeKey,
-  Spread
+  Spread,
 } from 'lexical'
 
 type VimeoComponentProps = Readonly<{
@@ -40,14 +39,14 @@ function VimeoComponent({
   className,
   format,
   nodeKey,
-  videoID
+  videoID,
 }: VimeoComponentProps): React.JSX.Element {
   return (
     <BlockWithAlignableContents className={className} format={format} nodeKey={nodeKey}>
       <iframe
         style={{
           aspectRatio: '16 / 9',
-          width: '100%'
+          width: '100%',
         }}
         src={`https://player.vimeo.com/video/${videoID}`}
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -96,7 +95,7 @@ export class VimeoNode extends DecoratorBlockNode {
       ...super.exportJSON(),
       type: 'vimeo',
       version: 1,
-      videoID: this.__id
+      videoID: this.__id,
     }
   }
 
@@ -126,9 +125,9 @@ export class VimeoNode extends DecoratorBlockNode {
         }
         return {
           conversion: convertVimeoElement,
-          priority: 1
+          priority: 1,
         }
-      }
+      },
     }
   }
 
@@ -151,7 +150,7 @@ export class VimeoNode extends DecoratorBlockNode {
     const embedBlockTheme = config.theme.embedBlock ?? {}
     const className = {
       base: embedBlockTheme.base ?? '',
-      focus: embedBlockTheme.focus ?? ''
+      focus: embedBlockTheme.focus ?? '',
     }
     return (
       <VimeoComponent

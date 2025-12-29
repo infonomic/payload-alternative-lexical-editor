@@ -5,7 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  *
  */
-import * as React from 'react'
+import type * as React from 'react'
 
 import { ContentEditable } from '@lexical/react/LexicalContentEditable'
 import cx from 'classnames'
@@ -18,7 +18,7 @@ import './content-editable.css'
 // as in content-editable.tsx - because this version will
 // appear inside caption areas for images.
 export default function LexicalContentEditableInline({
-  className
+  className,
 }: {
   className?: string
 }): React.JSX.Element {

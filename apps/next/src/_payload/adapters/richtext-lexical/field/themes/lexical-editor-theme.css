@@ -88,7 +88,7 @@
 
 .LexicalEditorTheme__textSubscript {
   font-size: 0.8em;
-  vertical-align: sub !important;
+  vertical-align: sub;
 }
 
 .LexicalEditorTheme__textSuperscript {
@@ -112,7 +112,7 @@
   font-family: Menlo, Consolas, Monaco, monospace;
 }
 
-html[data-theme=dark] .LexicalEditorTheme__textCode {
+html[data-theme="dark"] .LexicalEditorTheme__textCode {
   color: #f1f5f9;
   background-color: #1e293b;
   border-color: #495362;
@@ -265,7 +265,7 @@ html[data-theme="dark"] .LexicalEditorTheme__code:before {
   background-position: center;
   background-repeat: no-repeat;
   display: block;
-  content: ' ';
+  content: " ";
   position: absolute;
   top: 0;
   left: 0;
@@ -296,7 +296,7 @@ html[data-theme="dark"] .LexicalEditorTheme__code:before {
   background-position: center;
   background-repeat: no-repeat;
   display: block;
-  content: ' ';
+  content: " ";
   position: absolute;
   top: 0;
   left: 0;
@@ -355,7 +355,7 @@ html[data-theme="dark"] .LexicalEditorTheme__code:before {
 
 .LexicalEditorTheme__characterLimit {
   display: inline;
-  background-color: #ffbbbb !important;
+  background-color: #ffbbbb;
 }
 
 .LexicalEditorTheme__ol1 {
@@ -421,7 +421,7 @@ html[data-theme="dark"] .LexicalEditorTheme__code:before {
 
 .LexicalEditorTheme__listItemUnchecked:before,
 .LexicalEditorTheme__listItemChecked:before {
-  content: '';
+  content: "";
   width: 16px;
   height: 16px;
   top: 7px;
@@ -432,8 +432,8 @@ html[data-theme="dark"] .LexicalEditorTheme__code:before {
   position: absolute;
 }
 
-.LexicalEditorTheme__listItemUnchecked[dir='rtl']:before,
-.LexicalEditorTheme__listItemChecked[dir='rtl']:before {
+.LexicalEditorTheme__listItemUnchecked[dir="rtl"]:before,
+.LexicalEditorTheme__listItemChecked[dir="rtl"]:before {
   left: auto;
   right: 0;
 }
@@ -457,7 +457,7 @@ html[data-theme="dark"] .LexicalEditorTheme__code:before {
 }
 
 .LexicalEditorTheme__listItemChecked:after {
-  content: '';
+  content: "";
   cursor: pointer;
   border-color: #fff;
   border-style: solid;
@@ -553,6 +553,6 @@ html[data-theme="dark"] .LexicalEditorTheme__code:before {
   padding: 8px 16px;
 }
 
-html[data-theme=dark] .LexicalEditorTheme__tableCellHeader {
+html[data-theme="dark"] .LexicalEditorTheme__tableCellHeader {
   background-color: var(--theme-elevation-50);
 }

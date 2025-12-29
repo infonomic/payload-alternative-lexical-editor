@@ -9,17 +9,13 @@
 
 import './index.css'
 
+import type * as React from 'react'
 import { useCallback, useEffect, useRef, useState } from 'react'
-import * as React from 'react'
-import { createPortal } from 'react-dom'
-
-import { formatDrawerSlug } from '@payloadcms/ui'
-import { useEditDepth } from '@payloadcms/ui'
-import { useModal } from '@payloadcms/ui'
 
 import { $isCodeHighlightNode } from '@lexical/code'
 import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext'
 import { mergeRegister } from '@lexical/utils'
+import { formatDrawerSlug, useEditDepth, useModal } from '@payloadcms/ui'
 import {
   $getSelection,
   $isParagraphNode,
@@ -28,15 +24,12 @@ import {
   COMMAND_PRIORITY_LOW,
   FORMAT_TEXT_COMMAND,
   type LexicalEditor,
-  SELECTION_CHANGE_COMMAND
+  SELECTION_CHANGE_COMMAND,
 } from 'lexical'
+import { createPortal } from 'react-dom'
 
 import { useEditorConfig } from '../../config/editor-config-context'
-import {
-  $isLinkNode,
-  TOGGLE_LINK_COMMAND,
-  type LinkAttributes
-} from '../../nodes/link-nodes'
+import { $isLinkNode, type LinkAttributes, TOGGLE_LINK_COMMAND } from '../../nodes/link-nodes'
 import { getDOMRangeRect } from '../../utils/getDOMRangeRect'
 import { getSelectedNode } from '../../utils/getSelectedNode'
 import { setFloatingElemPosition } from '../../utils/setFloatingElemPosition'
@@ -51,7 +44,7 @@ function TextFormatFloatingToolbar({
   isCode,
   isStrikethrough,
   isSubscript,
-  isSuperscript
+  isSuperscript,
 }: {
   editor: LexicalEditor
   anchorElem: HTMLElement
@@ -71,7 +64,7 @@ function TextFormatFloatingToolbar({
 
   const linkDrawerSlug = formatDrawerSlug({
     slug: `rich-text-link-lexical-${uuid}`,
-    depth: editDepth
+    depth: editDepth,
   })
 
   const handleOnInsertLink = useCallback(() => {
@@ -85,10 +78,10 @@ function TextFormatFloatingToolbar({
           if (selection.focus.offset !== selection.anchor.offset) {
             const linkAttributes: LinkAttributes = {
               linkType: 'custom',
-              url: 'https://'
+              url: 'https://',
             }
             editor.dispatchCommand(TOGGLE_LINK_COMMAND, linkAttributes)
-            // TODO: WARNING: See: link-plugin-payload/floating-link-editor. 
+            // TODO: WARNING: See: link-plugin-payload/floating-link-editor.
             // The Drawer modal is currently wrapped in the floating editor and
             // will only open if $toggleLink in the link node successfully
             // modifies a link now - which will trigger an update in the
@@ -116,7 +109,7 @@ function TextFormatFloatingToolbar({
       }
     }
   }
-  function mouseUpListener(e: MouseEvent): void {
+  function mouseUpListener(_e: MouseEvent): void {
     if (popupCharStylesEditorRef?.current != null) {
       if (popupCharStylesEditorRef.current.style.pointerEvents !== 'auto') {
         popupCharStylesEditorRef.current.style.pointerEvents = 'auto'
@@ -134,7 +127,7 @@ function TextFormatFloatingToolbar({
         document.removeEventListener('mouseup', mouseUpListener)
       }
     }
-  }, [popupCharStylesEditorRef])
+  }, [mouseMoveListener, mouseUpListener])
 
   const updateTextFormatFloatingToolbar = useCallback(() => {
     const selection = $getSelection()
@@ -213,7 +206,7 @@ function TextFormatFloatingToolbar({
             onClick={() => {
               editor.dispatchCommand(FORMAT_TEXT_COMMAND, 'bold')
             }}
-            className={'popup-item spaced ' + (isBold ? 'active' : '')}
+            className={`popup-item spaced ${isBold ? 'active' : ''}`}
             aria-label="Format text as bold"
           >
             <i className="format bold" />
@@ -223,7 +216,7 @@ function TextFormatFloatingToolbar({
             onClick={() => {
               editor.dispatchCommand(FORMAT_TEXT_COMMAND, 'italic')
             }}
-            className={'popup-item spaced ' + (isItalic ? 'active' : '')}
+            className={`popup-item spaced ${isItalic ? 'active' : ''}`}
             aria-label="Format text as italics"
           >
             <i className="format italic" />
@@ -233,7 +226,7 @@ function TextFormatFloatingToolbar({
             onClick={() => {
               editor.dispatchCommand(FORMAT_TEXT_COMMAND, 'underline')
             }}
-            className={'popup-item spaced ' + (isUnderline ? 'active' : '')}
+            className={`popup-item spaced ${isUnderline ? 'active' : ''}`}
             aria-label="Format text to underlined"
           >
             <i className="format underline" />
@@ -243,7 +236,7 @@ function TextFormatFloatingToolbar({
             onClick={() => {
               editor.dispatchCommand(FORMAT_TEXT_COMMAND, 'strikethrough')
             }}
-            className={'popup-item spaced ' + (isStrikethrough ? 'active' : '')}
+            className={`popup-item spaced ${isStrikethrough ? 'active' : ''}`}
             aria-label="Format text with a strikethrough"
           >
             <i className="format strikethrough" />
@@ -253,7 +246,7 @@ function TextFormatFloatingToolbar({
             onClick={() => {
               editor.dispatchCommand(FORMAT_TEXT_COMMAND, 'subscript')
             }}
-            className={'popup-item spaced ' + (isSubscript ? 'active' : '')}
+            className={`popup-item spaced ${isSubscript ? 'active' : ''}`}
             title="Subscript"
             aria-label="Format Subscript"
           >
@@ -264,7 +257,7 @@ function TextFormatFloatingToolbar({
             onClick={() => {
               editor.dispatchCommand(FORMAT_TEXT_COMMAND, 'superscript')
             }}
-            className={'popup-item spaced ' + (isSuperscript ? 'active' : '')}
+            className={`popup-item spaced ${isSuperscript ? 'active' : ''}`}
             title="Superscript"
             aria-label="Format Superscript"
           >
@@ -275,7 +268,7 @@ function TextFormatFloatingToolbar({
             onClick={() => {
               editor.dispatchCommand(FORMAT_TEXT_COMMAND, 'code')
             }}
-            className={'popup-item spaced ' + (isCode ? 'active' : '')}
+            className={`popup-item spaced ${isCode ? 'active' : ''}`}
             aria-label="Insert code block"
           >
             <i className="format code" />
@@ -283,7 +276,7 @@ function TextFormatFloatingToolbar({
           <button
             type="button"
             onClick={handleOnInsertLink}
-            className={'popup-item spaced ' + (isLink ? 'active' : '')}
+            className={`popup-item spaced ${isLink ? 'active' : ''}`}
             aria-label="Insert link"
           >
             <i className="format link" />
@@ -406,7 +399,7 @@ function useFloatingTextFormatToolbar(
 }
 
 export function FloatingTextFormatToolbarPlugin({
-  anchorElem = document.body
+  anchorElem = document.body,
 }: {
   anchorElem?: HTMLElement
 }): React.JSX.Element | null {

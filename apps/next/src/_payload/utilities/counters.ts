@@ -14,7 +14,7 @@ export const incrementCounter = async (name: string): Promise<number> => {
   const doc = await counters.findOneAndUpdate(
     { name },
     { $inc: { value: 1 } },
-    { upsert: true, returnDocument: 'after' },
+    { upsert: true, returnDocument: 'after' }
   )
 
   return doc?.value?.value

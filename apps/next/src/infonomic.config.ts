@@ -1,4 +1,3 @@
-
 export const collectionAliases = [
   {
     slug: 'pages',

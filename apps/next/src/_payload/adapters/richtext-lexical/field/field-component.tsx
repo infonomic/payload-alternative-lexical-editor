@@ -1,4 +1,5 @@
 'use client'
+
 /**
  * Portions copyright (c) 2018-2022 Payload CMS, LLC info@payloadcms.com
  *
@@ -8,27 +9,26 @@
  * Adapted from https://github.com/payloadcms/payload/tree/main/packages/richtext-lexical
  */
 
-import React, { useCallback, useEffect, useMemo, useRef } from 'react'
-import { ErrorBoundary } from 'react-error-boundary'
+import type React from 'react'
+import { useCallback, useMemo, useRef } from 'react'
 
-import type { EditorState, SerializedEditorState } from 'lexical'
-import type { Validate } from 'payload'
-
-import { 
+import {
   FieldDescription,
   FieldError,
   FieldLabel,
   RenderCustomComponent,
   useEditDepth,
-  useField
+  useField,
 } from '@payloadcms/ui'
 import { mergeFieldStyles } from '@payloadcms/ui/shared'
+import type { EditorState, SerializedEditorState } from 'lexical'
+import type { Validate } from 'payload'
+import { ErrorBoundary } from 'react-error-boundary'
 
 import { richTextValidate } from '../validate/validate-server'
-import { EditorContext } from './editor-context'
 import { ApplyValuePlugin } from './apply-value-plugin'
+import { EditorContext } from './editor-context'
 import { hashSerializedState } from './utils/hashSerializedState'
-
 import type { LexicalRichTextFieldProps } from '../types'
 
 import './field-component.css'
@@ -45,7 +45,7 @@ const RichTextComponent: React.FC<LexicalRichTextFieldProps> = (props) => {
       admin: { className, description, readOnly: readOnlyFromAdmin } = {},
       label,
       localized,
-      required
+      required,
     },
     path: pathFromProps,
     readOnly: readOnlyFromTopLevelProps,
@@ -60,14 +60,19 @@ const RichTextComponent: React.FC<LexicalRichTextFieldProps> = (props) => {
   const memoizedValidate = useCallback<Validate>(
     (value, validationOptions) => {
       if (typeof validate === 'function') {
-        return validate(value, { ...validationOptions, required, type: field.type ?? 'richText', name })
+        return validate(value, {
+          ...validationOptions,
+          required,
+          type: field.type ?? 'richText',
+          name,
+        })
       }
       return true
     },
     // Important: do not add props to the dependencies array.
     // This would cause an infinite loop and endless re-rendering.
     // Removing props from the dependencies array fixed this issue: https://github.com/payloadcms/payload/issues/3709
-    [validate, required, field.type, name],
+    [validate, required, field.type, name]
   )
 
   const {
@@ -76,19 +81,19 @@ const RichTextComponent: React.FC<LexicalRichTextFieldProps> = (props) => {
     initialValue,
     setValue,
     showError,
-    value
+    value,
   } = useField<SerializedEditorState>({
     path: pathFromProps ?? name,
-    validate: memoizedValidate
+    validate: memoizedValidate,
   })
 
-  const disabled = readOnlyFromProps || disabledFromField  // || false
+  const disabled = readOnlyFromProps || disabledFromField // || false
 
   const lastEmittedHashRef = useRef<string | undefined>(undefined)
   const rawIncomingHashRef = useRef<string | undefined>(undefined)
   const normalizedIncomingHashRef = useRef<string | undefined>(undefined)
   const hasNormalizedBaselineRef = useRef<boolean>(false)
-  const debugLogCountRef = useRef<number>(0)
+  const _debugLogCountRef = useRef<number>(0)
 
   const classes = [
     baseClass,
@@ -96,7 +101,7 @@ const RichTextComponent: React.FC<LexicalRichTextFieldProps> = (props) => {
     className,
     showError && 'error',
     disabled && `${baseClass}--read-only`,
-    editorConfig.admin?.hideGutter !== true ? `${baseClass}--show-gutter` : null
+    editorConfig.admin?.hideGutter !== true ? `${baseClass}--show-gutter` : null,
   ]
     .filter(Boolean)
     .join(' ')
@@ -110,7 +115,7 @@ const RichTextComponent: React.FC<LexicalRichTextFieldProps> = (props) => {
   // https://github.com/payloadcms/payload/commit/1d5d96d
   const handleOnChange = useCallback(
     (editorState: EditorState, _editor: unknown, tags?: Set<string>) => {
-      const capturedTags = tags != null ? Array.from(tags) : []
+      const _capturedTags = tags != null ? Array.from(tags) : []
 
       const updateFieldValue = (editorState: EditorState) => {
         const newState = editorState.toJSON()
@@ -134,7 +139,10 @@ const RichTextComponent: React.FC<LexicalRichTextFieldProps> = (props) => {
         }
 
         // Prefer comparing against Lexical-normalized incoming JSON (critical for nested editors).
-        if (normalizedIncomingHashRef.current != null && nextHash === normalizedIncomingHashRef.current) {
+        if (
+          normalizedIncomingHashRef.current != null &&
+          nextHash === normalizedIncomingHashRef.current
+        ) {
           return
         }
 
@@ -179,7 +187,7 @@ const RichTextComponent: React.FC<LexicalRichTextFieldProps> = (props) => {
         updateFieldValue(editorState)
       }
     },
-    [setValue, value, initialValue],
+    [setValue, value, initialValue]
   )
 
   const styles = useMemo(() => mergeFieldStyles(field), [field])
@@ -188,7 +196,7 @@ const RichTextComponent: React.FC<LexicalRichTextFieldProps> = (props) => {
 
   const incomingHash = useMemo(
     () => (incomingValue != null ? hashSerializedState(incomingValue) : undefined),
-    [incomingValue],
+    [incomingValue]
   )
 
   // Keep raw incoming hash up-to-date synchronously. Normalized baseline is set by ApplyValuePlugin.
@@ -203,7 +211,9 @@ const RichTextComponent: React.FC<LexicalRichTextFieldProps> = (props) => {
         />
         <RenderCustomComponent
           CustomComponent={Label}
-          Fallback={<FieldLabel label={label} localized={localized} path={path} required={required} />}
+          Fallback={
+            <FieldLabel label={label} localized={localized} path={path} required={required} />
+          }
         />
         <ErrorBoundary fallbackRender={fallbackRender} onReset={() => {}}>
           <RenderCustomComponent CustomComponent={BeforeInput} Fallback={null} />

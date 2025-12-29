@@ -1,4 +1,5 @@
 'use client'
+
 /**
  * Copyright (c) Meta Platforms, Inc. and affiliates.
  *
@@ -7,11 +8,11 @@
  *
  */
 
-import * as React from 'react'
+import type * as React from 'react'
 
 import {
+  createLinkMatcherWithRegExp,
   AutoLinkPlugin as LexicalAutoLinkPlugin,
-  createLinkMatcherWithRegExp
 } from './auto-link-plugin'
 
 const URL_REGEX =
@@ -26,7 +27,7 @@ const MATCHERS = [
   }),
   createLinkMatcherWithRegExp(EMAIL_REGEX, (text) => {
     return `mailto:${text}`
-  })
+  }),
 ]
 
 export function AutoLinkPlugin(): React.JSX.Element {

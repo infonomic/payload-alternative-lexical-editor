@@ -1,13 +1,12 @@
 'use client'
 
-import * as React from 'react'
-import { useMemo, useState, useContext, createContext, useCallback } from 'react'
+import type * as React from 'react'
+import { createContext, useCallback, useContext, useMemo, useState } from 'react'
 
 import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext'
 import { useEditDepth } from '@payloadcms/ui'
 
 import { DEFAULT_EDITOR_SETTINGS } from './default'
-
 import type { EditorSettings, OptionName } from './types'
 
 // Should always produce a 20 character pseudo-random string
@@ -21,14 +20,14 @@ interface ContextType {
 }
 
 const Context: React.Context<ContextType> = createContext({
-  setOption: (name: OptionName, value: boolean) => {},
+  setOption: (_name: OptionName, _value: boolean) => {},
   config: DEFAULT_EDITOR_SETTINGS,
-  uuid: generateQuickGuid()
+  uuid: generateQuickGuid(),
 })
 
 export const EditorConfigContext = ({
   children,
-  config: configFromProps
+  config: configFromProps,
 }: {
   children: React.ReactNode
   config?: EditorSettings

@@ -1,4 +1,5 @@
 'use client'
+
 /**
  * Copyright (c) Meta Platforms, Inc. and affiliates.
  *
@@ -11,18 +12,17 @@ import { useEffect } from 'react'
 
 import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext'
 import { mergeRegister } from '@lexical/utils'
+import type { ElementNode, LexicalEditor, LexicalNode } from 'lexical'
 import { $createTextNode, $isElementNode, $isLineBreakNode, $isTextNode, TextNode } from 'lexical'
 
 import {
-  $isLinkNode,
-  type LinkAttributes,
   $createAutoLinkNode,
   $isAutoLinkNode,
-  AutoLinkNode
+  $isLinkNode,
+  AutoLinkNode,
+  type LinkAttributes,
 } from '../../../nodes/link-nodes'
 import invariant from '../../../shared/invariant'
-
-import type { ElementNode, LexicalEditor, LexicalNode } from 'lexical'
 
 type ChangeHandler = (url: string | null, prevUrl: string | null) => void
 
@@ -47,7 +47,7 @@ export function createLinkMatcherWithRegExp(
       index: match.index,
       length: match[0].length,
       text: match[0],
-      url: urlTransformer(text)
+      url: urlTransformer(text),
     }
   }
 }
@@ -156,7 +156,7 @@ function handleLinkCreation(
       const attributes: LinkAttributes = {
         url: match.url,
         linkType: 'custom',
-        ...match.attributes
+        ...match.attributes,
       }
 
       const linkNode = $createAutoLinkNode({ attributes })
@@ -302,7 +302,7 @@ function useAutoLink(
 
 export function AutoLinkPlugin({
   matchers,
-  onChange
+  onChange,
 }: {
   matchers: LinkMatcher[]
   onChange?: ChangeHandler

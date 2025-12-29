@@ -7,7 +7,7 @@ export const PhotoBlock: Block = {
   slug: 'photoBlock',
   labels: {
     singular: 'Photo',
-    plural: 'Photos'
+    plural: 'Photos',
   },
   interfaceName: 'PhotoBlock',
   fields: [
@@ -21,29 +21,29 @@ export const PhotoBlock: Block = {
           options: [
             {
               label: 'Default',
-              value: 'default'
+              value: 'default',
             },
             {
               label: 'Wide',
-              value: 'wide'
+              value: 'wide',
             },
             {
               label: 'Full Width',
-              value: 'full_width'
-            }
-          ]
+              value: 'full_width',
+            },
+          ],
         },
         {
           name: 'photo',
           type: 'upload',
           relationTo: 'media',
-          required: true
+          required: true,
         },
         {
           name: 'useSourcePhotoCaption',
           label: 'Use Source Photo Caption',
           type: 'checkbox',
-          defaultValue: true
+          defaultValue: true,
         },
         {
           name: 'caption',
@@ -52,7 +52,7 @@ export const PhotoBlock: Block = {
           localized: true,
           required: true,
           admin: {
-            condition: (_, siblingData) => siblingData.useSourcePhotoCaption === false
+            condition: (_, siblingData) => siblingData.useSourcePhotoCaption === false,
           },
           editor: lexicalEditor({
             settings: (config) => {
@@ -72,10 +72,10 @@ export const PhotoBlock: Block = {
               config.options.layoutPlugin = false
               config.options.debug = false
               return config
-            }
-          })
-        }
-      ]
-    })
-  ]
+            },
+          }),
+        },
+      ],
+    }),
+  ],
 }

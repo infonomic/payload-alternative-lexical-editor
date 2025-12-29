@@ -82,9 +82,9 @@ export class Rect {
           isOnBottomSide,
           isOnLeftSide,
           isOnRightSide,
-          isOnTopSide
+          isOnTopSide,
         },
-        result
+        result,
       }
     } else {
       const { top, left, bottom, right } = target
@@ -116,7 +116,7 @@ export class Rect {
     left = this.left,
     top = this.top,
     right = this.right,
-    bottom = this.bottom
+    bottom = this.bottom,
   }): Rect {
     return new Rect(left, top, right, bottom)
   }

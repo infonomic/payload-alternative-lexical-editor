@@ -1,18 +1,15 @@
 'use client'
-import * as React from 'react'
 
-import { formatDrawerSlug } from '@payloadcms/ui'
-import { useEditDepth } from '@payloadcms/ui'
-import { useModal } from '@payloadcms/ui'
+import type * as React from 'react'
+
 import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext'
+import { formatDrawerSlug, useEditDepth, useModal } from '@payloadcms/ui'
 import { COMMAND_PRIORITY_NORMAL, createCommand } from 'lexical'
 
-import { TableDrawer } from './table-drawer'
 import { useEditorConfig } from '../../config/editor-config-context'
+import { TableDrawer } from './table-drawer'
 
-export const OPEN_TABLE_MODAL_COMMAND = createCommand(
-  'OPEN_TABLE_MODAL_COMMAND'
-)
+export const OPEN_TABLE_MODAL_COMMAND = createCommand('OPEN_TABLE_MODAL_COMMAND')
 
 export function TablePlugin(): React.JSX.Element {
   const [editor] = useLexicalComposerContext()
@@ -21,12 +18,12 @@ export function TablePlugin(): React.JSX.Element {
   const {
     toggleModal = () => {
       console.error('Error: useModal() from Payload did not work correctly')
-    }
+    },
   } = useModal()
 
   const addTableDrawerSlug = formatDrawerSlug({
     slug: `lexicalRichText-add-table-${uuid}`,
-    depth: editDepth
+    depth: editDepth,
   })
 
   editor.registerCommand<null>(
@@ -42,7 +39,5 @@ export function TablePlugin(): React.JSX.Element {
     COMMAND_PRIORITY_NORMAL
   )
 
-  return (
-    <TableDrawer drawerSlug={addTableDrawerSlug} />
-  )
+  return <TableDrawer drawerSlug={addTableDrawerSlug} />
 }

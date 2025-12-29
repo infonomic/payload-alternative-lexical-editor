@@ -56,7 +56,7 @@ function addListener(element: HTMLElement, cb: Listener): () => void {
       handleTouchend,
       handleTouchstart,
       listeners,
-      start: null
+      start: null,
     }
     elements.set(element, elementValues)
   }

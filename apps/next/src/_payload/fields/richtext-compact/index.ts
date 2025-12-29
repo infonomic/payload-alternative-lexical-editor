@@ -1,8 +1,8 @@
 import type { Field } from 'payload'
 
 import { lexicalEditor } from '../../adapters/richtext-lexical'
-import type { LexicalRichTextAdapter } from '../../adapters/richtext-lexical/types'
 import deepMerge from '../../utilities/deepMerge'
+import type { LexicalRichTextAdapter } from '../../adapters/richtext-lexical/types'
 
 type Options = Partial<Field> & { editor?: LexicalRichTextAdapter }
 
@@ -42,5 +42,5 @@ export const lexicalRichTextCompact: RichTextField = (options = {}) =>
         },
       }),
     },
-    options,
+    options
   )

@@ -23,7 +23,7 @@ export function sanitizeUrl(url: string): string {
     if (!SUPPORTED_URL_PROTOCOLS.has(parsedUrl.protocol)) {
       return 'about:blank'
     }
-  } catch (e) {
+  } catch (_e) {
     // console.error(e)
     return 'https://'
   }

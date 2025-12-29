@@ -1,4 +1,5 @@
 'use client'
+
 /**
  * Copyright (c) Meta Platforms, Inc. and affiliates.
  *
@@ -6,14 +7,14 @@
  * LICENSE file in the root directory of this source tree.
  *
  */
-import * as React from 'react'
+import type * as React from 'react'
 import { useMemo } from 'react'
 
 export default function Switch({
   checked,
   onClick,
   text,
-  id
+  id,
 }: Readonly<{
   checked: boolean
   id?: string

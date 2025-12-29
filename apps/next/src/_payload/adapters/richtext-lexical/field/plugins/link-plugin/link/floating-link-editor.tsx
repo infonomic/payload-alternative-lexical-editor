@@ -1,4 +1,5 @@
 'use client'
+
 /**
  * Portions Copyright (c) Meta Platforms, Inc. and affiliates.
  *
@@ -6,17 +7,14 @@
  * LICENSE file in the root directory of this source tree.
  *
  */
-import * as React from 'react'
+import type * as React from 'react'
+import type { Dispatch } from 'react'
 import { useCallback, useEffect, useRef, useState } from 'react'
-import { createPortal } from 'react-dom'
-
-import { formatDrawerSlug } from '@payloadcms/ui'
-import { useConfig } from '@payloadcms/ui'
-import { useEditDepth } from '@payloadcms/ui'
-import { useModal } from '@payloadcms/ui'
 
 import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext'
 import { $findMatchingParent, mergeRegister } from '@lexical/utils'
+import { formatDrawerSlug, useConfig, useEditDepth, useModal } from '@payloadcms/ui'
+import type { LexicalEditor } from 'lexical'
 import {
   $getSelection,
   $isLineBreakNode,
@@ -25,27 +23,19 @@ import {
   COMMAND_PRIORITY_HIGH,
   COMMAND_PRIORITY_LOW,
   KEY_ESCAPE_COMMAND,
-  SELECTION_CHANGE_COMMAND
+  SELECTION_CHANGE_COMMAND,
 } from 'lexical'
+import type { ClientConfig } from 'payload'
+import { createPortal } from 'react-dom'
 
-import { LinkDrawer } from './link-drawer'
 import { useEditorConfig } from '../../../config/editor-config-context'
-
-import {
-  $isLinkNode,
-  $isAutoLinkNode,
-  TOGGLE_LINK_COMMAND
-} from '../../../nodes/link-nodes'
-
+import { $isAutoLinkNode, $isLinkNode, TOGGLE_LINK_COMMAND } from '../../../nodes/link-nodes'
 import { getSelectedNode } from '../../../utils/getSelectedNode'
 import { setFloatingElemPositionForLinkEditor } from '../../../utils/setFloatingElemPositionForLinkEditor'
 import { sanitizeUrl } from '../../../utils/url'
-
-import type { Dispatch } from 'react'
-import type { ClientConfig } from 'payload'
-import type { LinkData } from './types'
-import type { LexicalEditor } from 'lexical'
+import { LinkDrawer } from './link-drawer'
 import type { LinkAttributes } from '../../../nodes/link-nodes'
+import type { LinkData } from './types'
 
 import './floating-link-editor.css'
 
@@ -73,7 +63,7 @@ function FloatingLinkEditor({
   editor,
   isLink,
   setIsLink,
-  anchorElem
+  anchorElem,
 }: FloatingLinkEditorProps): React.JSX.Element {
   const editorRef = useRef<HTMLDivElement | null>(null)
 
@@ -86,9 +76,8 @@ function FloatingLinkEditor({
   const editDepth = useEditDepth()
   const drawerSlug = formatDrawerSlug({
     slug: `rich-text-link-lexical-${uuid}`,
-    depth: editDepth
+    depth: editDepth,
   })
-
 
   const $updateLinkEditor = useCallback(() => {
     const selection = $getSelection()
@@ -103,12 +92,12 @@ function FloatingLinkEditor({
           url: '',
           linkType: undefined,
           newTab: undefined,
-          doc: undefined
-        }
+          doc: undefined,
+        },
       }
 
       let linkNode
-      if(linkParent != null) {
+      if (linkParent != null) {
         linkNode = linkParent
       } else if ($isLinkNode(node)) {
         linkNode = node
@@ -120,30 +109,28 @@ function FloatingLinkEditor({
         // Prepare LinkDrawer data
         data = {
           text: linkNode.getTextContent(),
-          fields: linkNode.getAttributes()
+          fields: linkNode.getAttributes(),
         }
 
         if (data.fields?.linkType === 'custom') {
           // custom
           setLinkEditorState({
             label: null,
-            url: createPreviewLink(config, data.fields?.url) ?? ''
+            url: createPreviewLink(config, data.fields?.url) ?? '',
           })
         } else {
           // internal
           setLinkEditorState({
-            label: `relation to ${ data.fields?.doc?.relationTo}: ${
-              data.fields?.doc?.value
-            }`,
+            label: `relation to ${data.fields?.doc?.relationTo}: ${data.fields?.doc?.value}`,
             url: `${config.serverURL}${config.routes.admin}/collections/${
               data.fields?.doc?.relationTo
-            }/${ data.fields?.doc?.value}`
+            }/${data.fields?.doc?.value}`,
           })
         }
       } else {
-        setLinkEditorState({  
+        setLinkEditorState({
           label: null,
-          url: ''
+          url: '',
         })
       }
 
@@ -247,7 +234,7 @@ function FloatingLinkEditor({
 
   /**
    * handleModalSubmit
-   * @param data 
+   * @param data
    */
   const handleModalSubmit = (data: LinkData): void => {
     closeModal(drawerSlug)
@@ -256,7 +243,7 @@ function FloatingLinkEditor({
       url: data?.fields?.linkType === 'custom' ? data?.fields?.url : undefined,
       linkType: data?.fields?.linkType,
       doc: data?.fields?.linkType === 'internal' ? data?.fields?.doc : undefined,
-      text: data?.text
+      text: data?.text,
     }
 
     editor.dispatchCommand(TOGGLE_LINK_COMMAND, newNode)
@@ -268,7 +255,9 @@ function FloatingLinkEditor({
         <>
           <div className="link-input">
             <a href={sanitizeUrl(linkEditorState.url)} target="_blank" rel="noopener noreferrer">
-              {linkEditorState.label != null && linkEditorState.label.length > 0 ? linkEditorState.label : linkEditorState.url}
+              {linkEditorState.label != null && linkEditorState.label.length > 0
+                ? linkEditorState.label
+                : linkEditorState.url}
             </a>
             <div
               aria-label="Edit link"
@@ -382,7 +371,7 @@ function useFloatingLinkEditor(
 }
 
 export function FloatingLinkEditorPlugin({
-  anchorElem = document.body
+  anchorElem = document.body,
 }: {
   anchorElem?: HTMLElement
 }): React.JSX.Element | null {

@@ -1,0 +1,16 @@
+
+
+> @infonomic/payload-alternative-lexical-editor@1.0.0 lint /home/tony/Clients/Infonomic/Projects/Payload/payload-alternative-lexical-editor/packages/payload-alternative-lexical-editor
+> biome check --write --unsafe --diagnostic-level=error
+
+[0m]8;;file:///home/tony/Clients/Infonomic/Projects/Payload/payload-alternative-lexical-editor/packages/payload-alternative-lexical-editor/../../biome.json\/home/tony/Clients/Infonomic/Projects/Payload/payload-alternative-lexical-editor/packages/payload-alternative-lexical-editor/../../biome.json]8;;\[0m[0m [0m[0mconfiguration[0m[0m [0m[0m━━━━━━━━━━━━━━[0m[0m
+
+[0m[0m  [0m[0m[1m[31m✖[0m[0m [0m[0m[31mNo such file or directory (os error 2)[0m[0m
+[0m[0m  [0m[0m
+[0m
+[0mconfiguration[0m[0m [0m[0m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m[0m
+
+[0m[0m  [0m[0m[1m[31m✖[0m[0m [0m[0m[31mBiome exited because the configuration resulted in errors. Please fix them.[0m[0m
+[0m[0m  [0m[0m
+[0m
+[41m[30m ELIFECYCLE [39m[49m [31mCommand failed with exit code 1.[39m

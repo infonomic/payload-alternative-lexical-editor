@@ -7,16 +7,15 @@
  */
 
 import { addClassNamesToElement } from '@lexical/utils'
-import { ElementNode } from 'lexical'
-
 import type {
   DOMConversionMap,
   EditorConfig,
   LexicalNode,
   NodeKey,
   SerializedElementNode,
-  Spread
+  Spread,
 } from 'lexical'
+import { ElementNode } from 'lexical'
 
 export type SerializedLayoutContainerNode = Spread<
   {
@@ -74,7 +73,7 @@ export class LayoutContainerNode extends ElementNode {
       ...super.exportJSON(),
       templateColumns: this.__templateColumns,
       type: 'layout-container',
-      version: 1
+      version: 1,
     }
   }
 

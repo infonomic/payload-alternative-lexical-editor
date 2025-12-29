@@ -1,12 +1,8 @@
 'use client'
+
 import * as React from 'react'
 import { Suspense } from 'react'
 
-import { $applyNodeReplacement, createEditor, DecoratorNode } from 'lexical'
-
-import { APPLY_VALUE_TAG } from '../../constants'
-
-import type { Position, Size, Doc, InlineImageAttributes, SerializedInlineImageNode } from './types'
 import type {
   DOMConversionMap,
   DOMConversionOutput,
@@ -14,8 +10,12 @@ import type {
   EditorConfig,
   LexicalEditor,
   LexicalNode,
-  NodeKey
+  NodeKey,
 } from 'lexical'
+import { $applyNodeReplacement, createEditor, DecoratorNode } from 'lexical'
+
+import { APPLY_VALUE_TAG } from '../../constants'
+import type { Doc, InlineImageAttributes, Position, SerializedInlineImageNode, Size } from './types'
 
 const InlineImageComponent = React.lazy(async () => await import('./inline-image-node-component'))
 
@@ -61,7 +61,8 @@ export class InlineImageNode extends DecoratorNode<React.JSX.Element> {
   }
 
   static importJSON(serializedNode: SerializedInlineImageNode): InlineImageNode {
-    const { src, position, size, altText, height, width, showCaption, caption, doc } = serializedNode
+    const { src, position, size, altText, height, width, showCaption, caption, doc } =
+      serializedNode
     const node = $createInlineImageNode({
       id: doc?.value,
       collection: doc?.relationTo,
@@ -71,7 +72,7 @@ export class InlineImageNode extends DecoratorNode<React.JSX.Element> {
       altText,
       width,
       height,
-      showCaption
+      showCaption,
     })
     const nestedEditor = node.__caption
 
@@ -82,17 +83,17 @@ export class InlineImageNode extends DecoratorNode<React.JSX.Element> {
           nestedEditor.setEditorState(editorState)
         }
       },
-      { tag: APPLY_VALUE_TAG },
+      { tag: APPLY_VALUE_TAG }
     )
     return node
   }
 
   static importDOM(): DOMConversionMap | null {
     return {
-      img: (node: Node) => ({
+      img: (_node: Node) => ({
         conversion: convertInlineImageElement,
-        priority: 0
-      })
+        priority: 0,
+      }),
     }
   }
 
@@ -149,7 +150,7 @@ export class InlineImageNode extends DecoratorNode<React.JSX.Element> {
       showCaption: this.__showCaption,
       caption: this.__caption.toJSON(),
       type: 'inline-image',
-      version: 1
+      version: 1,
     }
   }
 
@@ -214,7 +215,7 @@ export class InlineImageNode extends DecoratorNode<React.JSX.Element> {
     if (position != null) {
       writable.__position = position
     }
-     if (size != null) {
+    if (size != null) {
       writable.__size = size
     }
     if (altText != null) {
@@ -287,7 +288,7 @@ export function $createInlineImageNode({
   width,
   showCaption,
   caption,
-  key
+  key,
 }: InlineImageAttributes): InlineImageNode {
   const doc: Doc = { value: id, relationTo: collection }
   return $applyNodeReplacement(

@@ -1,6 +1,7 @@
 'use client'
-import * as React from 'react'
-import { useState, useEffect } from 'react'
+
+import type * as React from 'react'
+import { useEffect, useState } from 'react'
 
 import { TRANSFORMERS } from '@lexical/markdown'
 import { AutoFocusPlugin } from '@lexical/react/LexicalAutoFocusPlugin'
@@ -16,8 +17,10 @@ import { PlainTextPlugin } from '@lexical/react/LexicalPlainTextPlugin'
 import { RichTextPlugin } from '@lexical/react/LexicalRichTextPlugin'
 import { TabIndentationPlugin } from '@lexical/react/LexicalTabIndentationPlugin'
 import { TablePlugin } from '@lexical/react/LexicalTablePlugin'
+import type { EditorState, LexicalEditor } from 'lexical'
 
 import { useEditorConfig } from './config/editor-config-context'
+import { APPLY_VALUE_TAG } from './constants'
 import { useSharedHistoryContext } from './context/shared-history-context'
 import { useSharedOnChange } from './context/shared-on-change-context'
 import { Debug } from './debug'
@@ -35,21 +38,18 @@ import { TableActionMenuPlugin } from './plugins/table-action-menu-plugin'
 import { TablePlugin as PayloadTablePlugin } from './plugins/table-plugin'
 import { ToolbarPlugin } from './plugins/toolbar-plugin'
 import { TreeViewPlugin } from './plugins/treeview-plugin'
-import { YouTubePlugin } from './plugins/youtube-plugin'
 import { VimeoPlugin } from './plugins/vimeo-plugin'
+import { YouTubePlugin } from './plugins/youtube-plugin'
 import { CAN_USE_DOM } from './shared/canUseDOM'
 import { ContentEditable } from './ui/content-editable'
 import { Placeholder } from './ui/placeholder'
-import { APPLY_VALUE_TAG } from './constants'
-
-import type { EditorState, LexicalEditor } from 'lexical'
 
 import './editor.css'
 
 export function Editor(): React.JSX.Element {
   const [floatingAnchorElem, setFloatingAnchorElem] = useState<HTMLDivElement | null>(null)
   const [isSmallWidthViewport, setIsSmallWidthViewport] = useState<boolean>(false)
-  const debugTagLogCountRef = useState(() => ({ count: 0 }))[0]
+  const _debugTagLogCountRef = useState(() => ({ count: 0 }))[0]
   const { onChange } = useSharedOnChange()
   const { historyState } = useSharedHistoryContext()
   const {
@@ -73,11 +73,11 @@ export function Editor(): React.JSX.Element {
         markdownShortcutPlugin,
         floatingLinkEditorPlugin,
         floatingTextFormatToolbarPlugin,
-        autoEmbedPlugin
+        autoEmbedPlugin,
       },
       placeholderText,
-      inlineImageUploadCollection
-    }
+      inlineImageUploadCollection,
+    },
   } = useEditorConfig()
 
   const onRef = (_floatingAnchorElem: HTMLDivElement): void => {

@@ -20,13 +20,18 @@
  * like the Admonition plugin and the captions in the InlineImage
  * plugin. We should move these to configuration.
  */
-import type { FieldHookArgs, GeneratedTypes, PayloadRequest, RequestContext, SanitizedCollectionConfig } from 'payload'
+
+import type { SerializedEditorState, SerializedLexicalNode } from 'lexical'
+import type {
+  GeneratedTypes,
+  Payload,
+  PayloadRequest,
+  RequestContext,
+  SanitizedCollectionConfig,
+} from 'payload'
 
 import { collectionAliases } from '@/infonomic.config'
 import { loadRelated } from './utils/load-related'
-
-import type { SerializedEditorState, SerializedLexicalNode } from 'lexical'
-import type { Payload } from 'payload'
 import type { SerializedAdmonitionNode } from './nodes/admonition-node'
 import type { SerializedInlineImageNode } from './nodes/inline-image-node'
 import type { SerializedLinkNode } from './nodes/link-nodes'
@@ -37,40 +42,40 @@ import type { SerializedLinkNode } from './nodes/link-nodes'
 //   args: Omit<FieldHookArgs<any, SerializedEditorState | null, any>, 'blockData' | 'siblingFields'>
 // ) => Promise<SerializedEditorState | null> | SerializedEditorState | null
 
-type TypeWithID = { id: string };
+type TypeWithID = { id: string }
 
-type BeforeChangeRichTextHookArgs<TData extends TypeWithID = any, TValue = any, TSiblingData = any> = {
-  data?: TData;
-  value?: TValue;
-  siblingData: TSiblingData;
-  context: RequestContext;
-  req: PayloadRequest;
-};
-
-type BaseRichTextHookArgs<TData extends TypeWithID = any, TValue = any, TSiblingData = any> = {
-  collection: null | SanitizedCollectionConfig,
-  data?: TData;
-  value?: TValue;
-
-  siblingData: TSiblingData;
-  context: RequestContext;
-  req: PayloadRequest;
-};
-
-type BeforeChangeRichTextHook<
+type BeforeChangeRichTextHookArgs<
   TData extends TypeWithID = any,
   TValue = any,
   TSiblingData = any,
-> = (
-  args: BeforeChangeRichTextHookArgs<TData, TValue, TSiblingData> &
-    BaseRichTextHookArgs<TData, TValue, TSiblingData>,
-) => Promise<TValue> | TValue;
+> = {
+  data?: TData
+  value?: TValue
+  siblingData: TSiblingData
+  context: RequestContext
+  req: PayloadRequest
+}
 
-export const populateLexicalLinks: BeforeChangeRichTextHook<any, SerializedEditorState | null, any> = async ({
-  collection,
-  value,
-  req,
-}): Promise<SerializedEditorState | null> => {
+type BaseRichTextHookArgs<TData extends TypeWithID = any, TValue = any, TSiblingData = any> = {
+  collection: null | SanitizedCollectionConfig
+  data?: TData
+  value?: TValue
+
+  siblingData: TSiblingData
+  context: RequestContext
+  req: PayloadRequest
+}
+
+type BeforeChangeRichTextHook<TData extends TypeWithID = any, TValue = any, TSiblingData = any> = (
+  args: BeforeChangeRichTextHookArgs<TData, TValue, TSiblingData> &
+    BaseRichTextHookArgs<TData, TValue, TSiblingData>
+) => Promise<TValue> | TValue
+
+export const populateLexicalLinks: BeforeChangeRichTextHook<
+  any,
+  SerializedEditorState | null,
+  any
+> = async ({ collection, value, req }): Promise<SerializedEditorState | null> => {
   const { payload, locale } = req
 
   if (value == null) {

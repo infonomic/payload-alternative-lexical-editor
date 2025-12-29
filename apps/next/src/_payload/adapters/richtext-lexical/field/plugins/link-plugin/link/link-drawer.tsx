@@ -1,19 +1,20 @@
-import React, { useEffect, useState, useMemo } from 'react'
+import type React from 'react'
+import { useEffect, useMemo, useState } from 'react'
 
-import { Drawer } from '@payloadcms/ui'
-import { Button } from '@payloadcms/ui'
-import { Form } from '@payloadcms/ui'
-import { RenderFields } from '@payloadcms/ui'
-import { FormSubmit } from '@payloadcms/ui'
-import { useTranslation } from '@payloadcms/ui'
-import { useConfig } from '@payloadcms/ui'
-
-import { getFields, getInitialState, validateFields } from './fields'
-
+import {
+  Button,
+  Drawer,
+  Form,
+  FormSubmit,
+  RenderFields,
+  useConfig,
+  useTranslation,
+} from '@payloadcms/ui'
+import type { FormState } from 'payload'
 import { v4 as uuid } from 'uuid'
 
-import type { LinkDrawerProps, LinkData } from './types'
-import type { FormState } from 'payload'
+import { getFields, getInitialState, validateFields } from './fields'
+import type { LinkData, LinkDrawerProps } from './types'
 
 import './link-drawer.css'
 
@@ -24,7 +25,7 @@ export const LinkDrawer: React.FC<LinkDrawerProps> = ({
   drawerSlug,
   onSubmit,
   onClose,
-  data: dataFromProps
+  data: dataFromProps,
 }) => {
   const { t } = useTranslation()
   const { config } = useConfig()
@@ -41,8 +42,8 @@ export const LinkDrawer: React.FC<LinkDrawerProps> = ({
       if (
         c?.admin?.enableRichTextLink === true &&
         // (c?.admin?.hidden == null || c?.admin?.hidden === false) &&
-        c?.slug != 'payload-preferences' &&
-        c?.slug != 'payload-migrations'
+        c?.slug !== 'payload-preferences' &&
+        c?.slug !== 'payload-migrations'
       ) {
         results.push(c.slug)
       }
@@ -56,7 +57,7 @@ export const LinkDrawer: React.FC<LinkDrawerProps> = ({
   }
 
   async function handleFormOnChange({ formState }: { formState: FormState }): Promise<FormState> {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve, _reject) => {
       validateFields(formState)
       resolve(formState)
     })
@@ -75,10 +76,10 @@ export const LinkDrawer: React.FC<LinkDrawerProps> = ({
             doc: {
               value: doc?.value,
               relationTo: doc?.relationTo,
-              data: {}
+              data: {},
             },
-            linkType: data.linkType === 'custom' ? 'custom' : 'internal'
-          }
+            linkType: data.linkType === 'custom' ? 'custom' : 'internal',
+          },
         }
         onSubmit(submitData)
       }
@@ -94,7 +95,7 @@ export const LinkDrawer: React.FC<LinkDrawerProps> = ({
     }
   }, [synchronizedFormState, isOpen, dataFromProps])
 
-  if(isOpen === false) {
+  if (isOpen === false) {
     return null
   }
 

@@ -1,10 +1,8 @@
 'use client'
-import * as React from 'react'
+
+import type * as React from 'react'
 import { Suspense, useCallback, useEffect, useRef, useState } from 'react'
 
-import { formatDrawerSlug } from '@payloadcms/ui'
-import { useEditDepth } from '@payloadcms/ui'
-import { useModal } from '@payloadcms/ui'
 import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext'
 import { LexicalErrorBoundary } from '@lexical/react/LexicalErrorBoundary'
 import { HistoryPlugin } from '@lexical/react/LexicalHistoryPlugin'
@@ -13,39 +11,37 @@ import { OnChangePlugin } from '@lexical/react/LexicalOnChangePlugin'
 import { RichTextPlugin } from '@lexical/react/LexicalRichTextPlugin'
 import { useLexicalNodeSelection } from '@lexical/react/useLexicalNodeSelection'
 import { mergeRegister } from '@lexical/utils'
+import { formatDrawerSlug, useEditDepth, useModal } from '@payloadcms/ui'
 import cx from 'classnames'
+import type { BaseSelection, LexicalEditor, NodeKey, NodeSelection, RangeSelection } from 'lexical'
 import {
   $getNodeByKey,
   $getSelection,
   $isNodeSelection,
   $setSelection,
-  CLICK_COMMAND,
   COMMAND_PRIORITY_LOW,
-  DRAGSTART_COMMAND,
   KEY_BACKSPACE_COMMAND,
   KEY_DELETE_COMMAND,
   KEY_ENTER_COMMAND,
   KEY_ESCAPE_COMMAND,
-  SELECTION_CHANGE_COMMAND
+  SELECTION_CHANGE_COMMAND,
 } from 'lexical'
 
-import { $isAdmonitionNode } from './admonition-node'
-import { NoteIcon, TipIcon, WarningIcon, DangerIcon } from './icons'
 import { useEditorConfig } from '../../config/editor-config-context'
 import { APPLY_VALUE_TAG } from '../../constants'
 import { useSharedHistoryContext } from '../../context/shared-history-context'
 import { useSharedOnChange } from '../../context/shared-on-change-context'
 import { AdmonitionDrawer } from '../../plugins/admonition-plugin/admonition-drawer'
 import { FloatingTextFormatToolbarPlugin } from '../../plugins/floating-text-format-toolbar-plugin/index'
-import { FloatingLinkEditorPlugin } from '../../plugins/link-plugin/link/floating-link-editor'
 import { LinkPlugin } from '../../plugins/link-plugin/link'
+import { FloatingLinkEditorPlugin } from '../../plugins/link-plugin/link/floating-link-editor'
 import { ContentEditable } from '../../ui/content-editable'
 import { Placeholder } from '../../ui/placeholder'
-
-import type { AdmonitionNode } from './admonition-node'
-import type { AdmonitionType, AdmonitionAttributes } from './types'
+import { $isAdmonitionNode } from './admonition-node'
+import { DangerIcon, NoteIcon, TipIcon, WarningIcon } from './icons'
 import type { AdmonitionData } from '../../plugins/admonition-plugin/types'
-import type { LexicalEditor, NodeKey, NodeSelection, RangeSelection, BaseSelection } from 'lexical'
+import type { AdmonitionNode } from './admonition-node'
+import type { AdmonitionAttributes, AdmonitionType } from './types'
 
 import './admonition-node-component.css'
 
@@ -53,14 +49,14 @@ const icons = {
   note: NoteIcon,
   tip: TipIcon,
   warning: WarningIcon,
-  danger: DangerIcon
+  danger: DangerIcon,
 }
 
 export default function AdmonitionNodeComponent({
   admonitionType,
   title,
   content,
-  nodeKey
+  nodeKey,
 }: {
   admonitionType: AdmonitionType
   title: string
@@ -71,7 +67,7 @@ export default function AdmonitionNodeComponent({
   const editDepth = useEditDepth()
   const buttonRef = useRef<HTMLButtonElement | null>(null)
   const { historyState } = useSharedHistoryContext()
-  const [isSelected, setSelected, clearSelection] = useLexicalNodeSelection(nodeKey)
+  const [isSelected, setSelected, _clearSelection] = useLexicalNodeSelection(nodeKey)
   const [selection, setSelection] = useState<RangeSelection | NodeSelection | BaseSelection | null>(
     null
   )
@@ -80,21 +76,21 @@ export default function AdmonitionNodeComponent({
   const editorState = editor.getEditorState()
   const activeEditorRef = useRef<LexicalEditor | null>(null)
   const node = editorState.read(() => $getNodeByKey(nodeKey) as AdmonitionNode)
-  const debugTagLogCountRef = useRef<number>(0)
+  const _debugTagLogCountRef = useRef<number>(0)
 
   const {
     toggleModal = () => {
       console.error('Error: useModal() from FacelessUI did not work correctly')
     },
     closeModal,
-    isModalOpen
+    isModalOpen,
   } = useModal()
 
   // NOTE: set the slug suffix to the document ID so that
   // each image in the editor gets its own slug and modal
   const admonitionDrawerSlug = formatDrawerSlug({
     slug: `admonition-update-${nodeKey}`,
-    depth: editDepth
+    depth: editDepth,
   })
 
   const onDelete = useCallback(
@@ -174,7 +170,7 @@ export default function AdmonitionNodeComponent({
       isMounted = false
       unregister()
     }
-  }, [clearSelection, editor, isSelected, nodeKey, onDelete, onEnter, onEscape, setSelected])
+  }, [editor, onDelete, onEnter, onEscape])
 
   const draggable = isSelected && $isNodeSelection(selection)
   const isFocused = isSelected
@@ -190,7 +186,7 @@ export default function AdmonitionNodeComponent({
     if (title != null && admonitionType != null) {
       const admonitionPayload: AdmonitionAttributes = {
         admonitionType,
-        title
+        title,
       }
 
       editor.update(() => {
@@ -211,71 +207,69 @@ export default function AdmonitionNodeComponent({
 
   return (
     <Suspense fallback={null}>
-      <>
-        <div draggable={draggable} className={classNames}>
-          <button
-            type="button"
-            className="admonition-edit-button"
-            ref={buttonRef}
-            onClick={handleToggleModal}
-          >
-            Edit
-          </button>
-          <div className="AdmonitionNode__header">
-            <Icon />
-            <div>{title}</div>
-          </div>
-          <div className="AdmonitionNode__content">
-            <LexicalNestedComposer initialEditor={content}>
-              <OnChangePlugin
-                ignoreSelectionChange={true}
-                onChange={(nestedEditorState, nestedEditor, nestedTags) => {
-                                    // if (process.env.NODE_ENV === 'production' && debugTagLogCountRef.current < 10) {
-                                    //   debugTagLogCountRef.current++
-                                    //   // eslint-disable-next-line no-console
-                                    //   console.log('[lexical][nested][admonition] tags', Array.from(nestedTags))
-                                    // }
-
-                                    if (nestedTags.has(APPLY_VALUE_TAG)) return
-                                    if (nestedTags.has('focus') && nestedTags.size === 1) return
-                  // Note: Shared 'onChange' context provider so that
-                  // caption change events can be registered with the parent
-                  // editor - in turn triggering the parent editor onChange
-                  // event, and therefore updating editorState and the field
-                  // value in Payload (Save Draft and Publish Changes will then
-                  // become 'enabled' from the caption as well as the parent
-                  // editor content.)
-
-                  // Parent editor state - not the LexicalNestedComposer in this case
-                  // although there are other ways that this could be used.
-                  const editorState = editor.getEditorState()
-                  if (onChange != null) onChange(editorState, editor, nestedTags)
-                }}
-              />
-              <LinkPlugin />
-              <FloatingLinkEditorPlugin />
-              <FloatingTextFormatToolbarPlugin />
-              <HistoryPlugin externalHistoryState={historyState} />
-              <RichTextPlugin
-                contentEditable={<ContentEditable className="AdmonitionNode__contentEditable" />}
-                placeholder={
-                  <Placeholder className="Admonition__placeholder">Enter some text...</Placeholder>
-                }
-                ErrorBoundary={LexicalErrorBoundary}
-              />
-            </LexicalNestedComposer>
-          </div>
+      <div draggable={draggable} className={classNames}>
+        <button
+          type="button"
+          className="admonition-edit-button"
+          ref={buttonRef}
+          onClick={handleToggleModal}
+        >
+          Edit
+        </button>
+        <div className="AdmonitionNode__header">
+          <Icon />
+          <div>{title}</div>
         </div>
+        <div className="AdmonitionNode__content">
+          <LexicalNestedComposer initialEditor={content}>
+            <OnChangePlugin
+              ignoreSelectionChange={true}
+              onChange={(_nestedEditorState, _nestedEditor, nestedTags) => {
+                // if (process.env.NODE_ENV === 'production' && debugTagLogCountRef.current < 10) {
+                //   debugTagLogCountRef.current++
+                //   // eslint-disable-next-line no-console
+                //   console.log('[lexical][nested][admonition] tags', Array.from(nestedTags))
+                // }
 
-        {uuid != null && uuid.length > 0 && (
-          <AdmonitionDrawer
-            isOpen={isModalOpen(admonitionDrawerSlug)}
-            drawerSlug={admonitionDrawerSlug}
-            onSubmit={handleUpdateAdmonition}
-            data={{ title, admonitionType }}
-          />
-        )}
-      </>
+                if (nestedTags.has(APPLY_VALUE_TAG)) return
+                if (nestedTags.has('focus') && nestedTags.size === 1) return
+                // Note: Shared 'onChange' context provider so that
+                // caption change events can be registered with the parent
+                // editor - in turn triggering the parent editor onChange
+                // event, and therefore updating editorState and the field
+                // value in Payload (Save Draft and Publish Changes will then
+                // become 'enabled' from the caption as well as the parent
+                // editor content.)
+
+                // Parent editor state - not the LexicalNestedComposer in this case
+                // although there are other ways that this could be used.
+                const editorState = editor.getEditorState()
+                if (onChange != null) onChange(editorState, editor, nestedTags)
+              }}
+            />
+            <LinkPlugin />
+            <FloatingLinkEditorPlugin />
+            <FloatingTextFormatToolbarPlugin />
+            <HistoryPlugin externalHistoryState={historyState} />
+            <RichTextPlugin
+              contentEditable={<ContentEditable className="AdmonitionNode__contentEditable" />}
+              placeholder={
+                <Placeholder className="Admonition__placeholder">Enter some text...</Placeholder>
+              }
+              ErrorBoundary={LexicalErrorBoundary}
+            />
+          </LexicalNestedComposer>
+        </div>
+      </div>
+
+      {uuid != null && uuid.length > 0 && (
+        <AdmonitionDrawer
+          isOpen={isModalOpen(admonitionDrawerSlug)}
+          drawerSlug={admonitionDrawerSlug}
+          onSubmit={handleUpdateAdmonition}
+          data={{ title, admonitionType }}
+        />
+      )}
     </Suspense>
   )
 }

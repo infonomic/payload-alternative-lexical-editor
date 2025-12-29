@@ -1,10 +1,7 @@
 import type { Field } from 'payload'
 
 import { lexicalEditor } from '../../adapters/richtext-lexical'
-import { populateLexicalMedia } from '../../adapters/richtext-lexical/field/lexical-after-read-populate-media'
-import { populateLexicalLinks } from '../../adapters/richtext-lexical/field/lexical-after-read-populate-links'
 import deepMerge from '../../utilities/deepMerge'
-
 import type { LexicalRichTextAdapter } from '../../adapters/richtext-lexical/types'
 
 type Options = Partial<Field> & { editor?: LexicalRichTextAdapter }
@@ -38,5 +35,5 @@ export const lexicalRichTextMinimal: RichTextField = (options = {}) =>
         },
       }),
     },
-    options,
+    options
   )

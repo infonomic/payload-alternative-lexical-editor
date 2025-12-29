@@ -1,4 +1,5 @@
 'use client'
+
 /**
  * Copyright (c) Meta Platforms, Inc. and affiliates.
  *
@@ -6,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  *
  */
-import * as React from 'react'
+import type * as React from 'react'
 import { createContext, type ReactNode, useContext, useEffect, useMemo, useState } from 'react'
 
 type Suggestion = null | string
@@ -18,11 +19,11 @@ type HookShape = [suggestion: Suggestion, setSuggestion: PublishFn]
 
 const Context: React.Context<ContextShape> = createContext([
   (_cb) => () => {},
-  (_newSuggestion: Suggestion) => {}
+  (_newSuggestion: Suggestion) => {},
 ])
 
 export const SharedAutocompleteContext = ({
-  children
+  children,
 }: {
   children: ReactNode
 }): React.JSX.Element => {
@@ -42,7 +43,7 @@ export const SharedAutocompleteContext = ({
         for (const listener of listeners) {
           listener(newSuggestion)
         }
-      }
+      },
     ]
   }, [])
   return <Context.Provider value={context}>{children}</Context.Provider>

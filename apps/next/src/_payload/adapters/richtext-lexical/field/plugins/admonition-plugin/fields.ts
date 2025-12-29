@@ -1,24 +1,24 @@
-import type { FormState, OptionObject } from 'payload'
-import { ClientField } from 'payload'
-import { AdmonitionType } from '../../nodes/admonition-node'
+import type { ClientField, FormState, OptionObject } from 'payload'
+
+import type { AdmonitionType } from '../../nodes/admonition-node'
 
 export const admonitionTypeOptions: OptionObject[] = [
   {
     label: 'Note',
-    value: 'note'
+    value: 'note',
   },
   {
     label: 'Tip',
-    value: 'tip'
+    value: 'tip',
   },
   {
     label: 'Warning',
-    value: 'warning'
+    value: 'warning',
   },
   {
     label: 'Danger',
-    value: 'danger'
-  }
+    value: 'danger',
+  },
 ]
 
 export const getFields = (): ClientField[] => {
@@ -28,15 +28,15 @@ export const getFields = (): ClientField[] => {
       localized: false,
       label: 'Title',
       required: true,
-      type: 'text'
+      type: 'text',
     },
     {
       name: 'admonitionType',
       localized: false,
       type: 'radio',
       label: 'Type',
-      options: admonitionTypeOptions
-    }
+      options: admonitionTypeOptions,
+    },
   ]
 }
 
@@ -56,7 +56,7 @@ export function getInitialState(data: {
       initialValue: data?.admonitionType ?? 'note',
       valid: true,
       passesCondition: true,
-    }
+    },
   }
 }
 
@@ -74,11 +74,10 @@ export function validateFields(fields: FormState): { valid: boolean; fields: For
     } else {
       fields.title.valid = true
     }
-
   }
 
   return {
     valid,
-    fields
+    fields,
   }
 }

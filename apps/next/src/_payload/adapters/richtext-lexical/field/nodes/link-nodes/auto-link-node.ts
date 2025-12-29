@@ -4,7 +4,6 @@ import {
   type ElementNode,
   type LexicalNode,
   type RangeSelection,
-  Spread
 } from 'lexical'
 
 import { LinkNode } from './link-node'
@@ -42,7 +41,7 @@ export class AutoLinkNode extends LinkNode {
     return {
       ...super.exportJSON(),
       type: 'autolink',
-      version: 1
+      version: 1,
     }
   }
 

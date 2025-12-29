@@ -1,19 +1,15 @@
 'use client'
 
-import React, { useState, useEffect } from 'react'
-import { Button } from '@payloadcms/ui'
-import { Drawer } from '@payloadcms/ui'
-import { Form } from '@payloadcms/ui'
-import { RenderFields } from '@payloadcms/ui'
-import { FormSubmit } from '@payloadcms/ui'
-import { useTranslation } from '@payloadcms/ui'
-import { useEditorConfig } from '../../config/editor-config-context'
+import type React from 'react'
+import { useEffect, useState } from 'react'
 
-import { getFields, getInitialState, validateFields } from './fields'
-
+import { Button, Drawer, Form, FormSubmit, RenderFields, useTranslation } from '@payloadcms/ui'
 import type { CollectionSlug, FormState } from 'payload'
-import type { InlineImageData, InlineImageDrawerProps } from './types'
+
+import { useEditorConfig } from '../../config/editor-config-context'
+import { getFields, getInitialState, validateFields } from './fields'
 import type { Position, Size } from '../../nodes/inline-image-node'
+import type { InlineImageData, InlineImageDrawerProps } from './types'
 
 import './inline-image-drawer.css'
 
@@ -24,7 +20,7 @@ export const InlineImageDrawer: React.FC<InlineImageDrawerProps> = ({
   drawerSlug,
   onSubmit,
   onClose,
-  data: dataFromProps
+  data: dataFromProps,
 }) => {
   const { config } = useEditorConfig()
   const { t } = useTranslation()
@@ -38,9 +34,8 @@ export const InlineImageDrawer: React.FC<InlineImageDrawerProps> = ({
     onClose()
   }
 
-
   async function handleFormOnChange({ formState }: { formState: FormState }): Promise<FormState> {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve, _reject) => {
       validateFields(formState)
       resolve(formState)
     })
@@ -55,7 +50,7 @@ export const InlineImageDrawer: React.FC<InlineImageDrawerProps> = ({
           altText: data.altText as string,
           position: data.position as Position,
           size: data.size as Size,
-          showCaption: data.showCaption as boolean
+          showCaption: data.showCaption as boolean,
         }
         onSubmit(submitData)
       }
@@ -64,7 +59,6 @@ export const InlineImageDrawer: React.FC<InlineImageDrawerProps> = ({
     }
   }
 
-
   useEffect(() => {
     if (synchronizedFormState == null && isOpen === true) {
       const formState = getInitialState(dataFromProps)
@@ -72,7 +66,7 @@ export const InlineImageDrawer: React.FC<InlineImageDrawerProps> = ({
     }
   }, [synchronizedFormState, isOpen, dataFromProps])
 
-  if(isOpen === false) {
+  if (isOpen === false) {
     return null
   }
 

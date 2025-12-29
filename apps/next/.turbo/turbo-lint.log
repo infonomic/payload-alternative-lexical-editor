@@ -1,0 +1,319 @@
+
+
+> @infonomic/next@1.0.0 lint /home/tony/Clients/Infonomic/Projects/Payload/payload-alternative-lexical-editor/apps/next
+> biome check --write --unsafe --diagnostic-level=error
+
+[0msrc/_payload/adapters/richtext-lexical/field/editor.css[0m[0m:[0m[0m1034[0m[0m:[0m[0m3[0m[0m [0m[0m]8;;https://biomejs.dev/linter/rules/no-unknown-property\lint/correctness/noUnknownProperty]8;;\[0m[0m [0m[0m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m[0m
+
+[0m[0m  [0m[0m[1m[31m✖[0m[0m [0m[0m[31mUnknown property is not allowed.[0m[0m
+[0m[0m  [0m[0m
+[0m[0m  [0m[0m  [0m[0m[1m1032 │ [0m[0m [0m[0m [0m[0m-[0m[0mw[0m[0me[0m[0mb[0m[0mk[0m[0mi[0m[0mt[0m[0m-[0m[0mt[0m[0mo[0m[0mu[0m[0mc[0m[0mh[0m[0m-[0m[0mc[0m[0ma[0m[0ml[0m[0ml[0m[0mo[0m[0mu[0m[0mt[0m[0m:[0m[0m [0m[0mn[0m[0mo[0m[0mn[0m[0me[0m[0m;[0m[0m
+[0m[0m  [0m[0m  [0m[0m[1m1033 │ [0m[0m [0m[0m [0m[0m-[0m[0mw[0m[0me[0m[0mb[0m[0mk[0m[0mi[0m[0mt[0m[0m-[0m[0mu[0m[0ms[0m[0me[0m[0mr[0m[0m-[0m[0ms[0m[0me[0m[0ml[0m[0me[0m[0mc[0m[0mt[0m[0m:[0m[0m [0m[0mn[0m[0mo[0m[0mn[0m[0me[0m[0m;[0m[0m
+[0m[0m  [0m[0m[1m[31m>[0m[0m [0m[0m[1m1034 │ [0m[0m [0m[0m [0m[0m-[0m[0mk[0m[0mh[0m[0mt[0m[0mm[0m[0ml[0m[0m-[0m[0mu[0m[0ms[0m[0me[0m[0mr[0m[0m-[0m[0ms[0m[0me[0m[0ml[0m[0me[0m[0mc[0m[0mt[0m[0m:[0m[0m [0m[0mn[0m[0mo[0m[0mn[0m[0me[0m[0m;[0m[0m
+[0m[0m  [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m[1m   │ [0m[0m [0m[0m [0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m
+[0m[0m  [0m[0m  [0m[0m[1m1035 │ [0m[0m [0m[0m [0m[0m-[0m[0mm[0m[0mo[0m[0mz[0m[0m-[0m[0mu[0m[0ms[0m[0me[0m[0mr[0m[0m-[0m[0ms[0m[0me[0m[0ml[0m[0me[0m[0mc[0m[0mt[0m[0m:[0m[0m [0m[0mn[0m[0mo[0m[0mn[0m[0me[0m[0m;[0m[0m
+[0m[0m  [0m[0m  [0m[0m[1m1036 │ [0m[0m [0m[0m [0m[0m-[0m[0mm[0m[0ms[0m[0m-[0m[0mu[0m[0ms[0m[0me[0m[0mr[0m[0m-[0m[0ms[0m[0me[0m[0ml[0m[0me[0m[0mc[0m[0mt[0m[0m:[0m[0m [0m[0mn[0m[0mo[0m[0mn[0m[0me[0m[0m;[0m[0m
+[0m[0m  [0m[0m
+[0m[0m  [0m[0m[1m[34mℹ[0m[0m [0m[0m[34mSee [0m[0m[34m]8;;https://stylelint.io/user-guide/rules/property-no-unknown/\CSS Specifications and browser specific properties]8;;\[0m[0m[34m for more details.[0m[0m
+[0m[0m  [0m[0m
+[0m[0m  [0m[0m[1m[34mℹ[0m[0m [0m[0m[34mTo resolve this issue, replace the unknown property with a valid CSS property.[0m[0m
+[0m[0m  [0m[0m
+[0m
+[0msrc/_payload/adapters/richtext-lexical/field/field-component.tsx[0m[0m:[0m[0m79[0m[0m:[0m[0m63[0m[0m [0m[0m]8;;https://biomejs.dev/linter/rules/no-shadow-restricted-names\lint/suspicious/noShadowRestrictedNames]8;;\[0m[0m [0m[0m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m[0m
+
+[0m[0m  [0m[0m[1m[31m✖[0m[0m [0m[0m[31mDo not shadow the global "Error" property.[0m[0m
+[0m[0m  [0m[0m
+[0m[0m  [0m[0m  [0m[0m[1m78 │ [0m[0m [0m[0m [0m[0mc[0m[0mo[0m[0mn[0m[0ms[0m[0mt[0m[0m [0m[0m{[0m[0m
+[0m[0m  [0m[0m[1m[31m>[0m[0m [0m[0m[1m79 │ [0m[0m [0m[0m [0m[0m [0m[0m [0m[0mc[0m[0mu[0m[0ms[0m[0mt[0m[0mo[0m[0mm[0m[0mC[0m[0mo[0m[0mm[0m[0mp[0m[0mo[0m[0mn[0m[0me[0m[0mn[0m[0mt[0m[0ms[0m[0m:[0m[0m [0m[0m{[0m[0m [0m[0mA[0m[0mf[0m[0mt[0m[0me[0m[0mr[0m[0mI[0m[0mn[0m[0mp[0m[0mu[0m[0mt[0m[0m,[0m[0m [0m[0mB[0m[0me[0m[0mf[0m[0mo[0m[0mr[0m[0me[0m[0mI[0m[0mn[0m[0mp[0m[0mu[0m[0mt[0m[0m,[0m[0m [0m[0mD[0m[0me[0m[0ms[0m[0mc[0m[0mr[0m[0mi[0m[0mp[0m[0mt[0m[0mi[0m[0mo[0m[0mn[0m[0m,[0m[0m [0m[0mE[0m[0mr[0m[0mr[0m[0mo[0m[0mr[0m[0m,[0m[0m [0m[0mL[0m[0ma[0m[0mb[0m[0me[0m[0ml[0m[0m [0m[0m}[0m[0m [0m[0m=[0m[0m [0m[0m{[0m[0m}[0m[0m,[0m[0m
+[0m[0m  [0m[0m [0m[0m [0m[0m[1m   │ [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m
+[0m[0m  [0m[0m  [0m[0m[1m80 │ [0m[0m [0m[0m [0m[0m [0m[0m [0m[0md[0m[0mi[0m[0ms[0m[0ma[0m[0mb[0m[0ml[0m[0me[0m[0md[0m[0m:[0m[0m [0m[0md[0m[0mi[0m[0ms[0m[0ma[0m[0mb[0m[0ml[0m[0me[0m[0md[0m[0mF[0m[0mr[0m[0mo[0m[0mm[0m[0mF[0m[0mi[0m[0me[0m[0ml[0m[0md[0m[0m,[0m[0m
+[0m[0m  [0m[0m  [0m[0m[1m81 │ [0m[0m [0m[0m [0m[0m [0m[0m [0m[0mi[0m[0mn[0m[0mi[0m[0mt[0m[0mi[0m[0ma[0m[0ml[0m[0mV[0m[0ma[0m[0ml[0m[0mu[0m[0me[0m[0m,[0m[0m
+[0m[0m  [0m[0m
+[0m[0m  [0m[0m[1m[34mℹ[0m[0m [0m[0m[34mConsider renaming this variable. It's easy to confuse the origin of variables when they're named after a known global.[0m[0m
+[0m[0m  [0m[0m
+[0m
+[0msrc/_payload/adapters/richtext-lexical/field/plugins/auto-embed-plugin/index.tsx[0m[0m:[0m[0m200[0m[0m:[0m[0m5[0m[0m [0m[0m]8;;https://biomejs.dev/linter/rules/use-aria-props-supported-by-role\lint/a11y/useAriaPropsSupportedByRole]8;;\[0m[0m [0m[0m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m[0m
+
+[0m[0m  [0m[0m[1m[31m✖[0m[0m [0m[0m[31mThe ARIA attribute 'aria-selected' is not supported by this element.[0m[0m
+[0m[0m  [0m[0m
+[0m[0m  [0m[0m  [0m[0m[1m198 │ [0m[0m [0m[0m [0m[0m}[0m[0m
+[0m[0m  [0m[0m  [0m[0m[1m199 │ [0m[0m [0m[0m [0m[0mr[0m[0me[0m[0mt[0m[0mu[0m[0mr[0m[0mn[0m[0m [0m[0m([0m[0m
+[0m[0m  [0m[0m[1m[31m>[0m[0m [0m[0m[1m200 │ [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m<[0m[0ml[0m[0mi[0m[0m
+[0m[0m  [0m[0m [0m[0m [0m[0m [0m[0m[1m   │ [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m
+[0m[0m  [0m[0m[1m[31m>[0m[0m [0m[0m[1m201 │ [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0mk[0m[0me[0m[0my[0m[0m=[0m[0m{[0m[0mo[0m[0mp[0m[0mt[0m[0mi[0m[0mo[0m[0mn[0m[0m.[0m[0mk[0m[0me[0m[0my[0m[0m}[0m[0m
+[0m[0m  [0m[0m [0m[0m [0m[0m [0m[0m[1m    ...
+[0m[0m  [0m[0m[1m[31m>[0m[0m [0m[0m[1m208 │ [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0mo[0m[0mn[0m[0mC[0m[0ml[0m[0mi[0m[0mc[0m[0mk[0m[0m=[0m[0m{[0m[0mo[0m[0mn[0m[0mC[0m[0ml[0m[0mi[0m[0mc[0m[0mk[0m[0m}[0m[0m
+[0m[0m  [0m[0m[1m[31m>[0m[0m [0m[0m[1m209 │ [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m>[0m[0m
+[0m[0m  [0m[0m [0m[0m [0m[0m [0m[0m[1m   │ [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m[1m[31m^[0m[0m
+[0m[0m  [0m[0m  [0m[0m[1m210 │ [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m<[0m[0ms[0m[0mp[0m[0ma[0m[0mn[0m[0m [0m[0mc[0m[0ml[0m[0ma[0m[0ms[0m[0ms[0m[0mN[0m[0ma[0m[0mm[0m[0me[0m[0m=[0m[0m"[0m[0mt[0m[0me[0m[0mx[0m[0mt[0m[0m"[0m[0m>[0m[0m{[0m[0mo[0m[0mp[0m[0mt[0m[0mi[0m[0mo[0m[0mn[0m[0m.[0m[0mt[0m[0mi[0m[0mt[0m[0ml[0m[0me[0m[0m}[0m[0m<[0m[0m/[0m[0ms[0m[0mp[0m[0ma[0m[0mn[0m[0m>[0m[0m
+[0m[0m  [0m[0m  [0m[0m[1m211 │ [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m<[0m[0m/[0m[0ml[0m[0mi[0m[0m>[0m[0m
+[0m[0m  [0m[0m
+[0m[0m  [0m[0m[1m[34mℹ[0m[0m [0m[0m[34mEnsure that ARIA attributes are valid for the role of the element.[0m[0m
+[0m[0m  [0m[0m
+[0m
+[0msrc/_payload/adapters/richtext-lexical/field/plugins/auto-embed-plugin/index.tsx[0m[0m:[0m[0m200[0m[0m:[0m[0m5[0m[0m [0m[0m]8;;https://biomejs.dev/linter/rules/use-key-with-click-events\lint/a11y/useKeyWithClickEvents]8;;\[0m[0m [0m[0m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m[0m
+
+[0m[0m  [0m[0m[1m[31m✖[0m[0m [0m[0m[31mEnforce to have the [0m[0m[1m[31monClick[0m[0m[31m mouse event with the [0m[0m[1m[31monKeyUp[0m[0m[31m, the [0m[0m[1m[31monKeyDown[0m[0m[31m, or the [0m[0m[1m[31monKeyPress[0m[0m[31m keyboard event.[0m[0m
+[0m[0m  [0m[0m
+[0m[0m  [0m[0m  [0m[0m[1m198 │ [0m[0m [0m[0m [0m[0m}[0m[0m
+[0m[0m  [0m[0m  [0m[0m[1m199 │ [0m[0m [0m[0m [0m[0mr[0m[0me[0m[0mt[0m[0mu[0m[0mr[0m[0mn[0m[0m [0m[0m([0m[0m
+[0m[0m  [0m[0m[1m[31m>[0m[0m [0m[0m[1m200 │ [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m<[0m[0ml[0m[0mi[0m[0m
+[0m[0m  [0m[0m [0m[0m [0m[0m [0m[0m[1m   │ [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m
+[0m[0m  [0m[0m[1m[31m>[0m[0m [0m[0m[1m201 │ [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0mk[0m[0me[0m[0my[0m[0m=[0m[0m{[0m[0mo[0m[0mp[0m[0mt[0m[0mi[0m[0mo[0m[0mn[0m[0m.[0m[0mk[0m[0me[0m[0my[0m[0m}[0m[0m
+[0m[0m  [0m[0m [0m[0m [0m[0m [0m[0m[1m    ...
+[0m[0m  [0m[0m[1m[31m>[0m[0m [0m[0m[1m208 │ [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0mo[0m[0mn[0m[0mC[0m[0ml[0m[0mi[0m[0mc[0m[0mk[0m[0m=[0m[0m{[0m[0mo[0m[0mn[0m[0mC[0m[0ml[0m[0mi[0m[0mc[0m[0mk[0m[0m}[0m[0m
+[0m[0m  [0m[0m[1m[31m>[0m[0m [0m[0m[1m209 │ [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m>[0m[0m
+[0m[0m  [0m[0m [0m[0m [0m[0m [0m[0m[1m   │ [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m[1m[31m^[0m[0m
+[0m[0m  [0m[0m  [0m[0m[1m210 │ [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m<[0m[0ms[0m[0mp[0m[0ma[0m[0mn[0m[0m [0m[0mc[0m[0ml[0m[0ma[0m[0ms[0m[0ms[0m[0mN[0m[0ma[0m[0mm[0m[0me[0m[0m=[0m[0m"[0m[0mt[0m[0me[0m[0mx[0m[0mt[0m[0m"[0m[0m>[0m[0m{[0m[0mo[0m[0mp[0m[0mt[0m[0mi[0m[0mo[0m[0mn[0m[0m.[0m[0mt[0m[0mi[0m[0mt[0m[0ml[0m[0me[0m[0m}[0m[0m<[0m[0m/[0m[0ms[0m[0mp[0m[0ma[0m[0mn[0m[0m>[0m[0m
+[0m[0m  [0m[0m  [0m[0m[1m211 │ [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m<[0m[0m/[0m[0ml[0m[0mi[0m[0m>[0m[0m
+[0m[0m  [0m[0m
+[0m[0m  [0m[0m[1m[34mℹ[0m[0m [0m[0m[34mActions triggered using mouse events should have corresponding keyboard events to account for keyboard-only navigation.[0m[0m
+[0m[0m  [0m[0m
+[0m
+[0msrc/_payload/adapters/richtext-lexical/field/plugins/floating-text-format-toolbar-plugin/index.tsx[0m[0m:[0m[0m130[0m[0m:[0m[0m7[0m[0m [0m[0m]8;;https://biomejs.dev/linter/rules/use-exhaustive-dependencies\lint/correctness/useExhaustiveDependencies]8;;\[0m[0m [0m[0m━━━━━━━━━━━━━━━━━━━━━━[0m[0m
+
+[0m[0m  [0m[0m[1m[31m✖[0m[0m [0m[0m[1m[31mmouseMoveListener[0m[0m[31m changes on every re-render and should not be used as a hook dependency.[0m[0m
+[0m[0m  [0m[0m
+[0m[0m  [0m[0m  [0m[0m[1m128 │ [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m}[0m[0m
+[0m[0m  [0m[0m  [0m[0m[1m129 │ [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m}[0m[0m
+[0m[0m  [0m[0m[1m[31m>[0m[0m [0m[0m[1m130 │ [0m[0m [0m[0m [0m[0m}[0m[0m,[0m[0m [0m[0m[[0m[0mm[0m[0mo[0m[0mu[0m[0ms[0m[0me[0m[0mM[0m[0mo[0m[0mv[0m[0me[0m[0mL[0m[0mi[0m[0ms[0m[0mt[0m[0me[0m[0mn[0m[0me[0m[0mr[0m[0m,[0m[0m [0m[0mm[0m[0mo[0m[0mu[0m[0ms[0m[0me[0m[0mU[0m[0mp[0m[0mL[0m[0mi[0m[0ms[0m[0mt[0m[0me[0m[0mn[0m[0me[0m[0mr[0m[0m][0m[0m)[0m[0m
+[0m[0m  [0m[0m [0m[0m [0m[0m [0m[0m[1m   │ [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m
+[0m[0m  [0m[0m  [0m[0m[1m131 │ [0m[0m
+[0m[0m  [0m[0m  [0m[0m[1m132 │ [0m[0m [0m[0m [0m[0mc[0m[0mo[0m[0mn[0m[0ms[0m[0mt[0m[0m [0m[0mu[0m[0mp[0m[0md[0m[0ma[0m[0mt[0m[0me[0m[0mT[0m[0me[0m[0mx[0m[0mt[0m[0mF[0m[0mo[0m[0mr[0m[0mm[0m[0ma[0m[0mt[0m[0mF[0m[0ml[0m[0mo[0m[0ma[0m[0mt[0m[0mi[0m[0mn[0m[0mg[0m[0mT[0m[0mo[0m[0mo[0m[0ml[0m[0mb[0m[0ma[0m[0mr[0m[0m [0m[0m=[0m[0m [0m[0mu[0m[0ms[0m[0me[0m[0mC[0m[0ma[0m[0ml[0m[0ml[0m[0mb[0m[0ma[0m[0mc[0m[0mk[0m[0m([0m[0m([0m[0m)[0m[0m [0m[0m=[0m[0m>[0m[0m [0m[0m{[0m[0m
+[0m[0m  [0m[0m
+[0m[0m  [0m[0m[1m[34mℹ[0m[0m [0m[0m[34mTo fix this, wrap the definition of [0m[0m[1m[34mmouseMoveListener[0m[0m[34m in its own [0m[0m[1m[34museCallback()[0m[0m[34m hook.[0m[0m
+[0m[0m  [0m[0m
+[0m
+[0msrc/_payload/adapters/richtext-lexical/field/plugins/floating-text-format-toolbar-plugin/index.tsx[0m[0m:[0m[0m130[0m[0m:[0m[0m26[0m[0m [0m[0m]8;;https://biomejs.dev/linter/rules/use-exhaustive-dependencies\lint/correctness/useExhaustiveDependencies]8;;\[0m[0m [0m[0m━━━━━━━━━━━━━━━━━━━━━[0m[0m
+
+[0m[0m  [0m[0m[1m[31m✖[0m[0m [0m[0m[1m[31mmouseUpListener[0m[0m[31m changes on every re-render and should not be used as a hook dependency.[0m[0m
+[0m[0m  [0m[0m
+[0m[0m  [0m[0m  [0m[0m[1m128 │ [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m}[0m[0m
+[0m[0m  [0m[0m  [0m[0m[1m129 │ [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m}[0m[0m
+[0m[0m  [0m[0m[1m[31m>[0m[0m [0m[0m[1m130 │ [0m[0m [0m[0m [0m[0m}[0m[0m,[0m[0m [0m[0m[[0m[0mm[0m[0mo[0m[0mu[0m[0ms[0m[0me[0m[0mM[0m[0mo[0m[0mv[0m[0me[0m[0mL[0m[0mi[0m[0ms[0m[0mt[0m[0me[0m[0mn[0m[0me[0m[0mr[0m[0m,[0m[0m [0m[0mm[0m[0mo[0m[0mu[0m[0ms[0m[0me[0m[0mU[0m[0mp[0m[0mL[0m[0mi[0m[0ms[0m[0mt[0m[0me[0m[0mn[0m[0me[0m[0mr[0m[0m][0m[0m)[0m[0m
+[0m[0m  [0m[0m [0m[0m [0m[0m [0m[0m[1m   │ [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m
+[0m[0m  [0m[0m  [0m[0m[1m131 │ [0m[0m
+[0m[0m  [0m[0m  [0m[0m[1m132 │ [0m[0m [0m[0m [0m[0mc[0m[0mo[0m[0mn[0m[0ms[0m[0mt[0m[0m [0m[0mu[0m[0mp[0m[0md[0m[0ma[0m[0mt[0m[0me[0m[0mT[0m[0me[0m[0mx[0m[0mt[0m[0mF[0m[0mo[0m[0mr[0m[0mm[0m[0ma[0m[0mt[0m[0mF[0m[0ml[0m[0mo[0m[0ma[0m[0mt[0m[0mi[0m[0mn[0m[0mg[0m[0mT[0m[0mo[0m[0mo[0m[0ml[0m[0mb[0m[0ma[0m[0mr[0m[0m [0m[0m=[0m[0m [0m[0mu[0m[0ms[0m[0me[0m[0mC[0m[0ma[0m[0ml[0m[0ml[0m[0mb[0m[0ma[0m[0mc[0m[0mk[0m[0m([0m[0m([0m[0m)[0m[0m [0m[0m=[0m[0m>[0m[0m [0m[0m{[0m[0m
+[0m[0m  [0m[0m
+[0m[0m  [0m[0m[1m[34mℹ[0m[0m [0m[0m[34mTo fix this, wrap the definition of [0m[0m[1m[34mmouseUpListener[0m[0m[34m in its own [0m[0m[1m[34museCallback()[0m[0m[34m hook.[0m[0m
+[0m[0m  [0m[0m
+[0m
+[0msrc/_payload/adapters/richtext-lexical/field/plugins/inline-image-plugin/index.tsx[0m[0m:[0m[0m324[0m[0m:[0m[0m7[0m[0m [0m[0m]8;;https://biomejs.dev/linter/rules/no-implicit-any-let\lint/suspicious/noImplicitAnyLet]8;;\[0m[0m [0m[0m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m[0m
+
+[0m[0m  [0m[0m[1m[31m✖[0m[0m [0m[0m[31mThis variable implicitly has the [0m[0m[1m[31many[0m[0m[31m type.[0m[0m
+[0m[0m  [0m[0m
+[0m[0m  [0m[0m  [0m[0m[1m323 │ [0m[0mf[0m[0mu[0m[0mn[0m[0mc[0m[0mt[0m[0mi[0m[0mo[0m[0mn[0m[0m [0m[0mg[0m[0me[0m[0mt[0m[0mD[0m[0mr[0m[0ma[0m[0mg[0m[0mS[0m[0me[0m[0ml[0m[0me[0m[0mc[0m[0mt[0m[0mi[0m[0mo[0m[0mn[0m[0m([0m[0me[0m[0mv[0m[0me[0m[0mn[0m[0mt[0m[0m:[0m[0m [0m[0mD[0m[0mr[0m[0ma[0m[0mg[0m[0mE[0m[0mv[0m[0me[0m[0mn[0m[0mt[0m[0m)[0m[0m:[0m[0m [0m[0mR[0m[0ma[0m[0mn[0m[0mg[0m[0me[0m[0m [0m[0m|[0m[0m [0m[0mn[0m[0mu[0m[0ml[0m[0ml[0m[0m [0m[0m|[0m[0m [0m[0mu[0m[0mn[0m[0md[0m[0me[0m[0mf[0m[0mi[0m[0mn[0m[0me[0m[0md[0m[0m [0m[0m{[0m[0m
+[0m[0m  [0m[0m[1m[31m>[0m[0m [0m[0m[1m324 │ [0m[0m [0m[0m [0m[0ml[0m[0me[0m[0mt[0m[0m [0m[0mr[0m[0ma[0m[0mn[0m[0mg[0m[0me[0m[0m
+[0m[0m  [0m[0m [0m[0m [0m[0m [0m[0m[1m   │ [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m
+[0m[0m  [0m[0m  [0m[0m[1m325 │ [0m[0m [0m[0m [0m[0mc[0m[0mo[0m[0mn[0m[0ms[0m[0mt[0m[0m [0m[0mt[0m[0ma[0m[0mr[0m[0mg[0m[0me[0m[0mt[0m[0m [0m[0m=[0m[0m [0m[0me[0m[0mv[0m[0me[0m[0mn[0m[0mt[0m[0m.[0m[0mt[0m[0ma[0m[0mr[0m[0mg[0m[0me[0m[0mt[0m[0m [0m[0ma[0m[0ms[0m[0m [0m[0mn[0m[0mu[0m[0ml[0m[0ml[0m[0m [0m[0m|[0m[0m [0m[0mE[0m[0ml[0m[0me[0m[0mm[0m[0me[0m[0mn[0m[0mt[0m[0m [0m[0m|[0m[0m [0m[0mD[0m[0mo[0m[0mc[0m[0mu[0m[0mm[0m[0me[0m[0mn[0m[0mt[0m[0m
+[0m[0m  [0m[0m  [0m[0m[1m326 │ [0m[0m [0m[0m [0m[0mc[0m[0mo[0m[0mn[0m[0ms[0m[0mt[0m[0m [0m[0mt[0m[0ma[0m[0mr[0m[0mg[0m[0me[0m[0mt[0m[0mW[0m[0mi[0m[0mn[0m[0md[0m[0mo[0m[0mw[0m[0m [0m[0m=[0m[0m
+[0m[0m  [0m[0m
+[0m[0m  [0m[0m[1m[34mℹ[0m[0m [0m[0m[34mVariable declarations without type annotation and initialization implicitly have the [0m[0m[1m[34many[0m[0m[34m type. Declare a type or initialize the variable with some value.[0m[0m
+[0m[0m  [0m[0m
+[0m
+[0msrc/_payload/adapters/richtext-lexical/field/plugins/link-plugin/auto-link/auto-link-plugin.tsx[0m[0m:[0m[0m131[0m[0m:[0m[0m7[0m[0m [0m[0m]8;;https://biomejs.dev/linter/rules/no-implicit-any-let\lint/suspicious/noImplicitAnyLet]8;;\[0m[0m [0m[0m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m[0m
+
+[0m[0m  [0m[0m[1m[31m✖[0m[0m [0m[0m[31mThis variable implicitly has the [0m[0m[1m[31many[0m[0m[31m type.[0m[0m
+[0m[0m  [0m[0m
+[0m[0m  [0m[0m  [0m[0m[1m129 │ [0m[0m [0m[0m [0m[0ml[0m[0me[0m[0mt[0m[0m [0m[0mi[0m[0mn[0m[0mv[0m[0ma[0m[0ml[0m[0mi[0m[0md[0m[0mM[0m[0ma[0m[0mt[0m[0mc[0m[0mh[0m[0mE[0m[0mn[0m[0md[0m[0m [0m[0m=[0m[0m [0m[0m0[0m[0m
+[0m[0m  [0m[0m  [0m[0m[1m130 │ [0m[0m [0m[0m [0m[0ml[0m[0me[0m[0mt[0m[0m [0m[0mr[0m[0me[0m[0mm[0m[0ma[0m[0mi[0m[0mn[0m[0mi[0m[0mn[0m[0mg[0m[0mT[0m[0me[0m[0mx[0m[0mt[0m[0mN[0m[0mo[0m[0md[0m[0me[0m[0m [0m[0m=[0m[0m [0m[0mn[0m[0mo[0m[0md[0m[0me[0m[0m
+[0m[0m  [0m[0m[1m[31m>[0m[0m [0m[0m[1m131 │ [0m[0m [0m[0m [0m[0ml[0m[0me[0m[0mt[0m[0m [0m[0mm[0m[0ma[0m[0mt[0m[0mc[0m[0mh[0m[0m
+[0m[0m  [0m[0m [0m[0m [0m[0m [0m[0m[1m   │ [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m
+[0m[0m  [0m[0m  [0m[0m[1m132 │ [0m[0m
+[0m[0m  [0m[0m  [0m[0m[1m133 │ [0m[0m [0m[0m [0m[0mw[0m[0mh[0m[0mi[0m[0ml[0m[0me[0m[0m [0m[0m([0m[0m([0m[0mm[0m[0ma[0m[0mt[0m[0mc[0m[0mh[0m[0m [0m[0m=[0m[0m [0m[0mf[0m[0mi[0m[0mn[0m[0md[0m[0mF[0m[0mi[0m[0mr[0m[0ms[0m[0mt[0m[0mM[0m[0ma[0m[0mt[0m[0mc[0m[0mh[0m[0m([0m[0mt[0m[0me[0m[0mx[0m[0mt[0m[0m,[0m[0m [0m[0mm[0m[0ma[0m[0mt[0m[0mc[0m[0mh[0m[0me[0m[0mr[0m[0ms[0m[0m)[0m[0m)[0m[0m [0m[0m![0m[0m=[0m[0m [0m[0mn[0m[0mu[0m[0ml[0m[0ml[0m[0m [0m[0m&[0m[0m&[0m[0m [0m[0mm[0m[0ma[0m[0mt[0m[0mc[0m[0mh[0m[0m [0m[0m![0m[0m=[0m[0m=[0m[0m [0m[0mn[0m[0mu[0m[0ml[0m[0ml[0m[0m)[0m[0m [0m[0m{[0m[0m
+[0m[0m  [0m[0m
+[0m[0m  [0m[0m[1m[34mℹ[0m[0m [0m[0m[34mVariable declarations without type annotation and initialization implicitly have the [0m[0m[1m[34many[0m[0m[34m type. Declare a type or initialize the variable with some value.[0m[0m
+[0m[0m  [0m[0m
+[0m
+[0msrc/_payload/adapters/richtext-lexical/field/plugins/link-plugin/auto-link/auto-link-plugin.tsx[0m[0m:[0m[0m133[0m[0m:[0m[0m11[0m[0m [0m[0m]8;;https://biomejs.dev/linter/rules/no-assign-in-expressions\lint/suspicious/noAssignInExpressions]8;;\[0m[0m [0m[0m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m[0m
+
+[0m[0m  [0m[0m[1m[31m✖[0m[0m [0m[0m[31mThe [0m[0m[1m[31massignment[0m[0m[31m should not be in an [0m[0m[1m[31mexpression[0m[0m[31m.[0m[0m
+[0m[0m  [0m[0m
+[0m[0m  [0m[0m  [0m[0m[1m131 │ [0m[0m [0m[0m [0m[0ml[0m[0me[0m[0mt[0m[0m [0m[0mm[0m[0ma[0m[0mt[0m[0mc[0m[0mh[0m[0m
+[0m[0m  [0m[0m  [0m[0m[1m132 │ [0m[0m
+[0m[0m  [0m[0m[1m[31m>[0m[0m [0m[0m[1m133 │ [0m[0m [0m[0m [0m[0mw[0m[0mh[0m[0mi[0m[0ml[0m[0me[0m[0m [0m[0m([0m[0m([0m[0mm[0m[0ma[0m[0mt[0m[0mc[0m[0mh[0m[0m [0m[0m=[0m[0m [0m[0mf[0m[0mi[0m[0mn[0m[0md[0m[0mF[0m[0mi[0m[0mr[0m[0ms[0m[0mt[0m[0mM[0m[0ma[0m[0mt[0m[0mc[0m[0mh[0m[0m([0m[0mt[0m[0me[0m[0mx[0m[0mt[0m[0m,[0m[0m [0m[0mm[0m[0ma[0m[0mt[0m[0mc[0m[0mh[0m[0me[0m[0mr[0m[0ms[0m[0m)[0m[0m)[0m[0m [0m[0m![0m[0m=[0m[0m [0m[0mn[0m[0mu[0m[0ml[0m[0ml[0m[0m [0m[0m&[0m[0m&[0m[0m [0m[0mm[0m[0ma[0m[0mt[0m[0mc[0m[0mh[0m[0m [0m[0m![0m[0m=[0m[0m=[0m[0m [0m[0mn[0m[0mu[0m[0ml[0m[0ml[0m[0m)[0m[0m [0m[0m{[0m[0m
+[0m[0m  [0m[0m [0m[0m [0m[0m [0m[0m[1m   │ [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m
+[0m[0m  [0m[0m  [0m[0m[1m134 │ [0m[0m [0m[0m [0m[0m [0m[0m [0m[0mc[0m[0mo[0m[0mn[0m[0ms[0m[0mt[0m[0m [0m[0mm[0m[0ma[0m[0mt[0m[0mc[0m[0mh[0m[0mS[0m[0mt[0m[0ma[0m[0mr[0m[0mt[0m[0m:[0m[0m [0m[0mn[0m[0mu[0m[0mm[0m[0mb[0m[0me[0m[0mr[0m[0m [0m[0m=[0m[0m [0m[0mm[0m[0ma[0m[0mt[0m[0mc[0m[0mh[0m[0m.[0m[0mi[0m[0mn[0m[0md[0m[0me[0m[0mx[0m[0m
+[0m[0m  [0m[0m  [0m[0m[1m135 │ [0m[0m [0m[0m [0m[0m [0m[0m [0m[0mc[0m[0mo[0m[0mn[0m[0ms[0m[0mt[0m[0m [0m[0mm[0m[0ma[0m[0mt[0m[0mc[0m[0mh[0m[0mL[0m[0me[0m[0mn[0m[0mg[0m[0mt[0m[0mh[0m[0m:[0m[0m [0m[0mn[0m[0mu[0m[0mm[0m[0mb[0m[0me[0m[0mr[0m[0m [0m[0m=[0m[0m [0m[0mm[0m[0ma[0m[0mt[0m[0mc[0m[0mh[0m[0m.[0m[0ml[0m[0me[0m[0mn[0m[0mg[0m[0mt[0m[0mh[0m[0m
+[0m[0m  [0m[0m
+[0m[0m  [0m[0m[1m[34mℹ[0m[0m [0m[0m[34mThe use of assignments in expressions is confusing.
+[0m[0m  [0m[0m  [0m[0m[34mExpressions are often considered as side-effect free.[0m[0m
+[0m[0m  [0m[0m
+[0m
+[0msrc/_payload/adapters/richtext-lexical/field/plugins/link-plugin/auto-link/auto-link-plugin.tsx[0m[0m:[0m[0m145[0m[0m:[0m[0m11[0m[0m [0m[0m]8;;https://biomejs.dev/linter/rules/no-implicit-any-let\lint/suspicious/noImplicitAnyLet]8;;\[0m[0m [0m[0m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m[0m
+
+[0m[0m  [0m[0m[1m[31m✖[0m[0m [0m[0m[31mThis variable implicitly has the [0m[0m[1m[31many[0m[0m[31m type.[0m[0m
+[0m[0m  [0m[0m
+[0m[0m  [0m[0m  [0m[0m[1m144 │ [0m[0m [0m[0m [0m[0m [0m[0m [0m[0mi[0m[0mf[0m[0m [0m[0m([0m[0mi[0m[0ms[0m[0mV[0m[0ma[0m[0ml[0m[0mi[0m[0md[0m[0m)[0m[0m [0m[0m{[0m[0m
+[0m[0m  [0m[0m[1m[31m>[0m[0m [0m[0m[1m145 │ [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0ml[0m[0me[0m[0mt[0m[0m [0m[0ml[0m[0mi[0m[0mn[0m[0mk[0m[0mT[0m[0me[0m[0mx[0m[0mt[0m[0mN[0m[0mo[0m[0md[0m[0me[0m[0m
+[0m[0m  [0m[0m [0m[0m [0m[0m [0m[0m[1m   │ [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m
+[0m[0m  [0m[0m  [0m[0m[1m146 │ [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0mi[0m[0mf[0m[0m [0m[0m([0m[0mi[0m[0mn[0m[0mv[0m[0ma[0m[0ml[0m[0mi[0m[0md[0m[0mM[0m[0ma[0m[0mt[0m[0mc[0m[0mh[0m[0mE[0m[0mn[0m[0md[0m[0m [0m[0m+[0m[0m [0m[0mm[0m[0ma[0m[0mt[0m[0mc[0m[0mh[0m[0mS[0m[0mt[0m[0ma[0m[0mr[0m[0mt[0m[0m [0m[0m=[0m[0m=[0m[0m=[0m[0m [0m[0m0[0m[0m)[0m[0m [0m[0m{[0m[0m
+[0m[0m  [0m[0m  [0m[0m[1m147 │ [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m;[0m[0m[[0m[0ml[0m[0mi[0m[0mn[0m[0mk[0m[0mT[0m[0me[0m[0mx[0m[0mt[0m[0mN[0m[0mo[0m[0md[0m[0me[0m[0m,[0m[0m [0m[0mr[0m[0me[0m[0mm[0m[0ma[0m[0mi[0m[0mn[0m[0mi[0m[0mn[0m[0mg[0m[0mT[0m[0me[0m[0mx[0m[0mt[0m[0mN[0m[0mo[0m[0md[0m[0me[0m[0m][0m[0m [0m[0m=[0m[0m [0m[0mr[0m[0me[0m[0mm[0m[0ma[0m[0mi[0m[0mn[0m[0mi[0m[0mn[0m[0mg[0m[0mT[0m[0me[0m[0mx[0m[0mt[0m[0mN[0m[0mo[0m[0md[0m[0me[0m[0m.[0m[0ms[0m[0mp[0m[0ml[0m[0mi[0m[0mt[0m[0mT[0m[0me[0m[0mx[0m[0mt[0m[0m([0m[0m
+[0m[0m  [0m[0m
+[0m[0m  [0m[0m[1m[34mℹ[0m[0m [0m[0m[34mVariable declarations without type annotation and initialization implicitly have the [0m[0m[1m[34many[0m[0m[34m type. Declare a type or initialize the variable with some value.[0m[0m
+[0m[0m  [0m[0m
+[0m
+[0msrc/_payload/adapters/richtext-lexical/field/plugins/link-plugin/link/floating-link-editor.tsx[0m[0m:[0m[0m99[0m[0m:[0m[0m11[0m[0m [0m[0m]8;;https://biomejs.dev/linter/rules/no-implicit-any-let\lint/suspicious/noImplicitAnyLet]8;;\[0m[0m [0m[0m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m[0m
+
+[0m[0m  [0m[0m[1m[31m✖[0m[0m [0m[0m[31mThis variable implicitly has the [0m[0m[1m[31many[0m[0m[31m type.[0m[0m
+[0m[0m  [0m[0m
+[0m[0m  [0m[0m [0m[0m  [0m[0m[1m97 │ [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m}[0m[0m
+[0m[0m  [0m[0m [0m[0m  [0m[0m[1m98 │ [0m[0m
+[0m[0m  [0m[0m [0m[0m[1m[31m>[0m[0m [0m[0m[1m99 │ [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0ml[0m[0me[0m[0mt[0m[0m [0m[0ml[0m[0mi[0m[0mn[0m[0mk[0m[0mN[0m[0mo[0m[0md[0m[0me[0m[0m
+[0m[0m  [0m[0m [0m[0m [0m[0m [0m[0m[1m   │ [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m
+[0m[0m  [0m[0m  [0m[0m[1m100 │ [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0mi[0m[0mf[0m[0m [0m[0m([0m[0ml[0m[0mi[0m[0mn[0m[0mk[0m[0mP[0m[0ma[0m[0mr[0m[0me[0m[0mn[0m[0mt[0m[0m [0m[0m![0m[0m=[0m[0m [0m[0mn[0m[0mu[0m[0ml[0m[0ml[0m[0m)[0m[0m [0m[0m{[0m[0m
+[0m[0m  [0m[0m  [0m[0m[1m101 │ [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0ml[0m[0mi[0m[0mn[0m[0mk[0m[0mN[0m[0mo[0m[0md[0m[0me[0m[0m [0m[0m=[0m[0m [0m[0ml[0m[0mi[0m[0mn[0m[0mk[0m[0mP[0m[0ma[0m[0mr[0m[0me[0m[0mn[0m[0mt[0m[0m
+[0m[0m  [0m[0m
+[0m[0m  [0m[0m[1m[34mℹ[0m[0m [0m[0m[34mVariable declarations without type annotation and initialization implicitly have the [0m[0m[1m[34many[0m[0m[34m type. Declare a type or initialize the variable with some value.[0m[0m
+[0m[0m  [0m[0m
+[0m
+[0msrc/_payload/adapters/richtext-lexical/field/plugins/link-plugin/link/floating-link-editor.tsx[0m[0m:[0m[0m262[0m[0m:[0m[0m13[0m[0m [0m[0m]8;;https://biomejs.dev/linter/rules/use-key-with-click-events\lint/a11y/useKeyWithClickEvents]8;;\[0m[0m [0m[0m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m[0m
+
+[0m[0m  [0m[0m[1m[31m✖[0m[0m [0m[0m[31mEnforce to have the [0m[0m[1m[31monClick[0m[0m[31m mouse event with the [0m[0m[1m[31monKeyUp[0m[0m[31m, the [0m[0m[1m[31monKeyDown[0m[0m[31m, or the [0m[0m[1m[31monKeyPress[0m[0m[31m keyboard event.[0m[0m
+[0m[0m  [0m[0m
+[0m[0m  [0m[0m  [0m[0m[1m260 │ [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m:[0m[0m [0m[0ml[0m[0mi[0m[0mn[0m[0mk[0m[0mE[0m[0md[0m[0mi[0m[0mt[0m[0mo[0m[0mr[0m[0mS[0m[0mt[0m[0ma[0m[0mt[0m[0me[0m[0m.[0m[0mu[0m[0mr[0m[0ml[0m[0m}[0m[0m
+[0m[0m  [0m[0m  [0m[0m[1m261 │ [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m<[0m[0m/[0m[0ma[0m[0m>[0m[0m
+[0m[0m  [0m[0m[1m[31m>[0m[0m [0m[0m[1m262 │ [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m<[0m[0md[0m[0mi[0m[0mv[0m[0m
+[0m[0m  [0m[0m [0m[0m [0m[0m [0m[0m[1m   │ [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m
+[0m[0m  [0m[0m[1m[31m>[0m[0m [0m[0m[1m263 │ [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0ma[0m[0mr[0m[0mi[0m[0ma[0m[0m-[0m[0ml[0m[0ma[0m[0mb[0m[0me[0m[0ml[0m[0m=[0m[0m"[0m[0mE[0m[0md[0m[0mi[0m[0mt[0m[0m [0m[0ml[0m[0mi[0m[0mn[0m[0mk[0m[0m"[0m[0m
+[0m[0m  [0m[0m [0m[0m [0m[0m [0m[0m[1m    ...
+[0m[0m  [0m[0m[1m[31m>[0m[0m [0m[0m[1m273 │ [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m}[0m[0m}[0m[0m
+[0m[0m  [0m[0m[1m[31m>[0m[0m [0m[0m[1m274 │ [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m/[0m[0m>[0m[0m
+[0m[0m  [0m[0m [0m[0m [0m[0m [0m[0m[1m   │ [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m
+[0m[0m  [0m[0m  [0m[0m[1m275 │ [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m<[0m[0md[0m[0mi[0m[0mv[0m[0m
+[0m[0m  [0m[0m  [0m[0m[1m276 │ [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0ma[0m[0mr[0m[0mi[0m[0ma[0m[0m-[0m[0ml[0m[0ma[0m[0mb[0m[0me[0m[0ml[0m[0m=[0m[0m"[0m[0mR[0m[0me[0m[0mm[0m[0mo[0m[0mv[0m[0me[0m[0m [0m[0ml[0m[0mi[0m[0mn[0m[0mk[0m[0m"[0m[0m
+[0m[0m  [0m[0m
+[0m[0m  [0m[0m[1m[34mℹ[0m[0m [0m[0m[34mActions triggered using mouse events should have corresponding keyboard events to account for keyboard-only navigation.[0m[0m
+[0m[0m  [0m[0m
+[0m
+[0msrc/_payload/adapters/richtext-lexical/field/plugins/link-plugin/link/floating-link-editor.tsx[0m[0m:[0m[0m275[0m[0m:[0m[0m13[0m[0m [0m[0m]8;;https://biomejs.dev/linter/rules/use-key-with-click-events\lint/a11y/useKeyWithClickEvents]8;;\[0m[0m [0m[0m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m[0m
+
+[0m[0m  [0m[0m[1m[31m✖[0m[0m [0m[0m[31mEnforce to have the [0m[0m[1m[31monClick[0m[0m[31m mouse event with the [0m[0m[1m[31monKeyUp[0m[0m[31m, the [0m[0m[1m[31monKeyDown[0m[0m[31m, or the [0m[0m[1m[31monKeyPress[0m[0m[31m keyboard event.[0m[0m
+[0m[0m  [0m[0m
+[0m[0m  [0m[0m  [0m[0m[1m273 │ [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m}[0m[0m}[0m[0m
+[0m[0m  [0m[0m  [0m[0m[1m274 │ [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m/[0m[0m>[0m[0m
+[0m[0m  [0m[0m[1m[31m>[0m[0m [0m[0m[1m275 │ [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m<[0m[0md[0m[0mi[0m[0mv[0m[0m
+[0m[0m  [0m[0m [0m[0m [0m[0m [0m[0m[1m   │ [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m
+[0m[0m  [0m[0m[1m[31m>[0m[0m [0m[0m[1m276 │ [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0ma[0m[0mr[0m[0mi[0m[0ma[0m[0m-[0m[0ml[0m[0ma[0m[0mb[0m[0me[0m[0ml[0m[0m=[0m[0m"[0m[0mR[0m[0me[0m[0mm[0m[0mo[0m[0mv[0m[0me[0m[0m [0m[0ml[0m[0mi[0m[0mn[0m[0mk[0m[0m"[0m[0m
+[0m[0m  [0m[0m [0m[0m [0m[0m [0m[0m[1m    ...
+[0m[0m  [0m[0m[1m[31m>[0m[0m [0m[0m[1m285 │ [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m}[0m[0m}[0m[0m
+[0m[0m  [0m[0m[1m[31m>[0m[0m [0m[0m[1m286 │ [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m/[0m[0m>[0m[0m
+[0m[0m  [0m[0m [0m[0m [0m[0m [0m[0m[1m   │ [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m
+[0m[0m  [0m[0m  [0m[0m[1m287 │ [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m<[0m[0m/[0m[0md[0m[0mi[0m[0mv[0m[0m>[0m[0m
+[0m[0m  [0m[0m  [0m[0m[1m288 │ [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m<[0m[0mL[0m[0mi[0m[0mn[0m[0mk[0m[0mD[0m[0mr[0m[0ma[0m[0mw[0m[0me[0m[0mr[0m[0m
+[0m[0m  [0m[0m
+[0m[0m  [0m[0m[1m[34mℹ[0m[0m [0m[0m[34mActions triggered using mouse events should have corresponding keyboard events to account for keyboard-only navigation.[0m[0m
+[0m[0m  [0m[0m
+[0m
+[0msrc/_payload/adapters/richtext-lexical/field/ui/color-picker.tsx[0m[0m:[0m[0m205[0m[0m:[0m[0m5[0m[0m [0m[0m]8;;https://biomejs.dev/linter/rules/no-static-element-interactions\lint/a11y/noStaticElementInteractions]8;;\[0m[0m [0m[0m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m[0m
+
+[0m[0m  [0m[0m[1m[31m✖[0m[0m [0m[0m[31mStatic Elements should not be interactive.[0m[0m
+[0m[0m  [0m[0m
+[0m[0m  [0m[0m  [0m[0m[1m204 │ [0m[0m [0m[0m [0m[0mr[0m[0me[0m[0mt[0m[0mu[0m[0mr[0m[0mn[0m[0m [0m[0m([0m[0m
+[0m[0m  [0m[0m[1m[31m>[0m[0m [0m[0m[1m205 │ [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m<[0m[0md[0m[0mi[0m[0mv[0m[0m [0m[0mr[0m[0me[0m[0mf[0m[0m=[0m[0m{[0m[0md[0m[0mi[0m[0mv[0m[0mR[0m[0me[0m[0mf[0m[0m}[0m[0m [0m[0mc[0m[0ml[0m[0ma[0m[0ms[0m[0ms[0m[0mN[0m[0ma[0m[0mm[0m[0me[0m[0m=[0m[0m{[0m[0mc[0m[0ml[0m[0ma[0m[0ms[0m[0ms[0m[0mN[0m[0ma[0m[0mm[0m[0me[0m[0m}[0m[0m [0m[0ms[0m[0mt[0m[0my[0m[0ml[0m[0me[0m[0m=[0m[0m{[0m[0ms[0m[0mt[0m[0my[0m[0ml[0m[0me[0m[0m}[0m[0m [0m[0mo[0m[0mn[0m[0mM[0m[0mo[0m[0mu[0m[0ms[0m[0me[0m[0mD[0m[0mo[0m[0mw[0m[0mn[0m[0m=[0m[0m{[0m[0mo[0m[0mn[0m[0mM[0m[0mo[0m[0mu[0m[0ms[0m[0me[0m[0mD[0m[0mo[0m[0mw[0m[0mn[0m[0m}[0m[0m>[0m[0m
+[0m[0m  [0m[0m [0m[0m [0m[0m [0m[0m[1m   │ [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m
+[0m[0m  [0m[0m  [0m[0m[1m206 │ [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m{[0m[0mc[0m[0mh[0m[0mi[0m[0ml[0m[0md[0m[0mr[0m[0me[0m[0mn[0m[0m}[0m[0m
+[0m[0m  [0m[0m  [0m[0m[1m207 │ [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m<[0m[0m/[0m[0md[0m[0mi[0m[0mv[0m[0m>[0m[0m
+[0m[0m  [0m[0m
+[0m[0m  [0m[0m[1m[34mℹ[0m[0m [0m[0m[34mTo add interactivity such as a mouse or key event listener to a static element, give the element an appropriate role value.[0m[0m
+[0m[0m  [0m[0m
+[0m
+[0msrc/_payload/adapters/richtext-lexical/field/ui/dropdown.tsx[0m[0m:[0m[0m116[0m[0m:[0m[0m7[0m[0m [0m[0m]8;;https://biomejs.dev/linter/rules/no-static-element-interactions\lint/a11y/noStaticElementInteractions]8;;\[0m[0m [0m[0m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m[0m
+
+[0m[0m  [0m[0m[1m[31m✖[0m[0m [0m[0m[31mStatic Elements should not be interactive.[0m[0m
+[0m[0m  [0m[0m
+[0m[0m  [0m[0m  [0m[0m[1m114 │ [0m[0m [0m[0m [0m[0mr[0m[0me[0m[0mt[0m[0mu[0m[0mr[0m[0mn[0m[0m [0m[0m([0m[0m
+[0m[0m  [0m[0m  [0m[0m[1m115 │ [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m<[0m[0mD[0m[0mr[0m[0mo[0m[0mp[0m[0mD[0m[0mo[0m[0mw[0m[0mn[0m[0mC[0m[0mo[0m[0mn[0m[0mt[0m[0me[0m[0mx[0m[0mt[0m[0m.[0m[0mP[0m[0mr[0m[0mo[0m[0mv[0m[0mi[0m[0md[0m[0me[0m[0mr[0m[0m [0m[0mv[0m[0ma[0m[0ml[0m[0mu[0m[0me[0m[0m=[0m[0m{[0m[0mc[0m[0mo[0m[0mn[0m[0mt[0m[0me[0m[0mx[0m[0mt[0m[0mV[0m[0ma[0m[0ml[0m[0mu[0m[0me[0m[0m}[0m[0m>[0m[0m
+[0m[0m  [0m[0m[1m[31m>[0m[0m [0m[0m[1m116 │ [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m<[0m[0md[0m[0mi[0m[0mv[0m[0m [0m[0mc[0m[0ml[0m[0ma[0m[0ms[0m[0ms[0m[0mN[0m[0ma[0m[0mm[0m[0me[0m[0m=[0m[0m"[0m[0md[0m[0mr[0m[0mo[0m[0mp[0m[0md[0m[0mo[0m[0mw[0m[0mn[0m[0m"[0m[0m [0m[0mr[0m[0me[0m[0mf[0m[0m=[0m[0m{[0m[0md[0m[0mr[0m[0mo[0m[0mp[0m[0mD[0m[0mo[0m[0mw[0m[0mn[0m[0mR[0m[0me[0m[0mf[0m[0m}[0m[0m [0m[0mo[0m[0mn[0m[0mK[0m[0me[0m[0my[0m[0mD[0m[0mo[0m[0mw[0m[0mn[0m[0m=[0m[0m{[0m[0mh[0m[0ma[0m[0mn[0m[0md[0m[0ml[0m[0me[0m[0mK[0m[0me[0m[0my[0m[0mD[0m[0mo[0m[0mw[0m[0mn[0m[0m}[0m[0m>[0m[0m
+[0m[0m  [0m[0m [0m[0m [0m[0m [0m[0m[1m   │ [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m
+[0m[0m  [0m[0m  [0m[0m[1m117 │ [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m{[0m[0mc[0m[0mh[0m[0mi[0m[0ml[0m[0md[0m[0mr[0m[0me[0m[0mn[0m[0m}[0m[0m
+[0m[0m  [0m[0m  [0m[0m[1m118 │ [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m<[0m[0m/[0m[0md[0m[0mi[0m[0mv[0m[0m>[0m[0m
+[0m[0m  [0m[0m
+[0m[0m  [0m[0m[1m[34mℹ[0m[0m [0m[0m[34mTo add interactivity such as a mouse or key event listener to a static element, give the element an appropriate role value.[0m[0m
+[0m[0m  [0m[0m
+[0m
+[0msrc/_payload/adapters/richtext-lexical/field/ui/file-input.tsx[0m[0m:[0m[0m27[0m[0m:[0m[0m7[0m[0m [0m[0m]8;;https://biomejs.dev/linter/rules/no-label-without-control\lint/a11y/noLabelWithoutControl]8;;\[0m[0m [0m[0m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m[0m
+
+[0m[0m  [0m[0m[1m[31m✖[0m[0m [0m[0m[31mA form label must be associated with an input.[0m[0m
+[0m[0m  [0m[0m
+[0m[0m  [0m[0m  [0m[0m[1m25 │ [0m[0m [0m[0m [0m[0mr[0m[0me[0m[0mt[0m[0mu[0m[0mr[0m[0mn[0m[0m [0m[0m([0m[0m
+[0m[0m  [0m[0m  [0m[0m[1m26 │ [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m<[0m[0md[0m[0mi[0m[0mv[0m[0m [0m[0mc[0m[0ml[0m[0ma[0m[0ms[0m[0ms[0m[0mN[0m[0ma[0m[0mm[0m[0me[0m[0m=[0m[0m"[0m[0mI[0m[0mn[0m[0mp[0m[0mu[0m[0mt[0m[0m_[0m[0m_[0m[0mw[0m[0mr[0m[0ma[0m[0mp[0m[0mp[0m[0me[0m[0mr[0m[0m"[0m[0m>[0m[0m
+[0m[0m  [0m[0m[1m[31m>[0m[0m [0m[0m[1m27 │ [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m<[0m[0ml[0m[0ma[0m[0mb[0m[0me[0m[0ml[0m[0m [0m[0mc[0m[0ml[0m[0ma[0m[0ms[0m[0ms[0m[0mN[0m[0ma[0m[0mm[0m[0me[0m[0m=[0m[0m"[0m[0mI[0m[0mn[0m[0mp[0m[0mu[0m[0mt[0m[0m_[0m[0m_[0m[0ml[0m[0ma[0m[0mb[0m[0me[0m[0ml[0m[0m"[0m[0m>[0m[0m{[0m[0ml[0m[0ma[0m[0mb[0m[0me[0m[0ml[0m[0m}[0m[0m<[0m[0m/[0m[0ml[0m[0ma[0m[0mb[0m[0me[0m[0ml[0m[0m>[0m[0m
+[0m[0m  [0m[0m [0m[0m [0m[0m[1m   │ [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m
+[0m[0m  [0m[0m  [0m[0m[1m28 │ [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m<[0m[0mi[0m[0mn[0m[0mp[0m[0mu[0m[0mt[0m[0m
+[0m[0m  [0m[0m  [0m[0m[1m29 │ [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0mt[0m[0my[0m[0mp[0m[0me[0m[0m=[0m[0m"[0m[0mf[0m[0mi[0m[0ml[0m[0me[0m[0m"[0m[0m
+[0m[0m  [0m[0m
+[0m[0m  [0m[0m[1m[34mℹ[0m[0m [0m[0m[34mConsider adding a `for` or `htmlFor` attribute to the label element or moving the input element to inside the label element.[0m[0m
+[0m[0m  [0m[0m
+[0m
+[0msrc/_payload/adapters/richtext-lexical/field/ui/select.tsx[0m[0m:[0m[0m27[0m[0m:[0m[0m7[0m[0m [0m[0m]8;;https://biomejs.dev/linter/rules/no-label-without-control\lint/a11y/noLabelWithoutControl]8;;\[0m[0m [0m[0m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m[0m
+
+[0m[0m  [0m[0m[1m[31m✖[0m[0m [0m[0m[31mA form label must be associated with an input.[0m[0m
+[0m[0m  [0m[0m
+[0m[0m  [0m[0m  [0m[0m[1m25 │ [0m[0m [0m[0m [0m[0mr[0m[0me[0m[0mt[0m[0mu[0m[0mr[0m[0mn[0m[0m [0m[0m([0m[0m
+[0m[0m  [0m[0m  [0m[0m[1m26 │ [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m<[0m[0md[0m[0mi[0m[0mv[0m[0m [0m[0mc[0m[0ml[0m[0ma[0m[0ms[0m[0ms[0m[0mN[0m[0ma[0m[0mm[0m[0me[0m[0m=[0m[0m"[0m[0mI[0m[0mn[0m[0mp[0m[0mu[0m[0mt[0m[0m_[0m[0m_[0m[0mw[0m[0mr[0m[0ma[0m[0mp[0m[0mp[0m[0me[0m[0mr[0m[0m"[0m[0m>[0m[0m
+[0m[0m  [0m[0m[1m[31m>[0m[0m [0m[0m[1m27 │ [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m<[0m[0ml[0m[0ma[0m[0mb[0m[0me[0m[0ml[0m[0m [0m[0ms[0m[0mt[0m[0my[0m[0ml[0m[0me[0m[0m=[0m[0m{[0m[0m{[0m[0m [0m[0mm[0m[0ma[0m[0mr[0m[0mg[0m[0mi[0m[0mn[0m[0mT[0m[0mo[0m[0mp[0m[0m:[0m[0m [0m[0m'[0m[0m-[0m[0m1[0m[0me[0m[0mm[0m[0m'[0m[0m [0m[0m}[0m[0m}[0m[0m [0m[0mc[0m[0ml[0m[0ma[0m[0ms[0m[0ms[0m[0mN[0m[0ma[0m[0mm[0m[0me[0m[0m=[0m[0m"[0m[0mI[0m[0mn[0m[0mp[0m[0mu[0m[0mt[0m[0m_[0m[0m_[0m[0ml[0m[0ma[0m[0mb[0m[0me[0m[0ml[0m[0m"[0m[0m>[0m[0m
+[0m[0m  [0m[0m [0m[0m [0m[0m[1m   │ [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m
+[0m[0m  [0m[0m[1m[31m>[0m[0m [0m[0m[1m28 │ [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m{[0m[0ml[0m[0ma[0m[0mb[0m[0me[0m[0ml[0m[0m}[0m[0m
+[0m[0m  [0m[0m[1m[31m>[0m[0m [0m[0m[1m29 │ [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m<[0m[0m/[0m[0ml[0m[0ma[0m[0mb[0m[0me[0m[0ml[0m[0m>[0m[0m
+[0m[0m  [0m[0m [0m[0m [0m[0m[1m   │ [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m
+[0m[0m  [0m[0m  [0m[0m[1m30 │ [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m<[0m[0ms[0m[0me[0m[0ml[0m[0me[0m[0mc[0m[0mt[0m[0m [0m[0m{[0m[0m.[0m[0m.[0m[0m.[0m[0mo[0m[0mt[0m[0mh[0m[0me[0m[0mr[0m[0m}[0m[0m [0m[0mc[0m[0ml[0m[0ma[0m[0ms[0m[0ms[0m[0mN[0m[0ma[0m[0mm[0m[0me[0m[0m=[0m[0m{[0m[0mc[0m[0ml[0m[0ma[0m[0ms[0m[0ms[0m[0mN[0m[0ma[0m[0mm[0m[0me[0m[0m [0m[0m?[0m[0m?[0m[0m [0m[0m'[0m[0ms[0m[0me[0m[0ml[0m[0me[0m[0mc[0m[0mt[0m[0m'[0m[0m}[0m[0m>[0m[0m
+[0m[0m  [0m[0m  [0m[0m[1m31 │ [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m{[0m[0mc[0m[0mh[0m[0mi[0m[0ml[0m[0md[0m[0mr[0m[0me[0m[0mn[0m[0m}[0m[0m
+[0m[0m  [0m[0m
+[0m[0m  [0m[0m[1m[34mℹ[0m[0m [0m[0m[34mConsider adding a `for` or `htmlFor` attribute to the label element or moving the input element to inside the label element.[0m[0m
+[0m[0m  [0m[0m
+[0m
+[0msrc/_payload/adapters/richtext-lexical/field/ui/switch.tsx[0m[0m:[0m[0m28[0m[0m:[0m[0m7[0m[0m [0m[0m]8;;https://biomejs.dev/linter/rules/use-button-type\lint/a11y/useButtonType]8;;\[0m[0m [0m[0m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m[0m
+
+[0m[0m  [0m[0m[1m[31m✖[0m[0m [0m[0m[31mProvide an explicit [0m[0m[1m[31mtype[0m[0m[31m prop for the [0m[0m[1m[31mbutton[0m[0m[31m element.[0m[0m
+[0m[0m  [0m[0m
+[0m[0m  [0m[0m  [0m[0m[1m26 │ [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m<[0m[0md[0m[0mi[0m[0mv[0m[0m [0m[0mc[0m[0ml[0m[0ma[0m[0ms[0m[0ms[0m[0mN[0m[0ma[0m[0mm[0m[0me[0m[0m=[0m[0m"[0m[0ms[0m[0mw[0m[0mi[0m[0mt[0m[0mc[0m[0mh[0m[0m"[0m[0m [0m[0mi[0m[0md[0m[0m=[0m[0m{[0m[0mi[0m[0md[0m[0m}[0m[0m>[0m[0m
+[0m[0m  [0m[0m  [0m[0m[1m27 │ [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m<[0m[0ml[0m[0ma[0m[0mb[0m[0me[0m[0ml[0m[0m [0m[0mh[0m[0mt[0m[0mm[0m[0ml[0m[0mF[0m[0mo[0m[0mr[0m[0m=[0m[0m{[0m[0mb[0m[0mu[0m[0mt[0m[0mt[0m[0mo[0m[0mn[0m[0mI[0m[0md[0m[0m}[0m[0m>[0m[0m{[0m[0mt[0m[0me[0m[0mx[0m[0mt[0m[0m}[0m[0m<[0m[0m/[0m[0ml[0m[0ma[0m[0mb[0m[0me[0m[0ml[0m[0m>[0m[0m
+[0m[0m  [0m[0m[1m[31m>[0m[0m [0m[0m[1m28 │ [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m<[0m[0mb[0m[0mu[0m[0mt[0m[0mt[0m[0mo[0m[0mn[0m[0m [0m[0mr[0m[0mo[0m[0ml[0m[0me[0m[0m=[0m[0m"[0m[0ms[0m[0mw[0m[0mi[0m[0mt[0m[0mc[0m[0mh[0m[0m"[0m[0m [0m[0ma[0m[0mr[0m[0mi[0m[0ma[0m[0m-[0m[0mc[0m[0mh[0m[0me[0m[0mc[0m[0mk[0m[0me[0m[0md[0m[0m=[0m[0m{[0m[0mc[0m[0mh[0m[0me[0m[0mc[0m[0mk[0m[0me[0m[0md[0m[0m}[0m[0m [0m[0mi[0m[0md[0m[0m=[0m[0m{[0m[0mb[0m[0mu[0m[0mt[0m[0mt[0m[0mo[0m[0mn[0m[0mI[0m[0md[0m[0m}[0m[0m [0m[0mo[0m[0mn[0m[0mC[0m[0ml[0m[0mi[0m[0mc[0m[0mk[0m[0m=[0m[0m{[0m[0mo[0m[0mn[0m[0mC[0m[0ml[0m[0mi[0m[0mc[0m[0mk[0m[0m}[0m[0m>[0m[0m
+[0m[0m  [0m[0m [0m[0m [0m[0m[1m   │ [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m
+[0m[0m  [0m[0m  [0m[0m[1m29 │ [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m<[0m[0ms[0m[0mp[0m[0ma[0m[0mn[0m[0m [0m[0m/[0m[0m>[0m[0m
+[0m[0m  [0m[0m  [0m[0m[1m30 │ [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m<[0m[0m/[0m[0mb[0m[0mu[0m[0mt[0m[0mt[0m[0mo[0m[0mn[0m[0m>[0m[0m
+[0m[0m  [0m[0m
+[0m[0m  [0m[0m[1m[34mℹ[0m[0m [0m[0m[34mThe default [0m[0m[1m[34mtype[0m[0m[34m of a button is [0m[0m[1m[34msubmit[0m[0m[34m, which causes the submission of a form when placed inside a `form` element. This is likely not the behaviour that you want inside a React application.[0m[0m
+[0m[0m  [0m[0m
+[0m[0m  [0m[0m[1m[34mℹ[0m[0m [0m[0m[34mAllowed button types are: [0m[0m[1m[34msubmit[0m[0m[34m, [0m[0m[1m[34mbutton[0m[0m[34m or [0m[0m[1m[34mreset[0m[0m
+[0m[0m  [0m[0m
+[0m
+[0msrc/_payload/adapters/richtext-lexical/field/ui/text-input.tsx[0m[0m:[0m[0m34[0m[0m:[0m[0m7[0m[0m [0m[0m]8;;https://biomejs.dev/linter/rules/no-label-without-control\lint/a11y/noLabelWithoutControl]8;;\[0m[0m [0m[0m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m[0m
+
+[0m[0m  [0m[0m[1m[31m✖[0m[0m [0m[0m[31mA form label must be associated with an input.[0m[0m
+[0m[0m  [0m[0m
+[0m[0m  [0m[0m  [0m[0m[1m32 │ [0m[0m [0m[0m [0m[0mr[0m[0me[0m[0mt[0m[0mu[0m[0mr[0m[0mn[0m[0m [0m[0m([0m[0m
+[0m[0m  [0m[0m  [0m[0m[1m33 │ [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m<[0m[0md[0m[0mi[0m[0mv[0m[0m [0m[0mc[0m[0ml[0m[0ma[0m[0ms[0m[0ms[0m[0mN[0m[0ma[0m[0mm[0m[0me[0m[0m=[0m[0m"[0m[0mI[0m[0mn[0m[0mp[0m[0mu[0m[0mt[0m[0m_[0m[0m_[0m[0mw[0m[0mr[0m[0ma[0m[0mp[0m[0mp[0m[0me[0m[0mr[0m[0m"[0m[0m>[0m[0m
+[0m[0m  [0m[0m[1m[31m>[0m[0m [0m[0m[1m34 │ [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m<[0m[0ml[0m[0ma[0m[0mb[0m[0me[0m[0ml[0m[0m [0m[0mc[0m[0ml[0m[0ma[0m[0ms[0m[0ms[0m[0mN[0m[0ma[0m[0mm[0m[0me[0m[0m=[0m[0m"[0m[0mI[0m[0mn[0m[0mp[0m[0mu[0m[0mt[0m[0m_[0m[0m_[0m[0ml[0m[0ma[0m[0mb[0m[0me[0m[0ml[0m[0m"[0m[0m>[0m[0m{[0m[0ml[0m[0ma[0m[0mb[0m[0me[0m[0ml[0m[0m}[0m[0m<[0m[0m/[0m[0ml[0m[0ma[0m[0mb[0m[0me[0m[0ml[0m[0m>[0m[0m
+[0m[0m  [0m[0m [0m[0m [0m[0m[1m   │ [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m
+[0m[0m  [0m[0m  [0m[0m[1m35 │ [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m<[0m[0mi[0m[0mn[0m[0mp[0m[0mu[0m[0mt[0m[0m
+[0m[0m  [0m[0m  [0m[0m[1m36 │ [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0mt[0m[0my[0m[0mp[0m[0me[0m[0m=[0m[0m{[0m[0mt[0m[0my[0m[0mp[0m[0me[0m[0m}[0m[0m
+[0m[0m  [0m[0m
+[0m[0m  [0m[0m[1m[34mℹ[0m[0m [0m[0m[34mConsider adding a `for` or `htmlFor` attribute to the label element or moving the input element to inside the label element.[0m[0m
+[0m[0m  [0m[0m
+[0m
+[0msrc/_payload/adapters/richtext-lexical/field/utils/getDOMRangeRect.ts[0m[0m:[0m[0m11[0m[0m:[0m[0m7[0m[0m [0m[0m]8;;https://biomejs.dev/linter/rules/no-implicit-any-let\lint/suspicious/noImplicitAnyLet]8;;\[0m[0m [0m[0m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m[0m
+
+[0m[0m  [0m[0m[1m[31m✖[0m[0m [0m[0m[31mThis variable implicitly has the [0m[0m[1m[31many[0m[0m[31m type.[0m[0m
+[0m[0m  [0m[0m
+[0m[0m  [0m[0m [0m[0m  [0m[0m[1m9 │ [0m[0m [0m[0m [0m[0mc[0m[0mo[0m[0mn[0m[0ms[0m[0mt[0m[0m [0m[0md[0m[0mo[0m[0mm[0m[0mR[0m[0ma[0m[0mn[0m[0mg[0m[0me[0m[0m [0m[0m=[0m[0m [0m[0mn[0m[0ma[0m[0mt[0m[0mi[0m[0mv[0m[0me[0m[0mS[0m[0me[0m[0ml[0m[0me[0m[0mc[0m[0mt[0m[0mi[0m[0mo[0m[0mn[0m[0m.[0m[0mg[0m[0me[0m[0mt[0m[0mR[0m[0ma[0m[0mn[0m[0mg[0m[0me[0m[0mA[0m[0mt[0m[0m([0m[0m0[0m[0m)[0m[0m
+[0m[0m  [0m[0m  [0m[0m[1m10 │ [0m[0m
+[0m[0m  [0m[0m[1m[31m>[0m[0m [0m[0m[1m11 │ [0m[0m [0m[0m [0m[0ml[0m[0me[0m[0mt[0m[0m [0m[0mr[0m[0me[0m[0mc[0m[0mt[0m[0m
+[0m[0m  [0m[0m [0m[0m [0m[0m[1m   │ [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m
+[0m[0m  [0m[0m  [0m[0m[1m12 │ [0m[0m
+[0m[0m  [0m[0m  [0m[0m[1m13 │ [0m[0m [0m[0m [0m[0mi[0m[0mf[0m[0m [0m[0m([0m[0mn[0m[0ma[0m[0mt[0m[0mi[0m[0mv[0m[0me[0m[0mS[0m[0me[0m[0ml[0m[0me[0m[0mc[0m[0mt[0m[0mi[0m[0mo[0m[0mn[0m[0m.[0m[0ma[0m[0mn[0m[0mc[0m[0mh[0m[0mo[0m[0mr[0m[0mN[0m[0mo[0m[0md[0m[0me[0m[0m [0m[0m=[0m[0m=[0m[0m=[0m[0m [0m[0mr[0m[0mo[0m[0mo[0m[0mt[0m[0mE[0m[0ml[0m[0me[0m[0mm[0m[0me[0m[0mn[0m[0mt[0m[0m)[0m[0m [0m[0m{[0m[0m
+[0m[0m  [0m[0m
+[0m[0m  [0m[0m[1m[34mℹ[0m[0m [0m[0m[34mVariable declarations without type annotation and initialization implicitly have the [0m[0m[1m[34many[0m[0m[34m type. Declare a type or initialize the variable with some value.[0m[0m
+[0m[0m  [0m[0m
+[0m
+[0m[33mThe number of diagnostics exceeds the limit allowed. Use [0m[0m[1m[33m--max-diagnostics[0m[0m[33m to increase it.
+[0m[0m[34mDiagnostics not shown: [0m[0m[1m7[0m[0m[34m.[0m
+[0m[34mChecked [0m[0m[34m186[0m[0m[34m [0m[0m[34mfiles[0m[0m[34m in [0m[0m[34m191[0m[0m[2m[34mms[0m[0m[34m.[0m[0m[34m No fixes applied.[0m[0m
+[0m[0m[31mFound [0m[0m[31m27[0m[0m[31m errors.[0m
+[0mcheck[0m[0m [0m[0m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m[0m
+
+[0m[0m  [0m[0m[1m[31m✖[0m[0m [0m[0m[31mSome [0m[0m[1m[31merrors[0m[0m[31m were emitted while [0m[0m[1m[31mrunning checks[0m[0m[31m.[0m[0m
+[0m[0m  [0m[0m
+[0m
+[41m[30m ELIFECYCLE [39m[49m [31mCommand failed with exit code 1.[39m

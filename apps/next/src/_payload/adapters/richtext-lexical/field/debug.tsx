@@ -1,5 +1,6 @@
 'use client'
-import * as React from 'react'
+
+import type * as React from 'react'
 
 import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext'
 import { CLEAR_EDITOR_COMMAND } from 'lexical'

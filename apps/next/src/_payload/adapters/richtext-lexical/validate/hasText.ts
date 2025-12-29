@@ -2,7 +2,7 @@ import type {
   SerializedEditorState,
   SerializedLexicalNode,
   SerializedParagraphNode,
-  SerializedTextNode
+  SerializedTextNode,
 } from 'lexical'
 
 export function hasText(
@@ -22,7 +22,7 @@ export function hasText(
       } else if (paragraphNode?.children?.length === 1) {
         const paragraphNodeChild = paragraphNode?.children[0]
         if (paragraphNodeChild.type === 'text') {
-          if (!(paragraphNodeChild as SerializedTextNode | undefined)?.['text']?.length) {
+          if (!(paragraphNodeChild as SerializedTextNode | undefined)?.text?.length) {
             hasOnlyEmptyParagraph = true
           }
         }
