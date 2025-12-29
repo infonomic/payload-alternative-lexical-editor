@@ -11,8 +11,7 @@ NOTE: 2025-12-29 - the Lexical editor/adapter has been moved into `packages/payl
 It's also important to mention that creating a generalized and extensible editor with a 'pluggable' feature system - such as the one currently being developed by Alessio and the team at Payload, is an order of magnitude more difficult than creating an 'opinionated' adapter with zero extensibility. The Payload team are doing amazing work - and this repo and our editor is in no way a criticism of the work being done at Payload.
 
 ## Our Lexical Editor
-
-![Lexical Editor](/lexical-editor-screenshot.png "Lexical Editor")
+<img width="740" height="691" alt="lexical-editor-screenshot" src="https://github.com/user-attachments/assets/a41060c9-6f28-4b64-a045-c3fdd411d9af" />
 
 ## Background
 
