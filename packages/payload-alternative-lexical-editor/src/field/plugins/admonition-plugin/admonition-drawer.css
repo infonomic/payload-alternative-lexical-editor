@@ -1,0 +1,8 @@
+.admonition-type-input {
+  margin: 2rem 0 1rem;
+}
+
+.admonition-plugin--modal-actions {
+  display: flex;
+  gap: 12px;
+}

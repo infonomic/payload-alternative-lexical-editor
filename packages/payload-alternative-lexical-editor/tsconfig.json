@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     /* Base Options: */
+
     "esModuleInterop": true,
     "skipLibCheck": true,
     "target": "es2022",
@@ -10,24 +11,26 @@
     "isolatedModules": true,
     "verbatimModuleSyntax": true,
     "allowSyntheticDefaultImports": true,
+    "jsx": "react-jsx",
     // "incremental": true,
 
     /* Strictness */
     "strict": true,
-    "noUncheckedIndexedAccess": true,
-    "noImplicitOverride": true,
+    "noUncheckedIndexedAccess": false,
+    "noImplicitOverride": false,
     "noUnusedLocals": false,
     "noUnusedParameters": false,
     "noFallthroughCasesInSwitch": true,
 
     /* If transpiling with TypeScript: */
-    "module": "NodeNext",
+    "module": "esnext",
+    "moduleResolution": "bundler",
     "outDir": "dist",
     "rootDir": "src",
     "sourceMap": true,
     "declaration": true,
     "declarationMap": true,
-    "lib": ["es2022"], // No DOM or browser libraries
+    "lib": ["dom", "dom.iterable", "esnext"],
 
     "paths": {
       "@/*": ["./src/*"]
