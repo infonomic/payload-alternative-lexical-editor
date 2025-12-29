@@ -39,6 +39,13 @@
     "test": "LOG_LEVEL=off tsx --env-file=.env --test $(find . -name \"*.test.ts\")",
     "test:one": "LOG_LEVEL=off tsx --no-warnings --env-file=.env --test"
   },
+  "peerDependencies": {
+    "graphql": "^16.0.0",
+    "next": "^15.0.0 || ^16.0.0",
+    "payload": "^3.0.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
   "dependencies": {
     "@lexical/clipboard": "0.39.0",
     "@lexical/code": "0.39.0",
@@ -64,13 +71,8 @@
     "classnames": "^2.5.1",
     "cross-env": "^10.1.0",
     "eslint": "^9.39.2",
-    "graphql": "^16.12.0",
     "json-schema": "^0.4.0",
     "lexical": "0.39.0",
-    "next": "16.1.1",
-    "payload": "3.69.0",
-    "react": "19.2.3",
-    "react-dom": "19.2.3",
     "react-error-boundary": "^6.0.1",
     "sharp": "0.34.5",
     "uuid": "^13.0.0"
@@ -85,6 +87,11 @@
     "chokidar": "^4.0.3",
     "chokidar-cli": "^3.0.0",
     "dotenv": "^17.2.3",
+    "graphql": "^16.12.0",
+    "next": "16.1.1",
+    "payload": "3.69.0",
+    "react": "19.2.3",
+    "react-dom": "19.2.3",
     "tsc-alias": "^1.8.16",
     "tsx": "^4.21.0",
     "typescript": "^5.9.3",
