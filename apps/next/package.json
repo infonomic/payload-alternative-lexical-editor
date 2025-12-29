@@ -1,0 +1,76 @@
+{
+  "name": "@infonomic/next",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "clean": "rimraf .next node_modules",
+    "dev": "cross-env NODE_OPTIONS=--no-deprecation next dev -H 0.0.0.0 -p 3000 --turbo",
+    "devsafe": "rm -rf .next && cross-env NODE_OPTIONS=--no-deprecation next dev -H 0.0.0.0 -p 3000",
+    "build": "cross-env NODE_OPTIONS=\"--no-deprecation --max-old-space-size=4096\" next build",
+    "payload": "cross-env NODE_OPTIONS=--no-deprecation payload",
+    "start": "cross-env NODE_OPTIONS=--no-deprecation next start",
+    "lint": "biome check . --diagnostic-level=warn",
+    "ci": "payload migrate && pnpm build",
+    "generate:types": "payload generate:types",
+    "generate:schema": "payload-graphql generate:schema",
+    "generate:importmap": "payload generate:importmap"
+  },
+  "engines": {
+    "node": "^18.20.2 || >=20.6.0"
+  },
+  "dependencies": {
+    "@lexical/clipboard": "0.39.0",
+    "@lexical/code": "0.39.0",
+    "@lexical/hashtag": "0.39.0",
+    "@lexical/headless": "0.39.0",
+    "@lexical/html": "0.39.0",
+    "@lexical/link": "0.39.0",
+    "@lexical/list": "0.39.0",
+    "@lexical/mark": "0.39.0",
+    "@lexical/markdown": "0.39.0",
+    "@lexical/overflow": "0.39.0",
+    "@lexical/react": "0.39.0",
+    "@lexical/rich-text": "0.39.0",
+    "@lexical/selection": "0.39.0",
+    "@lexical/table": "0.39.0",
+    "@lexical/utils": "0.39.0",
+    "@payloadcms/db-mongodb": "^3.69.0",
+    "@payloadcms/db-postgres": "^3.69.0",
+    "@payloadcms/next": "^3.69.0",
+    "@payloadcms/richtext-lexical": "^3.69.0",
+    "@payloadcms/translations": "^3.69.0",
+    "@payloadcms/ui": "^3.69.0",
+    "classnames": "^2.5.1",
+    "cross-env": "^10.1.0",
+    "eslint": "^9.39.2",
+    "graphql": "^16.12.0",
+    "json-schema": "^0.4.0",
+    "lexical": "0.39.0",
+    "next": "16.1.1",
+    "payload": "3.69.0",
+    "react": "19.2.3",
+    "react-dom": "19.2.3",
+    "react-error-boundary": "^6.0.1",
+    "sharp": "0.34.5",
+    "uuid": "^13.0.0"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.3.10",
+    "@types/json-schema": "^7.0.15",
+    "@types/node": "^25.0.3",
+    "@types/react": "19.2.7",
+    "@types/react-dom": "19.2.3",
+    "dotenv": "^17.2.3",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "@biomejs/biome",
+      "esbuild",
+      "sharp",
+      "unrs-resolver"
+    ]
+  }
+}

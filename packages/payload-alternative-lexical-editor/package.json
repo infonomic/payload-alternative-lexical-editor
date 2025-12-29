@@ -1,23 +1,43 @@
 {
-  "name": "@infonomic/lexical-payload",
+  "name": "@infonomic/payload-alternative-lexical-editor",
   "version": "1.0.0",
-  "private": true,
+  "private": false,
+  "license": "MIT",
   "type": "module",
-  "scripts": {
-    "clean": "rimraf .next node_modules",
-    "dev": "cross-env NODE_OPTIONS=--no-deprecation next dev -H 0.0.0.0 -p 3000 --turbo",
-    "devsafe": "rm -rf .next && cross-env NODE_OPTIONS=--no-deprecation next dev -H 0.0.0.0 -p 3000",
-    "build": "cross-env NODE_OPTIONS=\"--no-deprecation --max-old-space-size=4096\" next build",
-    "payload": "cross-env NODE_OPTIONS=--no-deprecation payload",
-    "start": "cross-env NODE_OPTIONS=--no-deprecation next start",
-    "lint": "biome check . --diagnostic-level=warn",
-    "ci": "payload migrate && pnpm build",
-    "generate:types": "payload generate:types",
-    "generate:schema": "payload-graphql generate:schema",
-    "generate:importmap": "payload generate:importmap"
+  "description": "An alternative lexical editor for Payload CMS.",
+  "keywords": [
+    "Payload CMS",
+    "Lexical Editor",
+    "Rich Text Editor",
+    "Alternative Editor"
+  ],
+  "homepage": "https://github.com/infonomic/payload-alternative-lexical-editor",
+  "bugs": {
+    "url": "https://github.com/infonomic/payload-alternative-lexical-editor/issues"
   },
-  "engines": {
-    "node": "^18.20.2 || >=20.6.0"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/infonomic/payload-alternative-lexical-editor.git",
+    "directory": "packages/payload-alternative-lexical-editor"
+  },
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "dev": "chokidar 'src/**/*' -c 'npm-run-all build'",
+    "build": "tsc -p tsconfig.json && tsc-alias",
+    "lint": "biome check --write --unsafe --diagnostic-level=error",
+    "clean": "rimraf node_modules dist build .turbo",
+    "test": "LOG_LEVEL=off tsx --env-file=.env --test $(find . -name \"*.test.ts\")",
+    "test:one": "LOG_LEVEL=off tsx --no-warnings --env-file=.env --test"
   },
   "dependencies": {
     "@lexical/clipboard": "0.39.0",
@@ -61,16 +81,10 @@
     "@types/node": "^25.0.3",
     "@types/react": "19.2.7",
     "@types/react-dom": "19.2.3",
+    "@vitejs/plugin-react": "^5.1.0",
     "dotenv": "^17.2.3",
     "tsx": "^4.21.0",
-    "typescript": "^5.9.3"
-  },
-  "pnpm": {
-    "onlyBuiltDependencies": [
-      "@biomejs/biome",
-      "esbuild",
-      "sharp",
-      "unrs-resolver"
-    ]
+    "typescript": "^5.9.3",
+    "vitest": "^4.0.5"
   }
 }

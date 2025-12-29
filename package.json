@@ -1,10 +1,35 @@
 {
-  "name": "@infonomic/lexical",
-  "version": "1.0.0",
+  "name": "@infonomic/root",
+  "description": "",
+  "main": "index.js",
   "private": true,
-  "packageManager": "pnpm@10.9.0",
+  "packageManager": "pnpm@10.23.0",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "keywords": [],
+  "author": "",
+  "scripts": {
+    "clean": "turbo run clean && rm -rf node_modules .turbo",
+    "build": "turbo run build",
+    "start": "turbo run start",
+    "dev": "turbo run dev --parallel",
+    "lint": "turbo run lint --continue",
+    "typecheck": "turbo run typecheck --continue",
+    "test": "turbo run test",
+    "version-packages": "changeset version",
+    "release:tag": "turbo run build --filter=@infonomic/payload-alternative-lexical-editor && changeset tag",
+    "release:npm": "turbo run build --filter=@infonomic/payload-alternative-lexical-editor && changeset publish"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "turbo": "^2.6.3",
+    "typescript": "5.9.3"
+  },
   "devDependencies": {
-    "@biomejs/biome": "2.2.4"
+    "@biomejs/biome": "2.3.8",
+    "@changesets/cli": "^2.29.8"
   },
   "engines": {
     "node": "^18.20.2 || >=20.9.0"
