@@ -10,7 +10,7 @@
  */
 
 import type React from 'react'
-import { useCallback, useMemo, useRef } from 'react'
+import { memo, useCallback, useMemo, useRef } from 'react'
 
 import {
   FieldDescription,
@@ -110,6 +110,11 @@ const RichTextComponent: React.FC<LexicalRichTextFieldProps> = (props) => {
 
   const dispatchFieldUpdateTask = useRef<number>(undefined)
 
+  const valueRef = useRef(value)
+  valueRef.current = value
+  const initialValueRef = useRef(initialValue)
+  initialValueRef.current = initialValue
+
   // Debounce editor as per this Payload PR and commit:
   // https://github.com/payloadcms/payload/pull/12086/files
   // https://github.com/payloadcms/payload/commit/1d5d96d
@@ -123,7 +128,10 @@ const RichTextComponent: React.FC<LexicalRichTextFieldProps> = (props) => {
 
         // If we have an incoming form value but haven't established a normalized baseline yet,
         // ignore mount-time normalization updates (often appear as tags: []).
-        if ((value ?? initialValue) != null && hasNormalizedBaselineRef.current !== true) {
+        if (
+          (valueRef.current ?? initialValueRef.current) != null &&
+          hasNormalizedBaselineRef.current !== true
+        ) {
           if (process.env.NODE_ENV === 'production' && _debugLogCountRef.current < 10) {
             _debugLogCountRef.current++
             // eslint-disable-next-line no-console
@@ -187,7 +195,7 @@ const RichTextComponent: React.FC<LexicalRichTextFieldProps> = (props) => {
         updateFieldValue(editorState)
       }
     },
-    [setValue, value, initialValue]
+    [setValue]
   )
 
   const styles = useMemo(() => mergeFieldStyles(field), [field])
@@ -272,4 +280,4 @@ function fallbackRender({ error, resetErrorBoundary }: any): React.JSX.Element {
   )
 }
 
-export const RichText: typeof RichTextComponent = RichTextComponent
+export const RichText: typeof RichTextComponent = memo(RichTextComponent)

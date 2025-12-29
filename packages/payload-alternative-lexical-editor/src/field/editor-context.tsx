@@ -28,6 +28,7 @@ export function EditorContext(props: {
   const { children, composerKey, editorConfig, onChange, fieldProps, readOnly, value } = props
 
   // useMemo for the initialConfig that depends on readOnly and value
+  // biome-ignore lint/correctness/useExhaustiveDependencies: we do not want to re-create the editor when value changes
   const initialConfig = useMemo<InitialConfigType>(() => {
     return {
       editable: readOnly !== true,
@@ -47,7 +48,7 @@ export function EditorContext(props: {
     // Without readOnly as a dependency, the editor will never transition
     // from readOnly to editable during form loading, when disabledFromField
     // in field-component will be briefly false.
-  }, [editorConfig, readOnly, value])
+  }, [editorConfig, readOnly])
 
   if (initialConfig == null) {
     return <p>Loading...</p>

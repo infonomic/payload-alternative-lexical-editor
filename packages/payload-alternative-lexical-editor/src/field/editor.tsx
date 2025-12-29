@@ -1,7 +1,7 @@
 'use client'
 
 import type * as React from 'react'
-import { useCallback, useEffect, useMemo, useState } from 'react'
+import { memo, useCallback, useEffect, useMemo, useState } from 'react'
 
 import { TRANSFORMERS } from '@lexical/markdown'
 import { AutoFocusPlugin } from '@lexical/react/LexicalAutoFocusPlugin'
@@ -46,7 +46,7 @@ import { Placeholder } from './ui/placeholder'
 
 import './editor.css'
 
-export function Editor(): React.JSX.Element {
+export const Editor = memo(function Editor(): React.JSX.Element {
   const [floatingAnchorElem, setFloatingAnchorElem] = useState<HTMLDivElement | null>(null)
   const [isSmallWidthViewport, setIsSmallWidthViewport] = useState<boolean>(false)
   const _debugTagLogCountRef = useState(() => ({ count: 0 }))[0]
@@ -209,4 +209,4 @@ export function Editor(): React.JSX.Element {
       </div>
     </>
   )
-}
+})
