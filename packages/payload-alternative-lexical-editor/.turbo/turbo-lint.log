@@ -1,6 +1,0 @@
-
-
-> @infonomic/payload-alternative-lexical-editor@1.0.0 lint /home/tony/Clients/Infonomic/Projects/Payload/payload-alternative-lexical-editor/packages/payload-alternative-lexical-editor
-> biome check --write --unsafe --diagnostic-level=error
-
-[0m[34mChecked [0m[0m[34m7[0m[0m[34m [0m[0m[34mfiles[0m[0m[34m in [0m[0m[34m28[0m[0m[2m[34mms[0m[0m[34m.[0m[0m[34m Fixed [0m[0m[34m2[0m[0m[34m [0m[0m[34mfiles[0m[0m[34m.[0m

@@ -1,7 +1,6 @@
 'use client'
 
-import * as React from 'react'
-import { Suspense } from 'react'
+import type * as React from 'react'
 
 import type {
   DOMConversionMap,
@@ -15,9 +14,8 @@ import type {
 import { $applyNodeReplacement, createEditor, DecoratorNode } from 'lexical'
 
 import { APPLY_VALUE_TAG } from '../../constants'
+import InlineImageComponent from './inline-image-node-component'
 import type { Doc, InlineImageAttributes, Position, SerializedInlineImageNode, Size } from './types'
-
-const InlineImageComponent = React.lazy(async () => await import('./inline-image-node-component'))
 
 function convertInlineImageElement(domNode: Node): null | DOMConversionOutput {
   if (domNode instanceof HTMLImageElement) {
@@ -258,21 +256,19 @@ export class InlineImageNode extends DecoratorNode<React.JSX.Element> {
 
   decorate(): React.JSX.Element {
     return (
-      <Suspense fallback={null}>
-        <InlineImageComponent
-          id={this.__doc?.value}
-          collection={this.__doc?.relationTo}
-          src={this.__src}
-          position={this.__position}
-          size={this.__size}
-          altText={this.__altText}
-          width={this.__width}
-          height={this.__height}
-          showCaption={this.__showCaption}
-          caption={this.__caption}
-          nodeKey={this.getKey()}
-        />
-      </Suspense>
+      <InlineImageComponent
+        id={this.__doc?.value}
+        collection={this.__doc?.relationTo}
+        src={this.__src}
+        position={this.__position}
+        size={this.__size}
+        altText={this.__altText}
+        width={this.__width}
+        height={this.__height}
+        showCaption={this.__showCaption}
+        caption={this.__caption}
+        nodeKey={this.getKey()}
+      />
     )
   }
 }

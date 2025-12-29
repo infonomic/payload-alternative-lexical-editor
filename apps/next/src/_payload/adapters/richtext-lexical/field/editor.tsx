@@ -1,7 +1,7 @@
 'use client'
 
 import type * as React from 'react'
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useMemo, useState } from 'react'
 
 import { TRANSFORMERS } from '@lexical/markdown'
 import { AutoFocusPlugin } from '@lexical/react/LexicalAutoFocusPlugin'
@@ -80,11 +80,33 @@ export function Editor(): React.JSX.Element {
     },
   } = useEditorConfig()
 
-  const onRef = (_floatingAnchorElem: HTMLDivElement): void => {
+  const onRef = useCallback((_floatingAnchorElem: HTMLDivElement): void => {
     if (_floatingAnchorElem != null) {
       setFloatingAnchorElem(_floatingAnchorElem)
     }
-  }
+  }, [])
+
+  const richTextContentEditable = useMemo(
+    () => (
+      <div className="editor-scroller">
+        <div className="editor" ref={onRef}>
+          <ContentEditable />
+        </div>
+      </div>
+    ),
+    [onRef]
+  )
+
+  const plainTextContentEditable = useMemo(
+    () => (
+      <div className="editor-scroller">
+        <div className="editor">
+          <ContentEditable />
+        </div>
+      </div>
+    ),
+    []
+  )
 
   useEffect(() => {
     const updateViewPortWidth = (): void => {
@@ -138,13 +160,7 @@ export function Editor(): React.JSX.Element {
           <>
             <HistoryPlugin externalHistoryState={historyState} />
             <RichTextPlugin
-              contentEditable={
-                <div className="editor-scroller">
-                  <div className="editor" ref={onRef}>
-                    <ContentEditable />
-                  </div>
-                </div>
-              }
+              contentEditable={richTextContentEditable}
               placeholder={<Placeholder>{placeholderText}</Placeholder>}
               ErrorBoundary={LexicalErrorBoundary}
             />
@@ -176,13 +192,7 @@ export function Editor(): React.JSX.Element {
         ) : (
           <>
             <PlainTextPlugin
-              contentEditable={
-                <div className="editor-scroller">
-                  <div className="editor">
-                    <ContentEditable />
-                  </div>
-                </div>
-              }
+              contentEditable={plainTextContentEditable}
               placeholder={<Placeholder>{placeholderText}</Placeholder>}
               ErrorBoundary={LexicalErrorBoundary}
             />
