@@ -1,14 +1,15 @@
-import type { GeneratedTypes, Payload, RequestContext } from 'payload'
+import type { Payload, RequestContext } from 'payload'
 
-export async function loadRelated<T extends keyof GeneratedTypes['collections']>(
+export async function loadRelated(
   payload: Payload,
   value: string,
-  relationTo: T,
+  relationTo: string,
   depth: number,
   locale: any
-): Promise<GeneratedTypes['collections'][T] | null> {
+): Promise<any | null> {
   try {
     const relatedDoc = await payload.findByID({
+      // @ts-expect-error: ignore for now - in preparation for package release.
       collection: relationTo,
       id: value,
       depth,
@@ -21,15 +22,15 @@ export async function loadRelated<T extends keyof GeneratedTypes['collections']>
   }
 }
 
-export async function loadRelatedWithContext<T extends keyof GeneratedTypes['collections']>(
+export async function loadRelatedWithContext(
   payload: Payload,
   context: RequestContext,
   contextKey: string,
   value: string,
-  relationTo: T,
+  relationTo: string,
   depth: number,
   locale: any
-): Promise<GeneratedTypes['collections'][T] | null> {
+): Promise<any | null> {
   try {
     if (context[contextKey] == null) {
       context[contextKey] = [value]
@@ -45,6 +46,7 @@ export async function loadRelatedWithContext<T extends keyof GeneratedTypes['col
 
     const relatedDoc = await payload.findByID({
       context,
+      // @ts-expect-error: ignore for now - in preparation for package release.
       collection: relationTo,
       id: value,
       depth,

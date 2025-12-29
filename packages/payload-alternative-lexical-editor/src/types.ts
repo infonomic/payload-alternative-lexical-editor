@@ -10,10 +10,16 @@ import type {
 import type { InitialLexicalFormState } from './field/build-initial-state'
 import type { ClientEditorConfig, EditorConfig, EditorSettings } from './field/config/types'
 
+export type CollectionAlias = {
+  slug: string
+  alias: string
+}
+
 export interface LexicalEditorProps {
   admin?: LexicalFieldAdminProps
   settings?: (config: EditorSettings) => EditorSettings
   lexical?: LexicalEditorConfig
+  collectionAliases?: CollectionAlias[]
 }
 
 export interface AdapterProps {

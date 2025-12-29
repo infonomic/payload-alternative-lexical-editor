@@ -18,10 +18,10 @@
  */
 
 import type { SerializedEditorState, SerializedLexicalNode } from 'lexical'
-import type { GeneratedTypes, Payload, PayloadRequest, RequestContext } from 'payload'
+import type { Payload, PayloadRequest, RequestContext } from 'payload'
 
-import { collectionAliases } from '@/infonomic.config'
 import { loadRelatedWithContext } from './utils/load-related'
+import type { CollectionAlias } from '../types'
 import type { SerializedAdmonitionNode } from './nodes/admonition-node'
 import type { SerializedInlineImageNode } from './nodes/inline-image-node'
 import type { SerializedLinkNode } from './nodes/link-nodes'
@@ -55,30 +55,39 @@ type AfterReadRichTextHook<TData extends TypeWithID = any, TValue = any, TSiblin
     BaseRichTextHookArgs<TData, TValue, TSiblingData>
 ) => Promise<TValue> | TValue
 
-export const populateLexicalLinks: AfterReadRichTextHook<
-  any,
-  SerializedEditorState | null,
-  any
-> = async ({ context, value, req }): Promise<SerializedEditorState | null> => {
-  if (value == null) {
-    return null
-  }
+export const populateLexicalLinks = (
+  args: { collectionAliases?: CollectionAlias[] } = {}
+): AfterReadRichTextHook<any, SerializedEditorState | null, any> => {
+  const { collectionAliases } = args
 
-  // console.log(data)
-
-  const { payload, locale } = req
-
-  // console.log('------------------ context start hook', context)
-
-  if (value?.root?.children != null) {
-    for (const childNode of value.root.children) {
-      await traverseLexicalField(req, context, payload, childNode, locale ?? '')
+  return async ({ context, value, req }): Promise<SerializedEditorState | null> => {
+    if (value == null) {
+      return null
     }
+
+    // console.log(data)
+
+    const { payload, locale } = req
+
+    // console.log('------------------ context start hook', context)
+
+    if (value?.root?.children != null) {
+      for (const childNode of value.root.children) {
+        await traverseLexicalField(
+          req,
+          context,
+          payload,
+          childNode,
+          locale ?? '',
+          collectionAliases
+        )
+      }
+    }
+
+    // console.log('------------------ context after hook', context)
+
+    return value
   }
-
-  // console.log('------------------ context after hook', context)
-
-  return value
 }
 
 export async function traverseLexicalField(
@@ -86,7 +95,8 @@ export async function traverseLexicalField(
   context: RequestContext,
   payload: Payload,
   node: SerializedLexicalNode & { children?: SerializedLexicalNode[] },
-  locale: string
+  locale: string,
+  collectionAliases?: CollectionAlias[]
 ): Promise<SerializedLexicalNode> {
   // We include inline-images here because they might contain captions
   // that have links in them - and as with admonition below
@@ -96,14 +106,14 @@ export async function traverseLexicalField(
     const { caption } = node as SerializedInlineImageNode
     if (caption?.editorState?.root?.children != null) {
       for (const childNode of caption.editorState.root.children) {
-        await traverseLexicalField(req, context, payload, childNode, locale)
+        await traverseLexicalField(req, context, payload, childNode, locale, collectionAliases)
       }
     }
   } else if (node.type === 'admonition') {
     const { content } = node as SerializedAdmonitionNode
     if (content?.editorState?.root?.children != null) {
       for (const childNode of content.editorState.root.children) {
-        await traverseLexicalField(req, context, payload, childNode, locale)
+        await traverseLexicalField(req, context, payload, childNode, locale, collectionAliases)
       }
     }
   } else if (
@@ -126,7 +136,7 @@ export async function traverseLexicalField(
         context,
         'populate-links',
         attributes.doc.value,
-        attributes.doc.relationTo as keyof GeneratedTypes['collections'],
+        attributes.doc.relationTo as string,
         1,
         locale
       )
@@ -156,11 +166,11 @@ export async function traverseLexicalField(
         // items via a front-end route (or alias) - for example 'library', instead
         // of the collection slug 'publications'. And so we check here if there is a
         // custom collection alias and if so, add it to our data object.
-        const collectionAlias = collectionAliases.find(
+        const collectionAlias = collectionAliases?.find(
           (item) => item.slug === attributes?.doc?.relationTo
         )
         // console.log(collectionAlias)
-        if (collectionAliases != null) {
+        if (collectionAlias != null) {
           attributes.doc.data = {
             id,
             title: titleUnformatted ?? title,
@@ -178,7 +188,7 @@ export async function traverseLexicalField(
   // Run for its children
   if (node.children != null && node.children.length > 0) {
     for (const childNode of node.children) {
-      await traverseLexicalField(req, context, payload, childNode, locale)
+      await traverseLexicalField(req, context, payload, childNode, locale, collectionAliases)
     }
   }
 

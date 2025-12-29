@@ -56,7 +56,7 @@ export function lexicalEditor(args) {
         generateSchemaMap: undefined,
         hooks: {
             afterRead: [populateLexicalMedia],
-            beforeChange: [populateLexicalLinks],
+            beforeChange: [populateLexicalLinks({ collectionAliases: args?.collectionAliases })],
         },
         // NOTE: Directly from https://github.com/payloadcms/payload/blob/main/packages/richtext-lexical/src/index.ts
         outputSchema: ({ collectionIDFieldTypes, config, field, i18n, interfaceNameDefinitions, isRequired, }) => {

@@ -8,6 +8,7 @@ import { en } from 'payload/i18n/en'
 import sharp from 'sharp'
 
 import { lexicalEditor } from '@/_payload/adapters/richtext-lexical'
+import { collectionAliases } from '@/infonomic.config'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -32,7 +33,7 @@ export default buildConfig({
     },
   },
   // @ts-expect-error: return type for editorConfig is different
-  editor: lexicalEditor(),
+  editor: lexicalEditor({ collectionAliases }),
   collections: [Pages, Full, Minimal, Compact, Debug, Media, Users],
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {

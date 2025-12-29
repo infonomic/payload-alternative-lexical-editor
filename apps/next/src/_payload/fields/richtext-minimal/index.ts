@@ -1,5 +1,6 @@
 import type { Field } from 'payload'
 
+import { collectionAliases } from '@/infonomic.config'
 import { lexicalEditor } from '../../adapters/richtext-lexical'
 import deepMerge from '../../utilities/deepMerge'
 import type { LexicalRichTextAdapter } from '../../adapters/richtext-lexical/types'
@@ -15,6 +16,7 @@ export const lexicalRichTextMinimal: RichTextField = (options = {}) =>
       label: 'RichText',
       type: 'richText',
       editor: lexicalEditor({
+        collectionAliases,
         settings: (config) => {
           config.options.textAlignment = false
           config.options.tablePlugin = false
