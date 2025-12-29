@@ -95,7 +95,7 @@ function TextFormatFloatingToolbar({
     }
   }, [editor, isLink, linkDrawerSlug, openModal])
 
-  function mouseMoveListener(e: MouseEvent): void {
+  const mouseMoveListener = useCallback((e: MouseEvent): void => {
     if (popupCharStylesEditorRef?.current != null && (e.buttons === 1 || e.buttons === 3)) {
       if (popupCharStylesEditorRef.current.style.pointerEvents !== 'none') {
         const x = e.clientX
@@ -108,14 +108,15 @@ function TextFormatFloatingToolbar({
         }
       }
     }
-  }
-  function mouseUpListener(_e: MouseEvent): void {
+  }, [])
+
+  const mouseUpListener = useCallback((_e: MouseEvent): void => {
     if (popupCharStylesEditorRef?.current != null) {
       if (popupCharStylesEditorRef.current.style.pointerEvents !== 'auto') {
         popupCharStylesEditorRef.current.style.pointerEvents = 'auto'
       }
     }
-  }
+  }, [])
 
   useEffect(() => {
     if (popupCharStylesEditorRef?.current != null) {

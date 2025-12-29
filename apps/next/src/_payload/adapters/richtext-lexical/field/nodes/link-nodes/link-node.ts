@@ -398,7 +398,17 @@ function $getAncestor(
   predicate: (ancestor: LexicalNode) => boolean
 ): null | LexicalNode {
   let parent: null | LexicalNode = node
-  while (parent !== null && (parent = parent.getParent()) !== null && !predicate(parent));
+
+  while (parent !== null) {
+    parent = parent.getParent()
+    if (parent === null) {
+      break
+    }
+    if (predicate(parent)) {
+      break
+    }
+  }
+
   return parent
 }
 

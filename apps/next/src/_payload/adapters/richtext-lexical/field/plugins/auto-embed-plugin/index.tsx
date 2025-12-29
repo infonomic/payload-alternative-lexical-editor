@@ -197,18 +197,24 @@ function AutoEmbedMenuItem({
     className += ' selected'
   }
   return (
-    <li
-      key={option.key}
+    <div
       tabIndex={-1}
+      role="option"
       className={className}
       ref={option.setRefElement}
       aria-selected={isSelected}
       id={`typeahead-item-${index}`}
       onMouseEnter={onMouseEnter}
       onClick={onClick}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault()
+          onClick()
+        }
+      }}
     >
       <span className="text">{option.title}</span>
-    </li>
+    </div>
   )
 }
 
@@ -225,7 +231,7 @@ function AutoEmbedMenu({
 }): React.JSX.Element {
   return (
     <div className="typeahead-popover">
-      <ul>
+      <div role="listbox" aria-label="Auto embed options">
         {options.map((option: AutoEmbedOption, i: number) => (
           <AutoEmbedMenuItem
             index={i}
@@ -240,7 +246,7 @@ function AutoEmbedMenu({
             option={option}
           />
         ))}
-      </ul>
+      </div>
     </div>
   )
 }

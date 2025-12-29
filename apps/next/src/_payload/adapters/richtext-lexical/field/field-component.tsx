@@ -76,7 +76,7 @@ const RichTextComponent: React.FC<LexicalRichTextFieldProps> = (props) => {
   )
 
   const {
-    customComponents: { AfterInput, BeforeInput, Description, Error, Label } = {},
+    customComponents: { AfterInput, BeforeInput, Description, Error: ErrorComponent, Label } = {},
     disabled: disabledFromField,
     initialValue,
     setValue,
@@ -206,7 +206,7 @@ const RichTextComponent: React.FC<LexicalRichTextFieldProps> = (props) => {
     <div className={classes} key={pathWithEditDepth} style={styles}>
       <div className={`${baseClass}__wrap`}>
         <RenderCustomComponent
-          CustomComponent={Error}
+          CustomComponent={ErrorComponent}
           Fallback={<FieldError path={path} showError={showError} />}
         />
         <RenderCustomComponent
