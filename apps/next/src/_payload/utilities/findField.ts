@@ -12,7 +12,7 @@ export function findField(fields: Field[] | undefined, name: string): Field | un
     return undefined
   }
 
-  let found
+  let found: Field | undefined
   for (const field of fields) {
     if (field.type === 'tabs') {
       for (const tab of field.tabs) {

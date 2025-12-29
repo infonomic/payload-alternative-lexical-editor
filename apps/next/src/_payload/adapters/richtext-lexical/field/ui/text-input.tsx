@@ -7,8 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  *
  */
-import type * as React from 'react'
-import type { HTMLInputTypeAttribute } from 'react'
+import { type HTMLInputTypeAttribute, type JSX, useId } from 'react'
 
 import './input.css'
 
@@ -28,11 +27,16 @@ export default function TextInput({
   placeholder = '',
   'data-test-id': dataTestId,
   type = 'text',
-}: Props): React.JSX.Element {
+}: Props): JSX.Element {
+  const inputId = useId()
+
   return (
     <div className="Input__wrapper">
-      <label className="Input__label">{label}</label>
+      <label className="Input__label" htmlFor={inputId}>
+        {label}
+      </label>
       <input
+        id={inputId}
         type={type}
         className="Input__input"
         placeholder={placeholder}

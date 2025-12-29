@@ -306,8 +306,8 @@ function TableActionMenu({
               node.setColSpan(columns).setRowSpan(rows)
               firstCell = node
               const isEmpty = $cellContainsEmptyParagraph(node)
-              let firstChild
-              if (isEmpty && $isParagraphNode((firstChild = node.getFirstChild()))) {
+              const firstChild = node.getFirstChild()
+              if (isEmpty && firstChild !== null && $isParagraphNode(firstChild)) {
                 firstChild.remove()
               }
             } else if ($isTableCellNode(firstCell)) {
@@ -514,8 +514,18 @@ function TableActionMenu({
     <div
       className="dropdown"
       ref={dropDownRef}
+      role="menu"
+      aria-label="Table cell actions"
+      tabIndex={-1}
       onClick={(e) => {
         e.stopPropagation()
+      }}
+      onKeyDown={(e) => {
+        e.stopPropagation()
+        if (e.key === 'Escape') {
+          e.preventDefault()
+          setIsMenuOpen(false)
+        }
       }}
     >
       {mergeCellButton}

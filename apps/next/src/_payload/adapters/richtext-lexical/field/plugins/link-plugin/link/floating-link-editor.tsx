@@ -96,16 +96,9 @@ function FloatingLinkEditor({
         },
       }
 
-      let linkNode
-      if (linkParent != null) {
-        linkNode = linkParent
-      } else if ($isLinkNode(node)) {
-        linkNode = node
-      } else {
-        linkNode = null
-      }
+      const linkNode = linkParent ?? ($isLinkNode(node) ? node : null)
 
-      if (linkNode != null) {
+      if (linkNode != null && $isLinkNode(linkNode)) {
         // Prepare LinkDrawer data
         data = {
           text: linkNode.getTextContent(),
@@ -271,6 +264,12 @@ function FloatingLinkEditor({
               onClick={() => {
                 toggleModal(drawerSlug)
               }}
+              onKeyDown={(event) => {
+                if (event.key === 'Enter' || event.key === ' ') {
+                  event.preventDefault()
+                  toggleModal(drawerSlug)
+                }
+              }}
             />
             <div
               aria-label="Remove link"
@@ -282,6 +281,12 @@ function FloatingLinkEditor({
               }}
               onClick={() => {
                 editor.dispatchCommand(TOGGLE_LINK_COMMAND, null)
+              }}
+              onKeyDown={(event) => {
+                if (event.key === 'Enter' || event.key === ' ') {
+                  event.preventDefault()
+                  editor.dispatchCommand(TOGGLE_LINK_COMMAND, null)
+                }
               }}
             />
           </div>

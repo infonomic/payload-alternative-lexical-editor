@@ -113,7 +113,13 @@ function DropDownItems({
 
   return (
     <DropDownContext.Provider value={contextValue}>
-      <div className="dropdown" ref={dropDownRef} onKeyDown={handleKeyDown}>
+      <div
+        className="dropdown"
+        ref={dropDownRef}
+        onKeyDown={handleKeyDown}
+        role="menu"
+        tabIndex={-1}
+      >
         {children}
       </div>
     </DropDownContext.Provider>

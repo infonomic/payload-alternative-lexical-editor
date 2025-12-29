@@ -128,9 +128,14 @@ function handleLinkCreation(
   let text = nodeText
   let invalidMatchEnd = 0
   let remainingTextNode = node
-  let match
+  let match: LinkMatcherResult | null = null
 
-  while ((match = findFirstMatch(text, matchers)) != null && match !== null) {
+  while (true) {
+    match = findFirstMatch(text, matchers)
+    if (match == null) {
+      break
+    }
+
     const matchStart: number = match.index
     const matchLength: number = match.length
     const matchEnd = matchStart + matchLength
@@ -142,7 +147,7 @@ function handleLinkCreation(
     )
 
     if (isValid) {
-      let linkTextNode
+      let linkTextNode: TextNode
       if (invalidMatchEnd + matchStart === 0) {
         ;[linkTextNode, remainingTextNode] = remainingTextNode.splitText(
           invalidMatchEnd + matchLength

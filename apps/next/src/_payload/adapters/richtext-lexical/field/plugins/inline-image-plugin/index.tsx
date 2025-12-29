@@ -321,7 +321,7 @@ function canDropImage(event: DragEvent): boolean {
 }
 
 function getDragSelection(event: DragEvent): Range | null | undefined {
-  let range
+  let range: any
   const target = event.target as null | Element | Document
   const targetWindow =
     target == null
