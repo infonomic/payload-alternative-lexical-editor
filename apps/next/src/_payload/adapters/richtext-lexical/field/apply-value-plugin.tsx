@@ -23,17 +23,38 @@ export function ApplyValuePlugin({
   const [editor] = useLexicalComposerContext()
   const lastAppliedHashRef = useRef<string | undefined>(undefined)
 
+  const cancelWaiterRef = useRef<() => void>(undefined)
+
   useEffect(() => {
     if (value == null) return
 
     const nextRawHash = hashSerializedState(value)
 
-    if (nextRawHash === lastAppliedHashRef.current) return
-    if (nextRawHash === lastEmittedHashRef.current) return
+    if (nextRawHash === lastEmittedHashRef.current) {
+      if (hasNormalizedBaselineRef.current !== true) {
+        hasNormalizedBaselineRef.current = true
+        if (cancelWaiterRef.current) {
+          cancelWaiterRef.current()
+          cancelWaiterRef.current = undefined
+        }
+      }
+      return
+    }
 
-    // We are about to apply a new external value. While Lexical applies it (and runs transforms),
-    // it may emit untagged updates (tags: []). Keep the baseline "not ready" until we can capture
-    // the settled editorState.
+    if (nextRawHash === lastAppliedHashRef.current) {
+      // If the incoming value matches what we last applied, we assume the previous
+      // waiter (if any) is still running or has completed.
+      // We do NOT want to cancel it just because of a re-render.
+      return
+    }
+
+    // We are about to apply a new external value.
+    // Cancel any pending waiter for the previous value.
+    if (cancelWaiterRef.current) {
+      cancelWaiterRef.current()
+      cancelWaiterRef.current = undefined
+    }
+
     hasNormalizedBaselineRef.current = false
 
     const nextState = editor.parseEditorState(value)
@@ -44,8 +65,13 @@ export function ApplyValuePlugin({
       },
       { tag: APPLY_VALUE_TAG }
     )
+    lastAppliedHashRef.current = nextRawHash
 
     let cancelled = false
+    cancelWaiterRef.current = () => {
+      cancelled = true
+    }
+
     // Capture what Lexical *actually* settled on after applying + running immediate transforms.
     // Two rAFs helps ensure we’re past the commit + plugin side-effects.
     queueMicrotask(() => {
@@ -59,10 +85,10 @@ export function ApplyValuePlugin({
       })
     })
 
-    lastAppliedHashRef.current = nextRawHash
-    return () => {
-      cancelled = true
-    }
+    // Important: Do NOT cancel the waiter in the useEffect cleanup.
+    // If the component re-renders with the same value (hash), we want the existing waiter to continue.
+    // If the component unmounts, we also want the waiter to finish setting the baseline for the parent.
+    // We only cancel if we are about to apply a DIFFERENT value (handled above).
   }, [editor, value, lastEmittedHashRef, normalizedIncomingHashRef, hasNormalizedBaselineRef])
 
   return null

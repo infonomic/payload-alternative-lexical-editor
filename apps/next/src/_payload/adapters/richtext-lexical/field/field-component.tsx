@@ -124,17 +124,17 @@ const RichTextComponent: React.FC<LexicalRichTextFieldProps> = (props) => {
         // If we have an incoming form value but haven't established a normalized baseline yet,
         // ignore mount-time normalization updates (often appear as tags: []).
         if ((value ?? initialValue) != null && hasNormalizedBaselineRef.current !== true) {
-          // if (process.env.NODE_ENV === 'production' && debugLogCountRef.current < 10) {
-          //   debugLogCountRef.current++
-          //   // eslint-disable-next-line no-console
-          //   console.log('[lexical][payload][skip] waiting baseline', {
-          //     tags: capturedTags,
-          //     nextHash,
-          //     normalizedIncomingHash: normalizedIncomingHashRef.current,
-          //     rawIncomingHash: rawIncomingHashRef.current,
-          //     lastEmittedHash: lastEmittedHashRef.current,
-          //   })
-          // }
+          if (process.env.NODE_ENV === 'production' && _debugLogCountRef.current < 10) {
+            _debugLogCountRef.current++
+            // eslint-disable-next-line no-console
+            console.log('[lexical][payload][skip] waiting baseline', {
+              tags: _capturedTags,
+              nextHash,
+              normalizedIncomingHash: normalizedIncomingHashRef.current,
+              rawIncomingHash: rawIncomingHashRef.current,
+              lastEmittedHash: lastEmittedHashRef.current,
+            })
+          }
           return
         }
 
@@ -154,17 +154,17 @@ const RichTextComponent: React.FC<LexicalRichTextFieldProps> = (props) => {
 
         lastEmittedHashRef.current = nextHash
 
-        // if (process.env.NODE_ENV === 'production' && debugLogCountRef.current < 10) {
-        //   debugLogCountRef.current++
-        //   // eslint-disable-next-line no-console
-        //   console.log('[lexical][payload][setValue]', {
-        //     tags: capturedTags,
-        //     nextHash,
-        //     normalizedIncomingHash: normalizedIncomingHashRef.current,
-        //     rawIncomingHash: rawIncomingHashRef.current,
-        //     lastEmittedHash: lastEmittedHashRef.current,
-        //   })
-        // }
+        if (process.env.NODE_ENV === 'production' && _debugLogCountRef.current < 10) {
+          _debugLogCountRef.current++
+          // eslint-disable-next-line no-console
+          console.log('[lexical][payload][setValue]', {
+            tags: _capturedTags,
+            nextHash,
+            normalizedIncomingHash: normalizedIncomingHashRef.current,
+            rawIncomingHash: rawIncomingHashRef.current,
+            lastEmittedHash: lastEmittedHashRef.current,
+          })
+        }
 
         setValue(newState)
       }

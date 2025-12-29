@@ -123,11 +123,11 @@ export function Editor(): React.JSX.Element {
           onChange={(editorState: EditorState, editor: LexicalEditor, tags: Set<string>) => {
             // Ignore any onChange event triggered by focus only
             // console.log('Editor on change called', tags)
-            // if (process.env.NODE_ENV === 'production' && debugTagLogCountRef.count < 10) {
-            //   debugTagLogCountRef.count++
-            //   // eslint-disable-next-line no-console
-            //   console.log('[lexical][top] tags', Array.from(tags))
-            // }
+            if (process.env.NODE_ENV === 'production' && _debugTagLogCountRef.count < 10) {
+              _debugTagLogCountRef.count++
+              // eslint-disable-next-line no-console
+              console.log('[lexical][top] tags', Array.from(tags))
+            }
             if (tags.has(APPLY_VALUE_TAG)) return
             if (!tags.has('focus') || tags.size > 1) {
               if (onChange != null) onChange(editorState, editor, tags)

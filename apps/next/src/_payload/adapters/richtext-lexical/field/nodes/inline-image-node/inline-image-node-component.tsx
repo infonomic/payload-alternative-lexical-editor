@@ -379,11 +379,11 @@ export default function InlineImageComponent({
               <OnChangePlugin
                 ignoreSelectionChange={true}
                 onChange={(_nestedEditorState, _nestedEditor, nestedTags) => {
-                  // if (process.env.NODE_ENV === 'production' && debugTagLogCountRef.current < 10) {
-                  //   debugTagLogCountRef.current++
-                  //   // eslint-disable-next-line no-console
-                  //   console.log('[lexical][nested][inline-image] tags', Array.from(nestedTags))
-                  // }
+                  if (process.env.NODE_ENV === 'production' && _debugTagLogCountRef.current < 10) {
+                    _debugTagLogCountRef.current++
+                    // eslint-disable-next-line no-console
+                    console.log('[lexical][nested][inline-image] tags', Array.from(nestedTags))
+                  }
 
                   if (nestedTags.has(APPLY_VALUE_TAG)) return
                   if (nestedTags.has('focus') && nestedTags.size === 1) return
