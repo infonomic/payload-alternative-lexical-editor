@@ -6,10 +6,17 @@
   "type": "module",
   "description": "An alternative lexical editor for Payload CMS.",
   "keywords": [
-    "Payload CMS",
-    "Lexical Editor",
-    "Rich Text Editor",
-    "Alternative Editor"
+    "payload",
+    "lexical",
+    "editor",
+    "payload cms",
+    "lexical editor",
+    "rich text editor",
+    "alternative editor",
+    "cms",
+    "headless cms",
+    "react",
+    "next.js"
   ],
   "homepage": "https://github.com/infonomic/payload-alternative-lexical-editor",
   "bugs": {
