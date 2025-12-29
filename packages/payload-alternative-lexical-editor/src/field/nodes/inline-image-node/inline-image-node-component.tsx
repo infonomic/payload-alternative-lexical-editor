@@ -11,8 +11,6 @@ import { OnChangePlugin } from '@lexical/react/LexicalOnChangePlugin'
 import { RichTextPlugin } from '@lexical/react/LexicalRichTextPlugin'
 import { useLexicalNodeSelection } from '@lexical/react/useLexicalNodeSelection'
 import { mergeRegister } from '@lexical/utils'
-import { formatDrawerSlug, useConfig, useEditDepth, useModal } from '@payloadcms/ui'
-import { requests } from '@payloadcms/ui/utilities/api'
 import cx from 'classnames'
 import type { BaseSelection, LexicalEditor, NodeKey, NodeSelection, RangeSelection } from 'lexical'
 import {
@@ -34,8 +32,7 @@ import { APPLY_VALUE_TAG } from '../../constants'
 import { useSharedHistoryContext } from '../../context/shared-history-context'
 import { useSharedOnChange } from '../../context/shared-on-change-context'
 import { FloatingTextFormatToolbarPlugin } from '../../plugins/floating-text-format-toolbar-plugin/index'
-import { InlineImageDrawer } from '../../plugins/inline-image-plugin/inline-image-drawer'
-import { getPreferredSize } from '../../plugins/inline-image-plugin/utils'
+import { useInlineImageContext } from '../../plugins/inline-image-plugin/context'
 import { LinkPlugin } from '../../plugins/link-plugin/link'
 import { FloatingLinkEditorPlugin } from '../../plugins/link-plugin/link/floating-link-editor'
 import ContentEditableInline from '../../ui/content-editable-inline'
@@ -136,39 +133,19 @@ export default function InlineImageComponent({
   const [editor] = useLexicalComposerContext()
   const { onChange } = useSharedOnChange()
   const { historyState } = useSharedHistoryContext()
-  const editDepth = useEditDepth()
+  const { openDrawer } = useInlineImageContext()
   const imageRef = useRef<null | HTMLImageElement>(null)
   const buttonRef = useRef<HTMLButtonElement | null>(null)
   const [isSelected, setSelected, clearSelection] = useLexicalNodeSelection(nodeKey)
   const [selection, setSelection] = useState<RangeSelection | NodeSelection | BaseSelection | null>(
     null
   )
-  const { config } = useConfig()
-  const {
-    serverURL,
-    routes: { api },
-  } = config
 
   const editorState = editor.getEditorState()
   const activeEditorRef = useRef<LexicalEditor | null>(null)
   const node = editorState.read(() => $getNodeByKey(nodeKey) as InlineImageNode)
 
   const _debugTagLogCountRef = useRef<number>(0)
-
-  const {
-    toggleModal = () => {
-      console.error('Error: useModal() from Payload did not work correctly')
-    },
-    closeModal,
-    isModalOpen,
-  } = useModal()
-
-  // NOTE: set the slug suffix to the document ID so that
-  // each image in the editor gets its own slug and modal
-  const inlineImageDrawerSlug = formatDrawerSlug({
-    slug: `rich-text-inline-image-update-lexical-${id}`,
-    depth: editDepth,
-  })
 
   const onDelete = useCallback(
     (payload: KeyboardEvent) => {
@@ -293,52 +270,11 @@ export default function InlineImageComponent({
 
   const handleToggleModal = (): void => {
     if (id != null) {
-      toggleModal(inlineImageDrawerSlug)
-    }
-  }
-
-  const handleModalSubmit = async (data: InlineImageData): Promise<void> => {
-    closeModal(inlineImageDrawerSlug)
-    if (data?.id != null) {
-      try {
-        const url = `${serverURL}${api}/${collection}/${data.id}`
-        const response = await requests.get(url)
-        if (response.ok) {
-          const doc = await response.json()
-          const editorPreviewSize = data?.position === 'default' ? 'medium' : 'small'
-          const imageSource = getPreferredSize(editorPreviewSize, doc)
-          if (imageSource != null) {
-            const imagePayload: InlineImageAttributes = {
-              id: data.id,
-              collection,
-              src: imageSource.url,
-              altText: data?.altText,
-              position: data?.position,
-              size: data?.size,
-              showCaption: data?.showCaption,
-            }
-
-            // We don't set width or height for SVG images
-            if (imageSource.width != null) {
-              imagePayload.width = imageSource.width
-            }
-
-            if (imageSource.height != null) {
-              imagePayload.height = imageSource.height
-            }
-
-            editor.update(() => {
-              node.update(imagePayload)
-            })
-          } else {
-            console.error('Error: unable to find image source from document in InlineImagePlugin.')
-          }
-        } else {
-          console.error('Error: Response not ok trying load existing image in InlineImagePlugin')
-        }
-      } catch (error) {
-        console.error('Error: trying load existing image in InlineImagePlugin', error)
-      }
+      openDrawer({ id, altText, position, size, showCaption }, (payload) => {
+        editor.update(() => {
+          node.update(payload)
+        })
+      })
     }
   }
 
@@ -421,20 +357,6 @@ export default function InlineImageComponent({
           </span>
         )}
       </span>
-
-      {id != null && id.length > 0 && (
-        <InlineImageDrawer
-          isOpen={isModalOpen(inlineImageDrawerSlug)}
-          drawerSlug={inlineImageDrawerSlug}
-          data={{ id, altText, position, size, showCaption }}
-          onSubmit={(data: InlineImageData) => {
-            void handleModalSubmit(data)
-          }}
-          onClose={() => {
-            closeModal(inlineImageDrawerSlug)
-          }}
-        />
-      )}
     </Suspense>
   )
 }

@@ -30,6 +30,7 @@ import { CodeHighlightPlugin } from './plugins/code-highlight-plugin'
 import { DragDropPaste } from './plugins/drag-drop-paste-plugin'
 import { FloatingTextFormatToolbarPlugin } from './plugins/floating-text-format-toolbar-plugin'
 import { InlineImagePlugin } from './plugins/inline-image-plugin'
+import { InlineImageContextProvider } from './plugins/inline-image-plugin/context'
 import { LayoutPlugin } from './plugins/layout-plugin/layout-plugin'
 import { AutoLinkPlugin } from './plugins/link-plugin/auto-link'
 import { LinkPlugin } from './plugins/link-plugin/link'
@@ -125,7 +126,7 @@ export const Editor = memo(function Editor(): React.JSX.Element {
     }
   }, [isSmallWidthViewport])
 
-  return (
+  const content = (
     <>
       {tablePlugin && <PayloadTablePlugin />}
       {richText && <ToolbarPlugin />}
@@ -209,4 +210,10 @@ export const Editor = memo(function Editor(): React.JSX.Element {
       </div>
     </>
   )
+
+  if (inlineImagePlugin) {
+    return <InlineImageContextProvider>{content}</InlineImageContextProvider>
+  }
+
+  return content
 })

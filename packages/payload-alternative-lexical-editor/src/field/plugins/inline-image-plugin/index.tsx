@@ -16,8 +16,6 @@ import { useEffect } from 'react'
 
 import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext'
 import { $wrapNodeInElement, mergeRegister } from '@lexical/utils'
-import { formatDrawerSlug, useConfig, useEditDepth, useModal } from '@payloadcms/ui'
-import { requests } from '@payloadcms/ui/utilities/api'
 import {
   $createParagraphNode,
   $createRangeSelection,
@@ -45,8 +43,7 @@ import {
   InlineImageNode,
 } from '../../nodes/inline-image-node'
 import { CAN_USE_DOM } from '../../shared/canUseDOM'
-import { InlineImageDrawer } from './inline-image-drawer'
-import { getPreferredSize } from './utils'
+import { useInlineImageContext } from './context'
 import type { InlineImageAttributes } from '../../nodes/inline-image-node/types'
 import type { InlineImageData } from './types'
 
@@ -63,28 +60,13 @@ export const INSERT_INLINE_IMAGE_COMMAND: LexicalCommand<InlineImageAttributes> 
   'INSERT_INLINE_IMAGE_COMMAND'
 )
 
-export function InlineImagePlugin({ collection }: { collection: string }): React.JSX.Element {
+export function InlineImagePlugin({
+  collection,
+}: {
+  collection: string
+}): React.JSX.Element | null {
   const [editor] = useLexicalComposerContext()
-  const { uuid } = useEditorConfig()
-  const editDepth = useEditDepth()
-  const { config } = useConfig()
-  const {
-    serverURL,
-    routes: { api },
-  } = config
-
-  const {
-    toggleModal = () => {
-      console.error('Error: useModal() from FacelessUI did not work correctly')
-    },
-    closeModal,
-    isModalOpen,
-  } = useModal()
-
-  const inlineImageDrawerSlug = formatDrawerSlug({
-    slug: `rich-text-inline-image-insert-lexical-${uuid}`,
-    depth: editDepth,
-  })
+  const { openDrawer } = useInlineImageContext()
 
   useEffect(() => {
     if (!editor.hasNodes([InlineImageNode])) {
@@ -92,15 +74,13 @@ export function InlineImagePlugin({ collection }: { collection: string }): React
     }
 
     return mergeRegister(
-      // TODO: possibly register this command with insert and edit options?
       editor.registerCommand<null>(
         OPEN_INLINE_IMAGE_MODAL_COMMAND,
         () => {
-          if (inlineImageDrawerSlug != null) {
-            toggleModal(inlineImageDrawerSlug)
-            return true
-          }
-          return false
+          openDrawer(undefined, (payload) => {
+            editor.dispatchCommand(INSERT_INLINE_IMAGE_COMMAND, payload)
+          })
+          return true
         },
         COMMAND_PRIORITY_NORMAL
       ),
@@ -142,70 +122,9 @@ export function InlineImagePlugin({ collection }: { collection: string }): React
         COMMAND_PRIORITY_HIGH
       )
     )
-  }, [editor, inlineImageDrawerSlug, toggleModal])
+  }, [editor, openDrawer])
 
-  const handleModalSubmit = async (data: InlineImageData): Promise<void> => {
-    closeModal(inlineImageDrawerSlug)
-    if (data?.id != null) {
-      try {
-        const url = `${serverURL}${api}/${collection}/${data.id}`
-        const response = await requests.get(url)
-        if (response.ok) {
-          const doc = await response.json()
-          const editorPreviewSize = data?.position === 'default' ? 'medium' : 'small'
-          const imageSource = getPreferredSize(editorPreviewSize, doc)
-          if (imageSource != null) {
-            const imagePayload: InlineImageAttributes = {
-              id: data.id,
-              collection,
-              src: imageSource.url,
-              altText: data?.altText,
-              position: data?.position,
-              size: data?.size,
-              showCaption: data?.showCaption,
-            }
-
-            // We don't set width or height for SVG images
-            if (imageSource.width != null) {
-              imagePayload.width = imageSource.width
-            }
-
-            if (imageSource.height != null) {
-              imagePayload.height = imageSource.height
-            }
-
-            editor.dispatchCommand(INSERT_INLINE_IMAGE_COMMAND, imagePayload)
-          } else {
-            console.error('Error: unable to find image source from document in InlineImagePlugin.')
-          }
-        } else {
-          console.error('Error: Response not ok trying load existing image in InlineImagePlugin')
-        }
-      } catch (error) {
-        console.error('Error: trying load existing image in InlineImagePlugin', error)
-      }
-    }
-  }
-
-  return (
-    <InlineImageDrawer
-      isOpen={isModalOpen(inlineImageDrawerSlug)}
-      drawerSlug={inlineImageDrawerSlug}
-      data={{
-        id: undefined,
-        altText: undefined,
-        position: undefined,
-        size: undefined,
-        showCaption: undefined,
-      }}
-      onSubmit={(data: InlineImageData) => {
-        void handleModalSubmit(data)
-      }}
-      onClose={() => {
-        closeModal(inlineImageDrawerSlug)
-      }}
-    />
-  )
+  return null
 }
 
 const TRANSPARENT_IMAGE =
