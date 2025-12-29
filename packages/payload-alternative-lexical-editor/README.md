@@ -2,8 +2,6 @@
 
 This is a Payload 3.0 demo with a custom Lexical Rich Text adapter.
 
-NOTE: 2025-12-29 - the Lexical editor/adapter has been moved into `packages/payload-alternative-lexical-editor` and will be published to npm soon.
-
 > [!IMPORTANT]
 > Unless you have very specific needs, or a lot of experience with Lexical and custom Payload fields, you should almost certainly be using the new and official [Payload Lexical Rich Text editor](https://payloadcms.com/docs/lexical/overview). 
 >
