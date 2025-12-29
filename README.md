@@ -2,6 +2,8 @@
 
 This is a Payload 3.0 demo with a custom Lexical Rich Text adapter.
 
+NOTE: 2025-12-29 - this repo is currently being updated to a monorepo, and the Lexical editor/adapter will be moved into `packages/payload-alternative-lexical-editor`. For now, the source to the adapter/editor is still in the `apps/next/src/_payload/adapters` directory.
+
 > [!IMPORTANT]
 > Unless you have very specific needs, or a lot of experience with Lexical and custom Payload fields, you should almost certainly be using the new and official [Payload Lexical Rich Text editor](https://payloadcms.com/docs/lexical/overview). 
 >
@@ -91,8 +93,9 @@ The configuration in this repo is using the `beforeChange` strategy, although th
 
 1. Clone this repo
 2. If you don't already have an instance of MongoDB running locally we've provided a docker composer file and a shell start script. To start `cd mongodb` from the project root. `mkdir data` and then `./mongo.sh up` to start a local instance of MongoDB with a fresh database.
-3. In the `next` directory - copy `.env.example` to `.env` (Note: Don't deploy this to production or a public service without changing your PAYLOAD_SECRET).
-4. Inside the `next` directory run `pnpm install` followed by `pnpm dev`.
+3. In the `apps/next` directory - copy `.env.example` to `.env` (Note: Don't deploy this to production or a public service without changing your PAYLOAD_SECRET).
+4. From the root - run `pnpm install` followed by `pnpm dev`.
+5. To run a production build - from the root run `pnpm build` followed by `pnpm start`.
 
 Thoughts, suggestions or contributions more than welcome. We hope that some of this helps. 
 
