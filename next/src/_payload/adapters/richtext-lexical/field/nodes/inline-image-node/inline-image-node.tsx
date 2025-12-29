@@ -4,6 +4,8 @@ import { Suspense } from 'react'
 
 import { $applyNodeReplacement, createEditor, DecoratorNode } from 'lexical'
 
+import { APPLY_VALUE_TAG } from '../../constants'
+
 import type { Position, Size, Doc, InlineImageAttributes, SerializedInlineImageNode } from './types'
 import type {
   DOMConversionMap,
@@ -72,10 +74,16 @@ export class InlineImageNode extends DecoratorNode<React.JSX.Element> {
       showCaption
     })
     const nestedEditor = node.__caption
-    const editorState = nestedEditor.parseEditorState(caption.editorState)
-    if (!editorState.isEmpty()) {
-      nestedEditor.setEditorState(editorState)
-    }
+
+    nestedEditor.update(
+      () => {
+        const editorState = nestedEditor.parseEditorState(caption.editorState)
+        if (!editorState.isEmpty()) {
+          nestedEditor.setEditorState(editorState)
+        }
+      },
+      { tag: APPLY_VALUE_TAG },
+    )
     return node
   }
 

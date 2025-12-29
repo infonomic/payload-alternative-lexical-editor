@@ -32,6 +32,7 @@ import {
 import { $isAdmonitionNode } from './admonition-node'
 import { NoteIcon, TipIcon, WarningIcon, DangerIcon } from './icons'
 import { useEditorConfig } from '../../config/editor-config-context'
+import { APPLY_VALUE_TAG } from '../../constants'
 import { useSharedHistoryContext } from '../../context/shared-history-context'
 import { useSharedOnChange } from '../../context/shared-on-change-context'
 import { AdmonitionDrawer } from '../../plugins/admonition-plugin/admonition-drawer'
@@ -79,6 +80,7 @@ export default function AdmonitionNodeComponent({
   const editorState = editor.getEditorState()
   const activeEditorRef = useRef<LexicalEditor | null>(null)
   const node = editorState.read(() => $getNodeByKey(nodeKey) as AdmonitionNode)
+  const debugTagLogCountRef = useRef<number>(0)
 
   const {
     toggleModal = () => {
@@ -228,6 +230,14 @@ export default function AdmonitionNodeComponent({
               <OnChangePlugin
                 ignoreSelectionChange={true}
                 onChange={(nestedEditorState, nestedEditor, nestedTags) => {
+                                    // if (process.env.NODE_ENV === 'production' && debugTagLogCountRef.current < 10) {
+                                    //   debugTagLogCountRef.current++
+                                    //   // eslint-disable-next-line no-console
+                                    //   console.log('[lexical][nested][admonition] tags', Array.from(nestedTags))
+                                    // }
+
+                                    if (nestedTags.has(APPLY_VALUE_TAG)) return
+                                    if (nestedTags.has('focus') && nestedTags.size === 1) return
                   // Note: Shared 'onChange' context provider so that
                   // caption change events can be registered with the parent
                   // editor - in turn triggering the parent editor onChange

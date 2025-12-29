@@ -3,6 +3,8 @@ import * as React from 'react'
 
 import { $applyNodeReplacement, createEditor, DecoratorNode } from 'lexical'
 
+import { APPLY_VALUE_TAG } from '../../constants'
+
 import type { AdmonitionType, AdmonitionAttributes, SerializedAdmonitionNode } from './types'
 import type {
   DOMConversionMap,
@@ -46,10 +48,16 @@ export class AdmonitionNode extends DecoratorNode<React.JSX.Element> {
       title
     })
     const nestedEditor = node.__content
-    const editorState = nestedEditor.parseEditorState(content.editorState)
-    if (!editorState.isEmpty()) {
-      nestedEditor.setEditorState(editorState)
-    }
+
+    nestedEditor.update(
+      () => {
+        const editorState = nestedEditor.parseEditorState(content.editorState)
+        if (!editorState.isEmpty()) {
+          nestedEditor.setEditorState(editorState)
+        }
+      },
+      { tag: APPLY_VALUE_TAG },
+    )
     return node
   }
 

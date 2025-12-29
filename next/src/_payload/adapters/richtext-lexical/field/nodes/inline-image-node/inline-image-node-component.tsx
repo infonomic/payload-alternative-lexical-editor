@@ -43,6 +43,7 @@ import { FloatingLinkEditorPlugin } from '../../plugins/link-plugin/link/floatin
 import { LinkPlugin } from '../../plugins/link-plugin/link'
 import ContentEditableInline from '../../ui/content-editable-inline'
 import PlaceholderInline from '../../ui/placeholder-inline'
+import { APPLY_VALUE_TAG } from '../../constants'
 
 import type { InlineImageNode } from './inline-image-node'
 import type { Position, Size, InlineImageAttributes } from './types'
@@ -155,6 +156,8 @@ export default function InlineImageComponent({
   const editorState = editor.getEditorState()
   const activeEditorRef = useRef<LexicalEditor | null>(null)
   const node = editorState.read(() => $getNodeByKey(nodeKey) as InlineImageNode)
+
+  const debugTagLogCountRef = useRef<number>(0)
 
   const {
     toggleModal = () => {
@@ -381,6 +384,15 @@ export default function InlineImageComponent({
                 <OnChangePlugin
                   ignoreSelectionChange={true}
                   onChange={(nestedEditorState, nestedEditor, nestedTags) => {
+                    // if (process.env.NODE_ENV === 'production' && debugTagLogCountRef.current < 10) {
+                    //   debugTagLogCountRef.current++
+                    //   // eslint-disable-next-line no-console
+                    //   console.log('[lexical][nested][inline-image] tags', Array.from(nestedTags))
+                    // }
+
+                    if (nestedTags.has(APPLY_VALUE_TAG)) return
+                    if (nestedTags.has('focus') && nestedTags.size === 1) return
+
                     // Note: Shared 'onChange' context provider so that
                     // caption change events can be registered with the parent
                     // editor - in turn triggering the parent editor onChange

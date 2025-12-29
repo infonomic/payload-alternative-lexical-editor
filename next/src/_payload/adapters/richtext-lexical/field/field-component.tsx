@@ -8,7 +8,7 @@
  * Adapted from https://github.com/payloadcms/payload/tree/main/packages/richtext-lexical
  */
 
-import React, { useCallback, useMemo, useState, useEffect, useRef } from 'react'
+import React, { useCallback, useEffect, useMemo, useRef } from 'react'
 import { ErrorBoundary } from 'react-error-boundary'
 
 import type { EditorState, SerializedEditorState } from 'lexical'
@@ -20,13 +20,14 @@ import {
   FieldLabel,
   RenderCustomComponent,
   useEditDepth,
-  useEffectEvent,
   useField
 } from '@payloadcms/ui'
 import { mergeFieldStyles } from '@payloadcms/ui/shared'
 
 import { richTextValidate } from '../validate/validate-server'
 import { EditorContext } from './editor-context'
+import { ApplyValuePlugin } from './apply-value-plugin'
+import { hashSerializedState } from './utils/hashSerializedState'
 
 import type { LexicalRichTextFieldProps } from '../types'
 
@@ -48,7 +49,7 @@ const RichTextComponent: React.FC<LexicalRichTextFieldProps> = (props) => {
     },
     path: pathFromProps,
     readOnly: readOnlyFromTopLevelProps,
-    validate, // = richTextValidate
+    validate = richTextValidate,
   } = props
 
   const readOnlyFromProps = readOnlyFromTopLevelProps || readOnlyFromAdmin
@@ -83,10 +84,11 @@ const RichTextComponent: React.FC<LexicalRichTextFieldProps> = (props) => {
 
   const disabled = readOnlyFromProps || disabledFromField  // || false
 
-  const [rerenderProviderKey, setRerenderProviderKey] = useState<Date>()
-
-  const prevInitialValueRef = React.useRef<SerializedEditorState | undefined>(initialValue)
-  const prevValueRef = React.useRef<SerializedEditorState | undefined>(value)
+  const lastEmittedHashRef = useRef<string | undefined>(undefined)
+  const rawIncomingHashRef = useRef<string | undefined>(undefined)
+  const normalizedIncomingHashRef = useRef<string | undefined>(undefined)
+  const hasNormalizedBaselineRef = useRef<boolean>(false)
+  const debugLogCountRef = useRef<number>(0)
 
   const classes = [
     baseClass,
@@ -106,11 +108,56 @@ const RichTextComponent: React.FC<LexicalRichTextFieldProps> = (props) => {
   // Debounce editor as per this Payload PR and commit:
   // https://github.com/payloadcms/payload/pull/12086/files
   // https://github.com/payloadcms/payload/commit/1d5d96d
-  const handleChange = useCallback(
-    (editorState: EditorState) => {
+  const handleOnChange = useCallback(
+    (editorState: EditorState, _editor: unknown, tags?: Set<string>) => {
+      const capturedTags = tags != null ? Array.from(tags) : []
+
       const updateFieldValue = (editorState: EditorState) => {
         const newState = editorState.toJSON()
-        prevValueRef.current = newState
+        const nextHash = hashSerializedState(newState)
+
+        // If we have an incoming form value but haven't established a normalized baseline yet,
+        // ignore mount-time normalization updates (often appear as tags: []).
+        if ((value ?? initialValue) != null && hasNormalizedBaselineRef.current !== true) {
+          // if (process.env.NODE_ENV === 'production' && debugLogCountRef.current < 10) {
+          //   debugLogCountRef.current++
+          //   // eslint-disable-next-line no-console
+          //   console.log('[lexical][payload][skip] waiting baseline', {
+          //     tags: capturedTags,
+          //     nextHash,
+          //     normalizedIncomingHash: normalizedIncomingHashRef.current,
+          //     rawIncomingHash: rawIncomingHashRef.current,
+          //     lastEmittedHash: lastEmittedHashRef.current,
+          //   })
+          // }
+          return
+        }
+
+        // Prefer comparing against Lexical-normalized incoming JSON (critical for nested editors).
+        if (normalizedIncomingHashRef.current != null && nextHash === normalizedIncomingHashRef.current) {
+          return
+        }
+
+        // Fallback: if we don't have a normalized baseline, still avoid echoing the raw incoming value.
+        if (rawIncomingHashRef.current != null && nextHash === rawIncomingHashRef.current) return
+
+        // Also avoid re-emitting the exact same state multiple times.
+        if (lastEmittedHashRef.current != null && nextHash === lastEmittedHashRef.current) return
+
+        lastEmittedHashRef.current = nextHash
+
+        // if (process.env.NODE_ENV === 'production' && debugLogCountRef.current < 10) {
+        //   debugLogCountRef.current++
+        //   // eslint-disable-next-line no-console
+        //   console.log('[lexical][payload][setValue]', {
+        //     tags: capturedTags,
+        //     nextHash,
+        //     normalizedIncomingHash: normalizedIncomingHashRef.current,
+        //     rawIncomingHash: rawIncomingHashRef.current,
+        //     lastEmittedHash: lastEmittedHashRef.current,
+        //   })
+        // }
+
         setValue(newState)
       }
 
@@ -132,35 +179,20 @@ const RichTextComponent: React.FC<LexicalRichTextFieldProps> = (props) => {
         updateFieldValue(editorState)
       }
     },
-    [setValue],
+    [setValue, value, initialValue],
   )
 
   const styles = useMemo(() => mergeFieldStyles(field), [field])
 
-  const handleInitialValueChange = useEffectEvent(
-    (initialValue: SerializedEditorState | undefined) => {
-      // Object deep equality check here, as re-mounting the editor if
-      // the new value is the same as the old one is not necessary
-      if (
-        prevValueRef.current !== value &&
-        JSON.stringify(prevValueRef.current) !== JSON.stringify(value)
-      ) {
-        prevInitialValueRef.current = initialValue
-        prevValueRef.current = value
-        setRerenderProviderKey(new Date())
-      }
-    },
+  const incomingValue = value ?? initialValue
+
+  const incomingHash = useMemo(
+    () => (incomingValue != null ? hashSerializedState(incomingValue) : undefined),
+    [incomingValue],
   )
 
-  useEffect(() => {
-    // Needs to trigger for object reference changes - otherwise,
-    // reacting to the same initial value change twice will cause
-    // the second change to be ignored, even though the value has changed.
-    // That's because initialValue is not kept up-to-date
-    if (!Object.is(initialValue, prevInitialValueRef.current)) {
-      handleInitialValueChange(initialValue)
-    }
-  }, [initialValue, handleInitialValueChange])
+  // Keep raw incoming hash up-to-date synchronously. Normalized baseline is set by ApplyValuePlugin.
+  rawIncomingHashRef.current = incomingHash
 
   return (
     <div className={classes} key={pathWithEditDepth} style={styles}>
@@ -169,17 +201,19 @@ const RichTextComponent: React.FC<LexicalRichTextFieldProps> = (props) => {
           CustomComponent={Error}
           Fallback={<FieldError path={path} showError={showError} />}
         />
-        {Label || <FieldLabel label={label} localized={localized} path={path} required={required} />}
+        <RenderCustomComponent
+          CustomComponent={Label}
+          Fallback={<FieldLabel label={label} localized={localized} path={path} required={required} />}
+        />
         <ErrorBoundary fallbackRender={fallbackRender} onReset={() => {}}>
-          {BeforeInput}
+          <RenderCustomComponent CustomComponent={BeforeInput} Fallback={null} />
           <EditorContext
             composerKey={pathWithEditDepth}
             editorConfig={editorConfig}
             fieldProps={props}
-            key={JSON.stringify({ path, rerenderProviderKey })} // makes sure lexical is completely re-rendered when initialValue changes, bypassing the lexical-internal value memoization. That way, external changes to the form will update the editor. More infos in PR description (https://github.com/payloadcms/payload/pull/5010)
-            onChange={handleChange}
+            onChange={handleOnChange}
             readOnly={disabled}
-            value={value}
+            value={incomingValue}
             // NOTE: 2023-05-15 disabled the deepEqual since we've set ignoreSelectionChange={true}
             // in our OnChangePlugin instances - and so a call here means that something
             // must have changed - so no need to do the comparison.
@@ -199,10 +233,16 @@ const RichTextComponent: React.FC<LexicalRichTextFieldProps> = (props) => {
             //     setValue(serializedEditorState)
             //   }
             // }}
-          />
-          {AfterInput}
+          >
+            <ApplyValuePlugin
+              value={incomingValue}
+              lastEmittedHashRef={lastEmittedHashRef}
+              normalizedIncomingHashRef={normalizedIncomingHashRef}
+              hasNormalizedBaselineRef={hasNormalizedBaselineRef}
+            />
+          </EditorContext>
+          <RenderCustomComponent CustomComponent={AfterInput} Fallback={null} />
         </ErrorBoundary>
-        {Description}
         <RenderCustomComponent
           CustomComponent={Description}
           Fallback={<FieldDescription description={description} path={path} />}

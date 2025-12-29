@@ -3,7 +3,6 @@ import * as React from 'react'
 import { useMemo } from 'react'
 
 import { LexicalComposer } from '@lexical/react/LexicalComposer'
-import { useEditDepth } from '@payloadcms/ui'
 
 import { EditorConfigContext } from './config/editor-config-context'
 import { SharedHistoryContext } from './context/shared-history-context'
@@ -17,23 +16,16 @@ import type { LexicalEditor, EditorState, SerializedEditorState } from 'lexical'
 import { RichTextFieldClientProps } from 'payload'
 import { AdapterProps } from '../types'
 
-// Catch any errors that occur during Lexical updates and log them
-// or throw them as needed. If you don't throw them, Lexical will
-// try to recover gracefully without losing user data.
-function onError(error: Error, editor: LexicalEditor): void {
-  // eslint-disable-next-line no-console
-  console.error(error)
-}
-
 export function EditorContext(props: {
+  children?: React.ReactNode
   composerKey: string
   editorConfig: ClientEditorConfig
   fieldProps: RichTextFieldClientProps<SerializedEditorState, AdapterProps, any>
   onChange: (editorState: EditorState, editor: LexicalEditor, tags: Set<string>) => void
   readOnly: boolean
-  value: SerializedEditorState
+  value?: SerializedEditorState | null
 }): React.JSX.Element {
-  const { composerKey, editorConfig, onChange, fieldProps, readOnly, value } = props
+  const { children, composerKey, editorConfig, onChange, fieldProps, readOnly, value } = props
 
   // useMemo for the initialConfig that depends on readOnly and value
   const initialConfig = useMemo<InitialConfigType>(() => {
@@ -69,6 +61,7 @@ export function EditorContext(props: {
           <SharedHistoryContext>
             <div className="editor-shell">
               <Editor />
+              {children}
             </div>
           </SharedHistoryContext>
         </SharedOnChangeContext>

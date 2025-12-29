@@ -40,6 +40,7 @@ import { VimeoPlugin } from './plugins/vimeo-plugin'
 import { CAN_USE_DOM } from './shared/canUseDOM'
 import { ContentEditable } from './ui/content-editable'
 import { Placeholder } from './ui/placeholder'
+import { APPLY_VALUE_TAG } from './constants'
 
 import type { EditorState, LexicalEditor } from 'lexical'
 
@@ -48,6 +49,7 @@ import './editor.css'
 export function Editor(): React.JSX.Element {
   const [floatingAnchorElem, setFloatingAnchorElem] = useState<HTMLDivElement | null>(null)
   const [isSmallWidthViewport, setIsSmallWidthViewport] = useState<boolean>(false)
+  const debugTagLogCountRef = useState(() => ({ count: 0 }))[0]
   const { onChange } = useSharedOnChange()
   const { historyState } = useSharedHistoryContext()
   const {
@@ -121,6 +123,12 @@ export function Editor(): React.JSX.Element {
           onChange={(editorState: EditorState, editor: LexicalEditor, tags: Set<string>) => {
             // Ignore any onChange event triggered by focus only
             // console.log('Editor on change called', tags)
+            // if (process.env.NODE_ENV === 'production' && debugTagLogCountRef.count < 10) {
+            //   debugTagLogCountRef.count++
+            //   // eslint-disable-next-line no-console
+            //   console.log('[lexical][top] tags', Array.from(tags))
+            // }
+            if (tags.has(APPLY_VALUE_TAG)) return
             if (!tags.has('focus') || tags.size > 1) {
               if (onChange != null) onChange(editorState, editor, tags)
             }
