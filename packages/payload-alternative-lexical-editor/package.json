@@ -83,6 +83,7 @@
     "@types/react-dom": "19.2.3",
     "@vitejs/plugin-react": "^5.1.0",
     "dotenv": "^17.2.3",
+    "tsc-alias": "^1.8.16",
     "tsx": "^4.21.0",
     "typescript": "^5.9.3",
     "vitest": "^4.0.5"

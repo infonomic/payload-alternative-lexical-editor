@@ -4,11 +4,7 @@ packages:
   - '!apps/next/.next/**'
 
 onlyBuiltDependencies:
+  - 'sharp'
   - '@biomejs/biome'
-  - '@parcel/watcher'
-  - '@tailwindcss/oxide'
-  - core-js
-  - esbuild
-  - lightningcss-cli
-  - sharp
-  - unrs-resolver
+  - 'esbuild'
+  - 'unrs-resolver'
