@@ -132,17 +132,17 @@ const RichTextComponent: React.FC<LexicalRichTextFieldProps> = (props) => {
           (valueRef.current ?? initialValueRef.current) != null &&
           hasNormalizedBaselineRef.current !== true
         ) {
-          if (process.env.NODE_ENV === 'production' && _debugLogCountRef.current < 10) {
-            _debugLogCountRef.current++
-            // eslint-disable-next-line no-console
-            console.log('[lexical][payload][skip] waiting baseline', {
-              tags: _capturedTags,
-              nextHash,
-              normalizedIncomingHash: normalizedIncomingHashRef.current,
-              rawIncomingHash: rawIncomingHashRef.current,
-              lastEmittedHash: lastEmittedHashRef.current,
-            })
-          }
+          // if (process.env.NODE_ENV === 'production' && _debugLogCountRef.current < 10) {
+          //   _debugLogCountRef.current++
+          //   // eslint-disable-next-line no-console
+          //   console.log('[lexical][payload][skip] waiting baseline', {
+          //     tags: _capturedTags,
+          //     nextHash,
+          //     normalizedIncomingHash: normalizedIncomingHashRef.current,
+          //     rawIncomingHash: rawIncomingHashRef.current,
+          //     lastEmittedHash: lastEmittedHashRef.current,
+          //   })
+          // }
           return
         }
 
@@ -162,17 +162,17 @@ const RichTextComponent: React.FC<LexicalRichTextFieldProps> = (props) => {
 
         lastEmittedHashRef.current = nextHash
 
-        if (process.env.NODE_ENV === 'production' && _debugLogCountRef.current < 10) {
-          _debugLogCountRef.current++
-          // eslint-disable-next-line no-console
-          console.log('[lexical][payload][setValue]', {
-            tags: _capturedTags,
-            nextHash,
-            normalizedIncomingHash: normalizedIncomingHashRef.current,
-            rawIncomingHash: rawIncomingHashRef.current,
-            lastEmittedHash: lastEmittedHashRef.current,
-          })
-        }
+        // if (process.env.NODE_ENV === 'production' && _debugLogCountRef.current < 10) {
+        //   _debugLogCountRef.current++
+        //   // eslint-disable-next-line no-console
+        //   console.log('[lexical][payload][setValue]', {
+        //     tags: _capturedTags,
+        //     nextHash,
+        //     normalizedIncomingHash: normalizedIncomingHashRef.current,
+        //     rawIncomingHash: rawIncomingHashRef.current,
+        //     lastEmittedHash: lastEmittedHashRef.current,
+        //   })
+        // }
 
         setValue(newState)
       }

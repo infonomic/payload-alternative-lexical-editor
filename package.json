@@ -17,6 +17,9 @@
     "dev": "turbo run dev --parallel",
     "lint": "turbo run lint --continue",
     "test": "turbo run test",
+    "test:e2e": "turbo run test:e2e",
+    "test:e2e:prod": "turbo run test:e2e:prod",
+    "test:e2e:ui": "turbo run test:e2e:ui",
     "version-packages": "changeset version",
     "release:tag": "turbo run build --filter=@infonomic/payload-alternative-lexical-editor && changeset tag",
     "release:npm": "turbo run build --filter=@infonomic/payload-alternative-lexical-editor && changeset publish"
