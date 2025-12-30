@@ -18,7 +18,7 @@ test.describe('Lexical Editor', () => {
     // 3. Locate the Lexical editor
     // Lexical editors are contenteditable divs. In Payload, they are often nested.
     // We target the one inside the 'richText' field.
-    const editor = page.locator('.field-type.richText [contenteditable="true"]').first()
+    const editor = page.locator('.editor [contenteditable="true"]').first()
 
     await expect(editor).toBeVisible()
 
@@ -30,7 +30,7 @@ test.describe('Lexical Editor', () => {
     await expect(editor).toContainText('Hello from Playwright!')
 
     // 6. Save the document
-    await page.getByRole('button', { name: 'Save', exact: true }).click()
-    await expect(page.getByText('successfully created')).toBeVisible()
+    await page.locator('#action-save').click()
+    await expect(page.locator('#action-unpublish')).toBeVisible()
   })
 })
