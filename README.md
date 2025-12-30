@@ -19,7 +19,7 @@ And so we started work on a Lexical-based rich text field for Payload. Early in 
 
 Thanks largely to Alessio's efforts, Lexical has now been adopted by the Payload team and is on its way to becoming the default editor for Payload, which is fantastic.
 
-There are still however, a few cases that meant for us, continuing with our own editor is our preferred approach for the moment, although it's likely that most of these issues will be resolved over time and we'll eventually shift to converting our Lexical plugins to official Payload Lexical features.
+In our case, there are still a few issues (and a few opinions) that meant continuing with our own editor is our preferred approach for the moment. We're also VERY interested in the new [Lexical Extensions](https://lexical.dev/docs/extensions/intro) framework - and will likely migrate to this as the Extensions API becomes stable.
 
 ## Rationale
 
