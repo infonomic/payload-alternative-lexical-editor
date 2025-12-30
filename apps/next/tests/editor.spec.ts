@@ -1,6 +1,13 @@
 import { expect, test } from '@playwright/test'
 
 test.describe('Lexical Editor', () => {
+  test.beforeAll(() => {
+    console.log('Test suite starting at', new Date().toISOString())
+  })
+  test.afterAll(() => {
+    console.log('Test suite ending at', new Date().toISOString())
+  })
+
   test.beforeEach(async ({ page }) => {
     // 1. Login using the default credentials from payload.config.ts
     await page.goto('/admin/login')
@@ -15,7 +22,11 @@ test.describe('Lexical Editor', () => {
     await page.getByRole('link', { name: 'Show all Full' }).click()
     await page.getByRole('link', { name: 'Create new Full' }).click()
 
-    // 3. Locate the Lexical editor
+    // 3. Fill in the title field
+    const timestamp = new Date().toISOString()
+    await page.locator('#field-title').fill(`Test Title - ${timestamp}`)
+
+    // 4. Locate the Lexical editor
     // Lexical editors are contenteditable divs. In Payload, they are often nested.
     // We target the one inside the 'richText' field.
     const editor = page.locator('.editor [contenteditable="true"]').first()

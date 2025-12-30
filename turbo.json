@@ -23,6 +23,16 @@
     "test": {
       "outputs": []
     },
+    "test:e2e": {
+      "cache": false
+    },
+    "test:e2e:prod": {
+      "cache": false
+    },
+    "test:e2e:ui": {
+      "cache": false,
+      "interactive": true
+    },
     "start": {
       "cache": false,
       "dependsOn": ["^start"]

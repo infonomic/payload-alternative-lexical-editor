@@ -16,7 +16,7 @@
     "generate:schema": "payload-graphql generate:schema",
     "generate:importmap": "payload generate:importmap",
     "test:e2e": "playwright test",
-    "test:e2e:prod": "pnpm build && cross-env E2E_MODE=prod playwright test",
+    "test:e2e:prod": "cross-env E2E_MODE=prod playwright test",
     "test:e2e:ui": "playwright test --ui"
   },
   "engines": {

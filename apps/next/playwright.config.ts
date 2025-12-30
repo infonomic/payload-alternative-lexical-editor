@@ -10,7 +10,7 @@ export default defineConfig({
   workers: process.env.CI ? 1 : undefined,
   reporter: 'html',
   use: {
-    baseURL: 'http://localhost:3000',
+    baseURL: 'http://127.0.0.1:3000',
     trace: 'on-first-retry',
   },
   projects: [
@@ -20,11 +20,12 @@ export default defineConfig({
     },
   ],
   webServer: {
-    command: isProd ? 'pnpm start' : 'pnpm dev',
-    url: 'http://localhost:3000',
-    reuseExistingServer: !process.env.CI && !isProd,
+    command: isProd ? 'pnpm build && pnpm start' : 'pnpm dev',
+    url: 'http://127.0.0.1:3000',
+    reuseExistingServer: true,
+    // reuseExistingServer: !process.env.CI && !isProd,
     stdout: 'pipe',
     stderr: 'pipe',
-    timeout: 300 * 1000,
+    timeout: 20 * 1000,
   },
 })
