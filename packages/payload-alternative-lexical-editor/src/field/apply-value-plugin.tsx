@@ -11,11 +11,13 @@ import { hashSerializedState } from './utils/hashSerializedState'
 
 export function ApplyValuePlugin({
   value,
+  incomingHash,
   lastEmittedHashRef,
   normalizedIncomingHashRef,
   hasNormalizedBaselineRef,
 }: {
   value?: SerializedEditorState | null
+  incomingHash?: string
   lastEmittedHashRef: React.RefObject<string | undefined>
   normalizedIncomingHashRef: React.RefObject<string | undefined>
   hasNormalizedBaselineRef: React.RefObject<boolean>
@@ -28,7 +30,7 @@ export function ApplyValuePlugin({
   useEffect(() => {
     if (value == null) return
 
-    const nextRawHash = hashSerializedState(value)
+    const nextRawHash = incomingHash
 
     if (nextRawHash === lastEmittedHashRef.current) {
       if (hasNormalizedBaselineRef.current !== true) {
@@ -89,7 +91,14 @@ export function ApplyValuePlugin({
     // If the component re-renders with the same value (hash), we want the existing waiter to continue.
     // If the component unmounts, we also want the waiter to finish setting the baseline for the parent.
     // We only cancel if we are about to apply a DIFFERENT value (handled above).
-  }, [editor, value, lastEmittedHashRef, normalizedIncomingHashRef, hasNormalizedBaselineRef])
+  }, [
+    editor,
+    value,
+    incomingHash,
+    lastEmittedHashRef,
+    normalizedIncomingHashRef,
+    hasNormalizedBaselineRef,
+  ])
 
   return null
 }

@@ -95,7 +95,6 @@ export const EditorComponent = memo(function EditorComponent(
   const disabled = readOnlyFromProps || disabledFromField // || false
 
   const lastEmittedHashRef = useRef<string | undefined>(undefined)
-  const rawIncomingHashRef = useRef<string | undefined>(undefined)
   const normalizedIncomingHashRef = useRef<string | undefined>(undefined)
   const hasNormalizedBaselineRef = useRef<boolean>(false)
   const _debugLogCountRef = useRef<number>(0)
@@ -159,9 +158,6 @@ export const EditorComponent = memo(function EditorComponent(
           return
         }
 
-        // Fallback: if we don't have a normalized baseline, still avoid echoing the raw incoming value.
-        if (rawIncomingHashRef.current != null && nextHash === rawIncomingHashRef.current) return
-
         // Also avoid re-emitting the exact same state multiple times.
         if (lastEmittedHashRef.current != null && nextHash === lastEmittedHashRef.current) return
 
@@ -212,9 +208,6 @@ export const EditorComponent = memo(function EditorComponent(
     [incomingValue]
   )
 
-  // Keep raw incoming hash up-to-date synchronously. Normalized baseline is set by ApplyValuePlugin.
-  rawIncomingHashRef.current = incomingHash
-
   return (
     <div className={classes} key={pathWithEditDepth} style={styles}>
       <div className={`${baseClass}__wrap`}>
@@ -259,6 +252,7 @@ export const EditorComponent = memo(function EditorComponent(
           >
             <ApplyValuePlugin
               value={incomingValue}
+              incomingHash={incomingHash}
               lastEmittedHashRef={lastEmittedHashRef}
               normalizedIncomingHashRef={normalizedIncomingHashRef}
               hasNormalizedBaselineRef={hasNormalizedBaselineRef}
