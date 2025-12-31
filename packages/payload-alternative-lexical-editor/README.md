@@ -84,7 +84,48 @@ When using a `beforeChange` hook - we add the `data` property to the document it
 
 The configuration in this repo is using the `beforeChange` strategy, although this can be changed here in the hooks property for the [richtext adapter](https://github.com/infonomic/payload-alternative-lexical-editor/blob/main/packages/payload-alternative-lexical-editor/src/adapter.ts).
 
+## Component Hierarchy 
+In Payload - the adapter loads our editor via the `rsc-entry.tsx` stub and a component map entry. From there the editor field is rendered and managed via the following component hierarchy:
 
+```
++-----------------------------------------------------------------------+
+|  EditorField (src/field/editor-field.tsx)                             |
+|  - Handles Lazy Loading & Suspense                                    |
++-----------------------------------+-----------------------------------+
+                                    |
+                                    v
++-----------------------------------+-----------------------------------+
+|  EditorComponent (src/field/editor-component.tsx)                     |
+|  - Connects to Payload Forms (useField)                               |
+|  - Manages Hash Refs (lastEmitted, normalizedIncoming)                |
+|  - Handles onChange (Debouncing & Hash Checks)                        |
++-----------------------------------+-----------------------------------+
+                                    |
+                                    | (renders)
+                                    v
++-----------------------------------+-----------------------------------+
+|  EditorContext (src/field/editor-context.tsx)                         |
+|  - Wraps everything in <LexicalComposer>                              |
+|  - Provides SharedHistory & SharedOnChange Contexts                   |
++------------------+----------------------------------+-----------------+
+                   |                                  |
+                   | (passed as children)             | (renders)
+                   v                                  v
++------------------+------------------+    +----------+-------------------+
+| ApplyValuePlugin                    |    | Editor (src/field/editor.tsx)|
+| (src/field/apply-value-plugin.tsx)  |    | - ToolbarPlugin              |
+|                                     |    | - ContentEditable            |
+| - Watches: incoming value & hash    |    | - Floating Toolbars          |
+| - Action: editor.update()           |    | - Auto-resize logic          |
+|   (Syncs external props -> Editor)  |    +------------------------------+
++-------------------------------------+
+```
+
+### Key Relationships
+1. `EditorComponent` is the "Brain". It holds the connection to the Payload form state (`useField`) and decides when to update the form value based on hashes.
+2. `EditorContext` is the "Bridge". It initializes the Lexical instance (`LexicalComposer`) but doesn't contain the specific logic for syncing values or rendering the UI itself.
+3. `ApplyValuePlugin` is the "Synchronizer". It sits inside the Lexical context. When `EditorComponent` receives a new value from the database (or parent), it passes it down here. This plugin forces the Lexical instance to update its state to match.
+4. `Editor` is the "View". It handles the visual presentation, toolbars, and the actual `contentEditable` DOM element.
 
 ## Getting Started
 

@@ -143,7 +143,6 @@ export const EditorComponent = memo(function EditorComponent(
           //     tags: _capturedTags,
           //     nextHash,
           //     normalizedIncomingHash: normalizedIncomingHashRef.current,
-          //     rawIncomingHash: rawIncomingHashRef.current,
           //     lastEmittedHash: lastEmittedHashRef.current,
           //   })
           // }
