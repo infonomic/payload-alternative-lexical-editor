@@ -1,3 +1,12 @@
+/**
+ * Portions copyright (c) 2018-2022 Payload CMS, LLC info@payloadcms.com
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ *
+ * Adapted from https://github.com/payloadcms/payload/tree/main/packages/richtext-lexical
+ */
+
 import type React from 'react'
 
 import { renderField } from '@payloadcms/ui/forms/renderField'
@@ -11,8 +20,8 @@ import type {
 } from 'payload'
 
 import { buildInitialState } from './build-initial-state'
-import { RichTextField } from './index'
-import type { LexicalFieldAdminProps, LexicalRichTextFieldProps } from '../types.js'
+import { EditorField } from './editor-field'
+import type { EditorFieldProps, LexicalFieldAdminProps } from '../types.js'
 import type { ServerEditorConfig } from './config/types.js'
 
 export const RscEntryLexicalField: React.FC<
@@ -58,7 +67,7 @@ export const RscEntryLexicalField: React.FC<
     admin.hideGutter = true
   }
 
-  const props: LexicalRichTextFieldProps = {
+  const props: EditorFieldProps = {
     field: args.clientField as RichTextFieldClient,
     forceRender: args.forceRender,
     initialLexicalFormState,
@@ -74,10 +83,10 @@ export const RscEntryLexicalField: React.FC<
   }
 
   for (const key in props) {
-    if (props[key as keyof LexicalRichTextFieldProps] === undefined) {
-      delete props[key as keyof LexicalRichTextFieldProps]
+    if (props[key as keyof EditorFieldProps] === undefined) {
+      delete props[key as keyof EditorFieldProps]
     }
   }
 
-  return <RichTextField {...props} />
+  return <EditorField {...props} />
 }

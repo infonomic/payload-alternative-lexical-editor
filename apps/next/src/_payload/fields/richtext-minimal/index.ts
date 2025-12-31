@@ -1,4 +1,4 @@
-import type { LexicalRichTextAdapter } from '@infonomic/payload-alternative-lexical-editor'
+import type { LexicalAdapter } from '@infonomic/payload-alternative-lexical-editor'
 import { lexicalEditor } from '@infonomic/payload-alternative-lexical-editor'
 import type { Field } from 'payload'
 
@@ -7,7 +7,7 @@ import deepMerge from '../../utilities/deepMerge'
 
 // import type { LexicalRichTextAdapter } from '../../adapters/richtext-lexical/types'
 
-type Options = Partial<Field> & { editor?: LexicalRichTextAdapter }
+type Options = Partial<Field> & { editor?: LexicalAdapter }
 
 type RichTextField = (options?: Options) => Field
 

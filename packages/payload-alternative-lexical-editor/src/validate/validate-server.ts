@@ -4,12 +4,10 @@ import type { RichTextField, Validate } from 'payload'
 import { hasText } from './hasText'
 
 // https://github.com/payloadcms/payload/pull/6435
-export const richTextValidate: Validate<
-  SerializedEditorState,
-  unknown,
-  unknown,
-  RichTextField
-> = async (value, options) => {
+export const validateFn: Validate<SerializedEditorState, unknown, unknown, RichTextField> = async (
+  value,
+  options
+) => {
   const {
     req: { t },
     required,

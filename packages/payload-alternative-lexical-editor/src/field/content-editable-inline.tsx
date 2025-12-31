@@ -7,7 +7,7 @@
  */
 import type * as React from 'react'
 
-import { ContentEditable } from '@lexical/react/LexicalContentEditable'
+import { ContentEditable as LexicalContentEditable } from '@lexical/react/LexicalContentEditable'
 import cx from 'classnames'
 
 import './content-editable.css'
@@ -17,11 +17,11 @@ import './content-editable.css'
 // NOTE: we disable all config checks and draggable blocks
 // as in content-editable.tsx - because this version will
 // appear inside caption areas for images.
-export default function LexicalContentEditableInline({
+export default function ContentEditableInline({
   className,
 }: {
   className?: string
 }): React.JSX.Element {
   const classes = cx(className)
-  return <ContentEditable className={classes} />
+  return <LexicalContentEditable className={classes} />
 }
