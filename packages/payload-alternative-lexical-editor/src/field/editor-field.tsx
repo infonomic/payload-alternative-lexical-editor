@@ -14,16 +14,16 @@ import { lazy, Suspense } from 'react'
 
 import { ShimmerEffect } from '@payloadcms/ui'
 
-import type { LexicalRichTextFieldProps } from '../types'
+import type { EditorFieldProps } from '../types'
 
-const RichTextEditor = lazy(() =>
-  import('./field-component').then((module) => ({ default: module.RichText }))
+const EditorComponent = lazy(() =>
+  import('./editor-component').then((module) => ({ default: module.EditorComponent }))
 )
 
-export function RichTextField(props: LexicalRichTextFieldProps): React.JSX.Element {
+export function EditorField(props: EditorFieldProps): React.JSX.Element {
   return (
     <Suspense fallback={<ShimmerEffect height="35vh" />}>
-      <RichTextEditor {...props} />
+      <EditorComponent {...props} />
     </Suspense>
   )
 }

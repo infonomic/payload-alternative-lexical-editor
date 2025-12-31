@@ -14,12 +14,12 @@ import { defaultEditorConfig } from './field/config/default'
 import { populateLexicalMedia } from './field/lexical-after-read-populate-media'
 import { populateLexicalLinks } from './field/lexical-before-change-populate-links'
 import { cloneDeep } from './field/utils/cloneDeep'
-import { richTextValidate } from './validate/validate-server'
+import { validateFn } from './validate/validate-server'
 import type { EditorSettings, ServerEditorConfig } from './field/config/types'
-import type { LexicalEditorProps, LexicalRichTextAdapter } from './types'
+import type { LexicalAdapter, LexicalEditorProps } from './types'
 
 // TODO: sanitize / validate all inputs (okay for now as we control all inputs)
-export function lexicalEditor(args?: LexicalEditorProps): LexicalRichTextAdapter {
+export function lexicalEditor(args?: LexicalEditorProps): LexicalAdapter {
   let settings: EditorSettings | null
   if (args?.settings != null) {
     settings =
@@ -139,6 +139,6 @@ export function lexicalEditor(args?: LexicalEditorProps): LexicalRichTextAdapter
 
       return outputSchema
     },
-    validate: richTextValidate,
+    validate: validateFn,
   }
 }

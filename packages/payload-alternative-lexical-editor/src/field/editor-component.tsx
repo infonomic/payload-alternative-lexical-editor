@@ -25,18 +25,23 @@ import type { EditorState, SerializedEditorState } from 'lexical'
 import type { Validate } from 'payload'
 import { ErrorBoundary } from 'react-error-boundary'
 
-import { richTextValidate } from '../validate/validate-server'
+import { validateFn } from '../validate/validate-server'
 import { ApplyValuePlugin } from './apply-value-plugin'
 import { EditorContext } from './editor-context'
 import { hashSerializedState } from './utils/hashSerializedState'
-import type { LexicalRichTextFieldProps } from '../types'
+import type { EditorFieldProps } from '../types'
 
 import './field-component.css'
 import './themes/lexical-editor-theme.css'
 
 const baseClass = 'lexicalRichTextEditor'
 
-const RichTextComponent: React.FC<LexicalRichTextFieldProps> = (props) => {
+// We memoize the EditorComponent to prevent re-renders from parent components or
+// other editor instances. Only internal state changes for a given (this)
+// editor instance should trigger re-renders.
+export const EditorComponent = memo(function EditorComponent(
+  props: EditorFieldProps
+): React.JSX.Element {
   const {
     editorConfig,
     field,
@@ -49,7 +54,7 @@ const RichTextComponent: React.FC<LexicalRichTextFieldProps> = (props) => {
     },
     path: pathFromProps,
     readOnly: readOnlyFromTopLevelProps,
-    validate = richTextValidate,
+    validate = validateFn,
   } = props
 
   const readOnlyFromProps = readOnlyFromTopLevelProps || readOnlyFromAdmin
@@ -268,7 +273,7 @@ const RichTextComponent: React.FC<LexicalRichTextFieldProps> = (props) => {
       </div>
     </div>
   )
-}
+})
 
 function fallbackRender({ error, resetErrorBoundary }: any): React.JSX.Element {
   // Call resetErrorBoundary() to reset the error boundary and retry the render.
@@ -279,5 +284,3 @@ function fallbackRender({ error, resetErrorBoundary }: any): React.JSX.Element {
     </div>
   )
 }
-
-export const RichText: typeof RichTextComponent = memo(RichTextComponent)

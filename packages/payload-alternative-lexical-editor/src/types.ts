@@ -26,7 +26,7 @@ export interface AdapterProps {
   editorConfig: EditorConfig
 }
 
-// export type LexicalRichTextAdapter = RichTextAdapter<
+// export type LexicalAdapter = RichTextAdapter<
 //   SerializedEditorState,
 //   AdapterProps,
 //   object
@@ -34,7 +34,7 @@ export interface AdapterProps {
 //   editorConfig: EditorConfig
 // }
 
-export type LexicalRichTextAdapter = {
+export type LexicalAdapter = {
   editorConfig: EditorConfig
 } & RichTextAdapter<SerializedEditorState, AdapterProps>
 
@@ -45,14 +45,14 @@ export type LexicalFieldAdminProps = {
   hideGutter?: boolean
 }
 
-export type LexicalRichTextFieldProps = {
+export type EditorFieldProps = {
   admin?: LexicalFieldAdminProps
   initialLexicalFormState: InitialLexicalFormState
   editorConfig: ClientEditorConfig
 } & Pick<ServerFieldBase, 'permissions'> &
   RichTextFieldClientProps<SerializedEditorState, AdapterProps, object>
 
-export type LexicalRichTextCellProps = DefaultServerCellComponentProps<
+export type EditorCellProps = DefaultServerCellComponentProps<
   RichTextFieldClient<SerializedEditorState, AdapterProps, object>,
   SerializedEditorState
 >

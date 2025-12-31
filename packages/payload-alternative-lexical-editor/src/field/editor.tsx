@@ -21,6 +21,7 @@ import type { EditorState, LexicalEditor } from 'lexical'
 
 import { useEditorConfig } from './config/editor-config-context'
 import { APPLY_VALUE_TAG } from './constants'
+import { ContentEditable } from './content-editable'
 import { useSharedHistoryContext } from './context/shared-history-context'
 import { useSharedOnChange } from './context/shared-on-change-context'
 import { Debug } from './debug'
@@ -42,11 +43,13 @@ import { TreeViewPlugin } from './plugins/treeview-plugin'
 import { VimeoPlugin } from './plugins/vimeo-plugin'
 import { YouTubePlugin } from './plugins/youtube-plugin'
 import { CAN_USE_DOM } from './shared/canUseDOM'
-import { ContentEditable } from './ui/content-editable'
 import { Placeholder } from './ui/placeholder'
 
 import './editor.css'
 
+// We memoize the Editor to prevent re-renders from parent components or
+// other editor instances. Only internal state changes for a given (this)
+// editor instance should trigger re-renders.
 export const Editor = memo(function Editor(): React.JSX.Element {
   const [floatingAnchorElem, setFloatingAnchorElem] = useState<HTMLDivElement | null>(null)
   const [isSmallWidthViewport, setIsSmallWidthViewport] = useState<boolean>(false)
@@ -142,10 +145,9 @@ export const Editor = memo(function Editor(): React.JSX.Element {
         <TabIndentationPlugin />
         {autoLinkPlugin && <AutoLinkPlugin />}
         <OnChangePlugin
+          // Ignore any onChange event triggered by focus or selection only
           ignoreSelectionChange={true}
           onChange={(editorState: EditorState, editor: LexicalEditor, tags: Set<string>) => {
-            // Ignore any onChange event triggered by focus only
-            // console.log('Editor on change called', tags)
             // if (process.env.NODE_ENV === 'production' && _debugTagLogCountRef.count < 10) {
             //   _debugTagLogCountRef.count++
             //   // eslint-disable-next-line no-console
@@ -159,12 +161,12 @@ export const Editor = memo(function Editor(): React.JSX.Element {
         />
         {richText ? (
           <>
-            <HistoryPlugin externalHistoryState={historyState} />
             <RichTextPlugin
               contentEditable={richTextContentEditable}
               placeholder={<Placeholder>{placeholderText}</Placeholder>}
               ErrorBoundary={LexicalErrorBoundary}
             />
+            <HistoryPlugin externalHistoryState={historyState} />
             {inlineImagePlugin && <InlineImagePlugin collection={inlineImageUploadCollection} />}
             {admonitionPlugin && <AdmonitionPlugin />}
             {checkListPlugin && <CheckListPlugin />}

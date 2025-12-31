@@ -16,7 +16,7 @@ import type { Payload } from 'payload'
 import { formatAdminURL } from 'payload/shared'
 
 import type { EditorConfig } from '../field/config/types.js'
-import type { LexicalFieldAdminProps, LexicalRichTextCellProps } from '../types.js'
+import type { EditorCellProps, LexicalFieldAdminProps } from '../types.js'
 
 function recurseEditorState(
   editorState: SerializedLexicalNode[],
@@ -45,7 +45,7 @@ export const RscEntryLexicalCell: React.FC<
     i18n: I18nClient
     payload: Payload
     editorConfig: EditorConfig
-  } & LexicalRichTextCellProps
+  } & EditorCellProps
 > = (props) => {
   const {
     cellData,
