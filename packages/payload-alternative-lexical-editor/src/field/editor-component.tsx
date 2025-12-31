@@ -31,7 +31,7 @@ import { EditorContext } from './editor-context'
 import { hashSerializedState } from './utils/hashSerializedState'
 import type { EditorFieldProps } from '../types'
 
-import './field-component.css'
+import './editor-component.css'
 import './themes/lexical-editor-theme.css'
 
 const baseClass = 'lexicalRichTextEditor'
