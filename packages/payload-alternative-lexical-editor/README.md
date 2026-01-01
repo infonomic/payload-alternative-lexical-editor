@@ -103,21 +103,21 @@ In Payload - the adapter loads our editor via the `rsc-entry.tsx` stub and a com
                                     |
                                     | (renders)
                                     v
-+-----------------------------------+-----------------------------------+
++-----------------------------------+----------------------------------+
 |  EditorContext (src/field/editor-context.tsx)                         |
 |  - Wraps everything in <LexicalComposer>                              |
 |  - Provides SharedHistory & SharedOnChange Contexts                   |
-+------------------+----------------------------------+-----------------+
-                   |                                  |
-                   | (passed as children)             | (renders)
-                   v                                  v
-+------------------+------------------+    +----------+-------------------+
-| ApplyValuePlugin                    |    | Editor (src/field/editor.tsx)|
-| (src/field/apply-value-plugin.tsx)  |    | - ToolbarPlugin              |
-|                                     |    | - ContentEditable            |
-| - Watches: incoming value & hash    |    | - Floating Toolbars          |
-| - Action: editor.update()           |    | - Auto-resize logic          |
-|   (Syncs external props -> Editor)  |    +------------------------------+
++------------------+---------------------------------+-----------------+
+                   |                                 |
+                   | (passed as children)            | (renders)
+                   v                                 v
++------------------+------------------+  +-----------+------------------+
+| ApplyValuePlugin                    |  | Editor (src/field/editor.tsx)|
+| (src/field/apply-value-plugin.tsx)  |  | - ToolbarPlugin              |
+|                                     |  | - ContentEditable            |
+| - Watches: incoming value & hash    |  | - Floating Toolbars          |
+| - Action: editor.update()           |  | - Auto-resize logic          |
+|   (Syncs external props -> Editor)  |  +------------------------------+
 +-------------------------------------+
 ```
 
