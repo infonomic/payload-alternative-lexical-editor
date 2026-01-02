@@ -59,6 +59,10 @@ export const EditorComponent = memo(function EditorComponent(
 
   const readOnlyFromProps = readOnlyFromTopLevelProps || readOnlyFromAdmin
   const path = pathFromProps ?? name
+  const lastEmittedHashRef = useRef<string | undefined>(undefined)
+  const normalizedIncomingHashRef = useRef<string | undefined>(undefined)
+  const hasNormalizedBaselineRef = useRef<boolean>(false)
+  const _debugLogCountRef = useRef<number>(0)
 
   const editDepth = useEditDepth()
 
@@ -93,11 +97,6 @@ export const EditorComponent = memo(function EditorComponent(
   })
 
   const disabled = readOnlyFromProps || disabledFromField // || false
-
-  const lastEmittedHashRef = useRef<string | undefined>(undefined)
-  const normalizedIncomingHashRef = useRef<string | undefined>(undefined)
-  const hasNormalizedBaselineRef = useRef<boolean>(false)
-  const _debugLogCountRef = useRef<number>(0)
 
   const classes = [
     baseClass,
