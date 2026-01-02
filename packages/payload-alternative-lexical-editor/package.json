@@ -28,6 +28,15 @@
     "directory": "packages/payload-alternative-lexical-editor"
   },
   "sideEffects": false,
+  "scripts": {
+    "dev": "chokidar 'src/**/*' -c 'npm-run-all build'",
+    "build": "tsc -p tsconfig.json && tsc-alias && node copy-assets.js",
+    "lint": "biome check --write --unsafe --diagnostic-level=error",
+    "clean": "rimraf node_modules dist build .turbo",
+    "test": "LOG_LEVEL=off tsx --env-file=.env --test $(find . -name \"*.test.ts\")",
+    "test:one": "LOG_LEVEL=off tsx --no-warnings --env-file=.env --test",
+    "test:vitest": "vitest run"
+  },
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
@@ -46,14 +55,6 @@
   "files": [
     "dist"
   ],
-  "scripts": {
-    "dev": "chokidar 'src/**/*' -c 'npm-run-all build'",
-    "build": "tsc -p tsconfig.json && tsc-alias && node copy-assets.js",
-    "lint": "biome check --write --unsafe --diagnostic-level=error",
-    "clean": "rimraf node_modules dist build .turbo",
-    "test": "LOG_LEVEL=off tsx --env-file=.env --test $(find . -name \"*.test.ts\")",
-    "test:one": "LOG_LEVEL=off tsx --no-warnings --env-file=.env --test"
-  },
   "peerDependencies": {
     "@payloadcms/translations": "^3.0.0",
     "@payloadcms/ui": "^3.0.0",
@@ -98,6 +99,7 @@
     "chokidar": "^5.0.0",
     "chokidar-cli": "^3.0.0",
     "dotenv": "^17.2.3",
+    "jsdom": "^27.4.0",
     "next": "16.1.1",
     "payload": "3.69.0",
     "react": "19.2.3",
