@@ -78,6 +78,10 @@ We've added an additional property called `data`, to which we've added the id, t
 
 When using an `afterRead` hook -  we add the `data` property and populated the title and slug for the related document dynamically during document read. Here's our [`afterRead`](https://github.com/infonomic/payload-alternative-lexical-editor/blob/main/packages/payload-alternative-lexical-editor/src/field/lexical-after-read-populate-links.ts) field hook. Note however, that for documents that contain more than one or two links, this can add a significant number of document requests for a single source document since the related document for each internal link will need to be retrieved in order to populate our data property (O(n) linear time complexity). In our experience, this can have a major impact on overall performance and user experience.
 
+> [!IMPORTANT]
+> 2026-01-03: There is currently a problem with the current implementation of our `afterRead` hook. If `documentA` has a link to `documentB` and `documentB` links back to `documentA`, our `afterRead` hook will end up in an infinite call loop and eventually overflow. A first attempt to correct this using [Payload hooks Context](https://payloadcms.com/docs/hooks/context) failed.
+>
+
 ### beforeChange
 
 When using a `beforeChange` hook - we add the `data` property to the document itself when the document is being saved. Here's our [`beforeChange`](https://github.com/infonomic/payload-alternative-lexical-editor/blob/main/packages/payload-alternative-lexical-editor/src/field/lexical-before-change-populate-links.ts) hook. Obviously this has implications for stale links (source documents who's title or slug may have changed). However, there is no impact on overall performance and user experience, since the source document already contains the data it needs for internal links (O(1) constant time complexity).
