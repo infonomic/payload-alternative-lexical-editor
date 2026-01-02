@@ -36,6 +36,8 @@ import './themes/lexical-editor-theme.css'
 
 const baseClass = 'lexicalRichTextEditor'
 
+// NOTE: @See ./editor-component.md mini doc for an explanation of our editor architecture.
+
 // We memoize the EditorComponent to prevent re-renders from parent components or
 // other editor instances. Only internal state changes for a given (this)
 // editor instance should trigger re-renders.
