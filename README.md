@@ -1,21 +1,23 @@
-# Payload CMS 3.0 Alternative Lexical Rich Text Editor
+# Payload CMS Alternative Lexical Rich Text Editor
 
-An alternative adapter-based Lexical Rich Text editor for Payload CMS.
+An alternative adapter-based [Lexical rich text editor](https://lexical.dev/) for Payload CMS.
 
 > [!IMPORTANT]
 > Unless you have very specific needs, or a lot of experience with Lexical and custom Payload fields, you should almost certainly be using the official [Payload Lexical Rich Text editor](https://payloadcms.com/docs/lexical/overview). 
 >
-
-Before we dive in, it's also worth mentioning that creating a generalized and extensible editor with a 'pluggable' feature system — such as the one currently being developed the team at Payload, is an order of magnitude more difficult than creating an 'opinionated' adapter with limited extensibility. The Payload team are doing amazing work - and this repo and our editor is in no way a criticism of the work being done at Payload.
 
 ## Our Lexical Editor
 <img style="width: 100%" alt="lexical-editor-screenshot" src="https://github.com/user-attachments/assets/a41060c9-6f28-4b64-a045-c3fdd411d9af" />
 
 ## Background
 
-We started working with [Lexical](https://lexical.dev/) in 2022 while searching for a replacement CMS for our agency. We then discovered [Payload CMS](https://payloadcms.com/) - which ticked nearly every box, with one notable exception - the use of Slate as their rich text editor. We'd worked with Slate and other editors previously and really wanted to use Lexical.
+We started working with [Lexical](https://lexical.dev/) in 2022 while searching for a replacement CMS for our agency. We then discovered [Payload CMS](https://payloadcms.com/) - which was a pretty good fit for what we were looking for at the time, with one notable exception - the use of [Slate](https://github.com/ianstormtaylor/slate) as its rich text editor. We'd worked with Slate and other editors previously and really wanted to use Lexical. 
 
-And so we started work on a Lexical-based rich text field for Payload. Early in 2023 we discovered [Alessio Gravili's Payload Lexical Plugin](https://github.com/AlessioGr/payload-plugin-lexical) which helped enormously in getting started with Payload and custom fields. We also attempted to 'give back' to the work Alessio was doing with contributions to his public repo.
+We were also painfully aware of how difficult it is to work with Contenteditable-based editors - in particular for mobile support and especially on Android. Read this somewhat famous post from Jesse Jorgenson at [Prose Mirror](https://prosemirror.net/) - [Contenteditable on Android is the Absolute Worst](https://discuss.prosemirror.net/t/contenteditable-on-android-is-the-absolute-worst/3810). As an aside, [CKEditor](https://ckeditor.com/) actually has an excellent editing surface with very good mobile support (with solutions for most of the quirks on Android) - it's just a shame that their model doesn't natively support structured content as its native serialization format (it expects HTML in and out - despite having quite a good internal model). Lexical's model and native serialization format is excellent - 'data in and data out', and mobile support is 'good enough'.
+
+And so we started work on a Lexical-based rich text field for Payload. 
+
+Early in 2023 we discovered [Alessio Gravili's Payload Lexical Plugin](https://github.com/AlessioGr/payload-plugin-lexical) which helped enormously in getting started with Payload and custom fields. We also attempted to 'give back' to the work Alessio was doing with contributions to his public repo.
 
 Thanks largely to Alessio's efforts, Lexical has now been adopted by the Payload team and is the default editor for Payload, which is fantastic.
 
