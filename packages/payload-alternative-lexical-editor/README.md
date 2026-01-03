@@ -37,7 +37,7 @@ Here are the main drivers for us wanting to maintain our own editor:
 
 5. In Payload 3.0 - we wanted to experiment with client-only forms using the new field api and `RenderFields`. You can see an example here in our [Admonition plugin](https://github.com/infonomic/payload-alternative-lexical-editor/blob/main/packages/payload-alternative-lexical-editor/src/field/plugins/admonition-plugin/admonition-drawer.tsx). This is totally experimental. It works (as far as we can tell) and we're using this for all of our custom components that require modals or drawers with Payload fields.
 
-6. We wanted to share our plugins - in particular our Inline Image plugin which was accepted into the Lexical playground and our Admonition plugin. In fact, our Inline Image plugin was one of the main reasons we chose Lexical as our preferred editor. Try creating a floated inline element that appears correctly in both the admin UI and the front end application - with any of the 'other editors', and you'll see why ;-).  Most of the other plugins in this repo track Lexical Playground plugins and are updated from there.
+6. We wanted to share our plugins - in particular our Inline Image plugin which was accepted into the [Lexical playground](https://playground.lexical.dev/) and our Admonition plugin. In fact, our Inline Image plugin was one of the main reasons we chose Lexical as our preferred editor. Try creating a floated inline element that appears correctly in both the admin UI and the front end application - with any of the 'other editors', and you'll see why ;-).  Most of the other plugins in this repo track Lexical Playground plugins and are updated from there.
 
 7. And lastly, we wanted to keep our editor lightweight and fast — in particular for longer documents.
 
@@ -96,7 +96,7 @@ The architecture of our editor is designed to solve the "two-way binding problem
 
 Rich text editors maintain their own complex internal state (the DOM/Virtual DOM). When you try to sync this with React state (props), you often get **infinite loops** (Editor changes $\rightarrow$ React updates $\rightarrow$ Prop changes $\rightarrow$ Editor updates $\rightarrow$ Editor changes...) or **cursor jumping** (re-rendering the editor while typing).
 
-In Payload - the adapter loads our editor via the `rsc-entry.tsx` stub and a component map entry in the [adapter](https://github.com/infonomic/payload-alternative-lexical-editor/blob/main/packages/payload-alternative-lexical-editor/src/adapter.ts). This follows the current adapter / component map strategy in Payload CMS itself. Note: Although the return shape of our editor is slightly different, the root of our editor document and SerializedEditorState is identical to the official Payload Lexical editor, and so migrating to or from the Payload version will depend primarily on what features or plugins have been used. 
+In Payload - the adapter loads our editor via the `rsc-entry.tsx` stub and a component map entry in the [adapter](https://github.com/infonomic/payload-alternative-lexical-editor/blob/main/packages/payload-alternative-lexical-editor/src/adapter.ts). This follows the current adapter / component map strategy in Payload CMS itself. Note: Although the return shape of our editor is slightly different, the root of our editor document and SerializedEditorState is identical to the official Payload Lexical editor, and so migrating to or from the Payload version will depend primarily on which features or plugins have been used. 
 
 ### Component Hierarchy 
 
