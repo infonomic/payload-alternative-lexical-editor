@@ -1,6 +1,6 @@
 # Payload CMS 3.0 Alternative Lexical Rich Text Editor
 
-An alternative adapter-based Lexical Rich Text adapter for Payload CMS.
+An alternative adapter-based Lexical Rich Text editor for Payload CMS.
 
 > [!IMPORTANT]
 > Unless you have very specific needs, or a lot of experience with Lexical and custom Payload fields, you should almost certainly be using the official [Payload Lexical Rich Text editor](https://payloadcms.com/docs/lexical/overview). 
