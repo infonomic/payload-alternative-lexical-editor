@@ -128,7 +128,6 @@ html[data-theme="dark"] .LexicalEditorTheme__textCode {
   color: rgb(33, 111, 219);
   text-decoration: none;
   pointer-events: none;
-  text-decoration: none;
   border-bottom: 1px dotted;
 }
 
