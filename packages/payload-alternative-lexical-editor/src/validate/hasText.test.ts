@@ -7,6 +7,7 @@ import type {
 } from 'lexical'
 import { describe, expect, it } from 'vitest'
 
+import { createEmptyEditorState } from './createEmptyEditorState'
 import { hasText } from './hasText'
 
 type State = SerializedEditorState<SerializedLexicalNode>
@@ -57,6 +58,10 @@ describe('hasText', () => {
 
   it('returns false when root has no children', () => {
     expect(hasText(rootState([]))).toBe(false)
+  })
+
+  it('returns false for createEmptySerializedEditorState()', () => {
+    expect(hasText(createEmptyEditorState())).toBe(false)
   })
 
   it('returns false for a single empty paragraph (no children)', () => {
