@@ -46,6 +46,9 @@ export const EditorComponent = memo(function EditorComponent(
 ): React.JSX.Element {
   const {
     editorConfig,
+    featureAfterEditor,
+    featureBeforeEditor,
+    featureChildren,
     field,
     field: {
       name,
@@ -223,8 +226,18 @@ export const EditorComponent = memo(function EditorComponent(
         />
         <ErrorBoundary fallbackRender={fallbackRender} onReset={() => {}}>
           <EditorContext
-            beforeEditor={<RenderCustomComponent CustomComponent={BeforeInput} Fallback={null} />}
-            afterEditor={<RenderCustomComponent CustomComponent={AfterInput} Fallback={null} />}
+            beforeEditor={
+              <>
+                {featureBeforeEditor}
+                <RenderCustomComponent CustomComponent={BeforeInput} Fallback={null} />
+              </>
+            }
+            afterEditor={
+              <>
+                {featureAfterEditor}
+                <RenderCustomComponent CustomComponent={AfterInput} Fallback={null} />
+              </>
+            }
             composerKey={pathWithEditDepth}
             editorConfig={editorConfig}
             fieldProps={props}
@@ -258,6 +271,7 @@ export const EditorComponent = memo(function EditorComponent(
               normalizedIncomingHashRef={normalizedIncomingHashRef}
               hasNormalizedBaselineRef={hasNormalizedBaselineRef}
             />
+            {featureChildren}
           </EditorContext>
         </ErrorBoundary>
         <RenderCustomComponent

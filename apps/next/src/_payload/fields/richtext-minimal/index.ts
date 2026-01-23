@@ -17,13 +17,12 @@ export const lexicalRichTextMinimal: RichTextField = (options = {}) =>
       name: 'richText',
       label: 'RichText',
       type: 'richText',
-      admin: {
-        components: {
-          beforeInput: ['/_payload/plugins/foo#Foo'],
-        },
-      },
       editor: lexicalEditor({
         collectionAliases,
+        features: {
+          beforeEditor: ['/_payload/plugins/foo#Foo'],
+          children: ['/_payload/plugins/toolbar-hello-feature#ToolbarHelloFeature'],
+        },
         settings: (config) => {
           config.options.textAlignment = false
           config.options.tablePlugin = false

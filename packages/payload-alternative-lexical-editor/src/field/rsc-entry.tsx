@@ -9,6 +9,7 @@
 
 import type React from 'react'
 
+import { RenderServerComponent } from '@payloadcms/ui/elements/RenderServerComponent'
 import { renderField } from '@payloadcms/ui/forms/renderField'
 import type { SerializedLexicalNode } from 'lexical'
 import type {
@@ -67,11 +68,44 @@ export const RscEntryLexicalField: React.FC<
     admin.hideGutter = true
   }
 
+  const importMap = args.req?.payload?.importMap
+  const featureServerProps = { req: args.req }
+
+  const featureBeforeEditor =
+    importMap != null
+      ? RenderServerComponent({
+          Component: args.editorConfig.features?.beforeEditor,
+          importMap,
+          serverProps: featureServerProps,
+        })
+      : null
+
+  const featureAfterEditor =
+    importMap != null
+      ? RenderServerComponent({
+          Component: args.editorConfig.features?.afterEditor,
+          importMap,
+          serverProps: featureServerProps,
+        })
+      : null
+
+  const featureChildren =
+    importMap != null
+      ? RenderServerComponent({
+          Component: args.editorConfig.features?.children,
+          importMap,
+          serverProps: featureServerProps,
+        })
+      : null
+
   const props: EditorFieldProps = {
     field: args.clientField as RichTextFieldClient,
     forceRender: args.forceRender,
     initialLexicalFormState,
     editorConfig: args.editorConfig,
+    featureBeforeEditor,
+    featureAfterEditor,
+    featureChildren,
     path,
     permissions: args.permissions,
     readOnly: args.readOnly,

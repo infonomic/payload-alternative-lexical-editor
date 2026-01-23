@@ -39,6 +39,7 @@ export function lexicalEditor(args?: LexicalEditorProps): LexicalAdapter {
   const editorConfig: ServerEditorConfig = {
     settings,
     lexical,
+    features: args?.features,
   }
 
   return {
@@ -65,6 +66,22 @@ export function lexicalEditor(args?: LexicalEditorProps): LexicalAdapter {
       addToImportMap(
         '@infonomic/payload-alternative-lexical-editor/field/rsc-entry#RscEntryLexicalField'
       )
+
+      const featureComponentPaths = new Set<string>()
+      const slots = args?.features
+      if (slots?.beforeEditor?.length) {
+        for (const componentPath of slots.beforeEditor) featureComponentPaths.add(componentPath)
+      }
+      if (slots?.afterEditor?.length) {
+        for (const componentPath of slots.afterEditor) featureComponentPaths.add(componentPath)
+      }
+      if (slots?.children?.length) {
+        for (const componentPath of slots.children) featureComponentPaths.add(componentPath)
+      }
+
+      for (const componentPath of featureComponentPaths) {
+        addToImportMap(componentPath)
+      }
     },
     generateSchemaMap: undefined,
     hooks: {
