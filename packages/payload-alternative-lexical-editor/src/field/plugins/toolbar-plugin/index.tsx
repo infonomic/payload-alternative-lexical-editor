@@ -8,7 +8,7 @@
  *
  */
 import type * as React from 'react'
-import { useCallback, useEffect, useState } from 'react'
+import { Fragment, useCallback, useEffect, useState } from 'react'
 
 import {
   $createCodeNode,
@@ -71,6 +71,7 @@ import { useEditorConfig } from '../../config/editor-config-context'
 import useModal from '../../hooks/useModal'
 import { $isLinkNode, type LinkAttributes, TOGGLE_LINK_COMMAND } from '../../nodes/link-nodes'
 import { IS_APPLE } from '../../shared/environment'
+import { useToolbarExtensions } from '../../toolbar-extensions'
 import DropDown, { DropDownItem } from '../../ui/dropdown'
 import { getSelectedNode } from '../../utils/getSelectedNode'
 import { sanitizeUrl } from '../../utils/url'
@@ -357,6 +358,8 @@ export function ToolbarPlugin(): React.JSX.Element {
   const { openModal } = usePayloadModal()
   const editDepth = useEditDepth()
 
+  const { items: toolbarExtensionItems } = useToolbarExtensions()
+
   const $updateToolbar = useCallback(() => {
     const selection = $getSelection()
     if ($isRangeSelection(selection)) {
@@ -365,9 +368,9 @@ export function ToolbarPlugin(): React.JSX.Element {
         anchorNode.getKey() === 'root'
           ? anchorNode
           : $findMatchingParent(anchorNode, (e) => {
-              const parent = e.getParent()
-              return parent !== null && $isRootOrShadowRoot(parent)
-            })
+            const parent = e.getParent()
+            return parent !== null && $isRootOrShadowRoot(parent)
+          })
 
       if (element === null) {
         element = anchorNode.getTopLevelElementOrThrow()
@@ -914,6 +917,13 @@ export function ToolbarPlugin(): React.JSX.Element {
         </>
       )}
       {modal}
+
+      {toolbarExtensionItems
+        .slice()
+        .sort((a, b) => (a.order ?? 0) - (b.order ?? 0))
+        .map((item) => (
+          <Fragment key={item.id}>{item.node}</Fragment>
+        ))}
     </div>
   )
 }

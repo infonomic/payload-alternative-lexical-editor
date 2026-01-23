@@ -1,8 +1,32 @@
 'use client'
 
 import type * as React from 'react'
+import { useEffect } from 'react'
+
+import { useToolbarExtensions } from '@infonomic/payload-alternative-lexical-editor/field/toolbar-extensions'
 
 export function Foo(): React.JSX.Element {
+  const { register } = useToolbarExtensions()
+
+  useEffect(() => {
+    return register({
+      id: 'demo-foo-toolbar-button',
+      order: 100_000,
+      node: (
+        <button
+          type="button"
+          className="toolbar-item spaced"
+          onClick={() => {
+            // eslint-disable-next-line no-alert
+            alert('Foo toolbar button clicked')
+          }}
+        >
+          Foo
+        </button>
+      ),
+    })
+  }, [register])
+
   return (
     <div
       style={{

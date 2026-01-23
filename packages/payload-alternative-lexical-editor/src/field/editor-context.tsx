@@ -13,6 +13,7 @@ import { SharedHistoryContext } from './context/shared-history-context'
 import { SharedOnChangeContext } from './context/shared-on-change-context'
 import { Editor } from './editor'
 import { Nodes } from './nodes'
+import { ToolbarExtensionsProvider } from './toolbar-extensions'
 import type { AdapterProps } from '../types'
 import type { ClientEditorConfig } from './config/types'
 
@@ -71,12 +72,14 @@ export function EditorContext(props: {
       <EditorConfigContext config={editorConfig.settings}>
         <SharedOnChangeContext onChange={onChange}>
           <SharedHistoryContext>
-            <div className="editor-shell">
-              {beforeEditor}
-              <Editor />
-              {afterEditor}
-              {children}
-            </div>
+            <ToolbarExtensionsProvider>
+              <div className="editor-shell">
+                {beforeEditor}
+                <Editor />
+                {afterEditor}
+                {children}
+              </div>
+            </ToolbarExtensionsProvider>
           </SharedHistoryContext>
         </SharedOnChangeContext>
       </EditorConfigContext>
