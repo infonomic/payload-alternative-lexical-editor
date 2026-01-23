@@ -20,8 +20,8 @@ export const lexicalRichTextMinimal: RichTextField = (options = {}) =>
       editor: lexicalEditor({
         collectionAliases,
         features: {
-          beforeEditor: ['/_payload/plugins/foo#Foo'],
-          children: ['/_payload/plugins/toolbar-hello-feature#ToolbarHelloFeature'],
+          beforeEditor: ['/_payload/plugins/foo-feature#FooFeature'],
+          children: ['/_payload/plugins/hello-feature#HelloFeature'],
         },
         settings: (config) => {
           config.options.textAlignment = false

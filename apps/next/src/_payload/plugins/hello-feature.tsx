@@ -8,7 +8,7 @@ import {
 } from '@infonomic/payload-alternative-lexical-editor/field/toolbar-extensions'
 import { $getSelection, $isRangeSelection } from 'lexical'
 
-export function ToolbarHelloFeature(): React.JSX.Element | null {
+export function HelloFeature(): React.JSX.Element | null {
   const { editor, register } = useToolbarExtensions()
 
   useEffect(() => {

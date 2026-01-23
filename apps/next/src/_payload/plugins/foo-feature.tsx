@@ -5,7 +5,7 @@ import { useEffect } from 'react'
 
 import { useToolbarExtensions } from '@infonomic/payload-alternative-lexical-editor/field/toolbar-extensions'
 
-export function Foo(): React.JSX.Element {
+export function FooFeature(): React.JSX.Element {
   const { register } = useToolbarExtensions()
 
   useEffect(() => {
