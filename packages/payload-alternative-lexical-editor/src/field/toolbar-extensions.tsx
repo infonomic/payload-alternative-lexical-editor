@@ -2,8 +2,9 @@
 
 import type * as React from 'react'
 import { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react'
+
 import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext'
-import { COMMAND_PRIORITY_CRITICAL, SELECTION_CHANGE_COMMAND, type LexicalEditor } from 'lexical'
+import { COMMAND_PRIORITY_CRITICAL, type LexicalEditor, SELECTION_CHANGE_COMMAND } from 'lexical'
 
 export type ToolbarExtensionItem = {
   id: string
