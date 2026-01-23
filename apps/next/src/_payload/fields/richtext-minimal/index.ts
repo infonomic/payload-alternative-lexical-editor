@@ -20,7 +20,10 @@ export const lexicalRichTextMinimal: RichTextField = (options = {}) =>
       editor: lexicalEditor({
         collectionAliases,
         features: {
-          beforeEditor: ['/_payload/plugins/foo-feature#FooFeature'],
+          beforeEditor: [
+            '/_payload/plugins/foo-feature#FooFeature',
+            '/_payload/plugins/bar-feature#BarFeature'
+          ],
           children: ['/_payload/plugins/hello-feature#HelloFeature'],
         },
         settings: (config) => {

@@ -1,15 +1,17 @@
 'use client'
 
-import type * as React from 'react'
 import { useEffect } from 'react'
 
-import { useToolbarExtensions } from '@infonomic/payload-alternative-lexical-editor/field/toolbar-extensions'
+import {
+  type ToolbarExtensionItem,
+  useToolbarExtensions,
+} from '@infonomic/payload-alternative-lexical-editor/field/toolbar-extensions'
 
 export function FooFeature(): React.JSX.Element {
   const { register } = useToolbarExtensions()
 
   useEffect(() => {
-    return register({
+    const item: ToolbarExtensionItem = {
       id: 'demo-foo-toolbar-button',
       order: 100_000,
       node: (
@@ -24,7 +26,8 @@ export function FooFeature(): React.JSX.Element {
           Foo
         </button>
       ),
-    })
+    }
+    return register(item)
   }, [register])
 
   return (

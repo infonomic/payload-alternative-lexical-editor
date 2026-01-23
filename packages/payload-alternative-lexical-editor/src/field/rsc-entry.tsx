@@ -30,8 +30,8 @@ export const RscEntryLexicalField: React.FC<
     admin: LexicalFieldAdminProps
     editorConfig: ServerEditorConfig
   } & ClientComponentProps &
-    Pick<FieldPaths, 'path'> &
-    ServerComponentProps
+  Pick<FieldPaths, 'path'> &
+  ServerComponentProps
 > = async (args) => {
   const field: RichTextFieldType = args.field as RichTextFieldType
   const path = args.path ?? (args.clientField as RichTextFieldClient).name
@@ -74,28 +74,28 @@ export const RscEntryLexicalField: React.FC<
   const featureBeforeEditor =
     importMap != null
       ? RenderServerComponent({
-          Component: args.editorConfig.features?.beforeEditor,
-          importMap,
-          serverProps: featureServerProps,
-        })
+        Component: args.editorConfig.features?.beforeEditor,
+        importMap,
+        serverProps: featureServerProps,
+      })
       : null
 
   const featureAfterEditor =
     importMap != null
       ? RenderServerComponent({
-          Component: args.editorConfig.features?.afterEditor,
-          importMap,
-          serverProps: featureServerProps,
-        })
+        Component: args.editorConfig.features?.afterEditor,
+        importMap,
+        serverProps: featureServerProps,
+      })
       : null
 
   const featureChildren =
     importMap != null
       ? RenderServerComponent({
-          Component: args.editorConfig.features?.children,
-          importMap,
-          serverProps: featureServerProps,
-        })
+        Component: args.editorConfig.features?.children,
+        importMap,
+        serverProps: featureServerProps,
+      })
       : null
 
   const props: EditorFieldProps = {
