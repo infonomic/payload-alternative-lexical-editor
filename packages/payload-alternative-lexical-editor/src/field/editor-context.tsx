@@ -18,6 +18,8 @@ import type { ClientEditorConfig } from './config/types'
 
 export function EditorContext(props: {
   children?: React.ReactNode
+  beforeEditor?: React.ReactNode
+  afterEditor?: React.ReactNode
   composerKey: string
   editorConfig: ClientEditorConfig
   fieldProps: RichTextFieldClientProps<SerializedEditorState, AdapterProps, any>
@@ -25,7 +27,17 @@ export function EditorContext(props: {
   readOnly: boolean
   value?: SerializedEditorState | null
 }): React.JSX.Element {
-  const { children, composerKey, editorConfig, onChange, fieldProps, readOnly, value } = props
+  const {
+    children,
+    beforeEditor,
+    afterEditor,
+    composerKey,
+    editorConfig,
+    onChange,
+    fieldProps,
+    readOnly,
+    value,
+  } = props
 
   // useMemo for the initialConfig that depends on readOnly and value
   // biome-ignore lint/correctness/useExhaustiveDependencies: we do not want to re-create the editor when value changes
@@ -60,7 +72,9 @@ export function EditorContext(props: {
         <SharedOnChangeContext onChange={onChange}>
           <SharedHistoryContext>
             <div className="editor-shell">
+              {beforeEditor}
               <Editor />
+              {afterEditor}
               {children}
             </div>
           </SharedHistoryContext>

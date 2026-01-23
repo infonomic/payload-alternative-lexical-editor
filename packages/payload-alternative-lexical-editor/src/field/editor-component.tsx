@@ -221,34 +221,35 @@ export const EditorComponent = memo(function EditorComponent(
             <FieldLabel label={label} localized={localized} path={path} required={required} />
           }
         />
-        <ErrorBoundary fallbackRender={fallbackRender} onReset={() => {}}>
-          <RenderCustomComponent CustomComponent={BeforeInput} Fallback={null} />
+        <ErrorBoundary fallbackRender={fallbackRender} onReset={() => { }}>
           <EditorContext
+            beforeEditor={<RenderCustomComponent CustomComponent={BeforeInput} Fallback={null} />}
+            afterEditor={<RenderCustomComponent CustomComponent={AfterInput} Fallback={null} />}
             composerKey={pathWithEditDepth}
             editorConfig={editorConfig}
             fieldProps={props}
             onChange={handleOnChange}
             readOnly={disabled}
             value={incomingValue}
-            // NOTE: 2023-05-15 disabled the deepEqual since we've set ignoreSelectionChange={true}
-            // in our OnChangePlugin instances - and so a call here means that something
-            // must have changed - so no need to do the comparison.
-            // onChange={(editorState: EditorState, editor: LexicalEditor, tags: Set<string>) => {
-            //   if (!disabled) {
-            //     const serializedEditorState = editorState.toJSON()
-            //     // TODO: 2024-01-30 - re-test this.
-            //     // NOTE: 2023-06-28 fix for setValue below. For some reason when
-            //     // this custom field is used in a block field, setValue on its
-            //     // own won't enable Save Draft or Publish Changes during a first
-            //     // add of a new block (it will after the entire document is saved
-            //     // and reloaded - but not before.) So call setModified(true) here
-            //     // to guarantee that we can always save our changes.
-            //     // setModified(true)
-            //     // NOTE: 2024-05-02: Appears to be fixed - and setModified(true)
-            //     // is no longer required.
-            //     setValue(serializedEditorState)
-            //   }
-            // }}
+          // NOTE: 2023-05-15 disabled the deepEqual since we've set ignoreSelectionChange={true}
+          // in our OnChangePlugin instances - and so a call here means that something
+          // must have changed - so no need to do the comparison.
+          // onChange={(editorState: EditorState, editor: LexicalEditor, tags: Set<string>) => {
+          //   if (!disabled) {
+          //     const serializedEditorState = editorState.toJSON()
+          //     // TODO: 2024-01-30 - re-test this.
+          //     // NOTE: 2023-06-28 fix for setValue below. For some reason when
+          //     // this custom field is used in a block field, setValue on its
+          //     // own won't enable Save Draft or Publish Changes during a first
+          //     // add of a new block (it will after the entire document is saved
+          //     // and reloaded - but not before.) So call setModified(true) here
+          //     // to guarantee that we can always save our changes.
+          //     // setModified(true)
+          //     // NOTE: 2024-05-02: Appears to be fixed - and setModified(true)
+          //     // is no longer required.
+          //     setValue(serializedEditorState)
+          //   }
+          // }}
           >
             <ApplyValuePlugin
               value={incomingValue}
@@ -258,7 +259,6 @@ export const EditorComponent = memo(function EditorComponent(
               hasNormalizedBaselineRef={hasNormalizedBaselineRef}
             />
           </EditorContext>
-          <RenderCustomComponent CustomComponent={AfterInput} Fallback={null} />
         </ErrorBoundary>
         <RenderCustomComponent
           CustomComponent={Description}

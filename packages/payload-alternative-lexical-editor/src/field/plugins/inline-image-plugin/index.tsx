@@ -36,7 +36,6 @@ import {
   type LexicalEditor,
 } from 'lexical'
 
-import { useEditorConfig } from '../../config/editor-config-context'
 import {
   $createInlineImageNode,
   $isInlineImageNode,
@@ -45,7 +44,6 @@ import {
 import { CAN_USE_DOM } from '../../shared/canUseDOM'
 import { useInlineImageContext } from './context'
 import type { InlineImageAttributes } from '../../nodes/inline-image-node/types'
-import type { InlineImageData } from './types'
 
 export type InsertInlineImagePayload = Readonly<InlineImageAttributes>
 

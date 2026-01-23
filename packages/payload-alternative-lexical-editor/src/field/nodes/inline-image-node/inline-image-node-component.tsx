@@ -39,11 +39,9 @@ import { FloatingLinkEditorPlugin } from '../../plugins/link-plugin/link/floatin
 import PlaceholderInline from '../../ui/placeholder-inline'
 import { $isInlineImageNode } from './inline-image-node'
 import type { InlineImageNode } from './inline-image-node'
-import type { InlineImageAttributes, Position, Size } from './types'
+import type { Position, Size } from './types'
 
 import './inline-image-node-component.css'
-
-import type { InlineImageData } from '../../plugins/inline-image-plugin/types'
 
 const imageCache = new Set()
 
