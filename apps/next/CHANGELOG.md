@@ -1,0 +1,16 @@
+# @infonomic/next
+
+## 1.3.0
+
+### Minor Changes
+
+- 52130f8: Simple editor plugin extensibility features via adapter as oppossed to hacky admin props.
+- a500fb3: Implemented simple Lexical plugin and toolbar extensions.
+- 87a9b8d: Simple editor extensibility with toolbar-extension and components via beforeInput and afterInput.
+
+### Patch Changes
+
+- Updated dependencies [52130f8]
+- Updated dependencies [a500fb3]
+- Updated dependencies [87a9b8d]
+  - @infonomic/payload-alternative-lexical-editor@1.3.0
