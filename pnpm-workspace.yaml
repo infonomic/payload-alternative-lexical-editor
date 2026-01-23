@@ -4,7 +4,8 @@ packages:
   - '!apps/next/.next/**'
 
 onlyBuiltDependencies:
-  - 'sharp'
   - '@biomejs/biome'
-  - 'esbuild'
-  - 'unrs-resolver'
+  - esbuild
+  - protobufjs
+  - sharp
+  - unrs-resolver

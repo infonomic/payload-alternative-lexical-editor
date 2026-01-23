@@ -19,8 +19,9 @@ export const lexicalRichTextMinimal: RichTextField = (options = {}) =>
       type: 'richText',
       admin: {
         components: {
-          beforeInput: ['/_payload/fields/components/foo#Foo'],
-          afterInput: ['/_payload/fields/components/foo#Foo'],
+          beforeInput: [
+            '/_payload/plugins/foo#Foo'
+          ],
         },
       },
       editor: lexicalEditor({

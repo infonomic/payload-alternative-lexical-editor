@@ -1,7 +1,9 @@
 'use client'
 
 import type * as React from 'react'
-import { createContext, useCallback, useContext, useMemo, useState } from 'react'
+import { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react'
+import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext'
+import { COMMAND_PRIORITY_CRITICAL, SELECTION_CHANGE_COMMAND, type LexicalEditor } from 'lexical'
 
 export type ToolbarExtensionItem = {
   id: string
@@ -12,6 +14,14 @@ export type ToolbarExtensionItem = {
 type ToolbarExtensionsContextType = {
   items: ToolbarExtensionItem[]
   register: (item: ToolbarExtensionItem) => () => void
+  /**
+   * The editor instance for the current selection. This matters when using nested composers.
+   */
+  editor: LexicalEditor
+  /**
+   * The root editor instance for this composer.
+   */
+  rootEditor: LexicalEditor
 }
 
 const ToolbarExtensionsContext = createContext<ToolbarExtensionsContextType | null>(null)
@@ -21,7 +31,20 @@ export function ToolbarExtensionsProvider({
 }: {
   children: React.ReactNode
 }): React.JSX.Element {
+  const [rootEditor] = useLexicalComposerContext()
+  const [activeEditor, setActiveEditor] = useState(rootEditor)
   const [itemsById, setItemsById] = useState<Map<string, ToolbarExtensionItem>>(() => new Map())
+
+  useEffect(() => {
+    return rootEditor.registerCommand(
+      SELECTION_CHANGE_COMMAND,
+      (_payload, newEditor) => {
+        setActiveEditor(newEditor)
+        return false
+      },
+      COMMAND_PRIORITY_CRITICAL
+    )
+  }, [rootEditor])
 
   const register = useCallback((item: ToolbarExtensionItem) => {
     setItemsById((prev) => {
@@ -42,7 +65,10 @@ export function ToolbarExtensionsProvider({
 
   const items = useMemo(() => Array.from(itemsById.values()), [itemsById])
 
-  const value = useMemo(() => ({ items, register }), [items, register])
+  const value = useMemo(
+    () => ({ items, register, editor: activeEditor, rootEditor }),
+    [items, register, activeEditor, rootEditor]
+  )
 
   return (
     <ToolbarExtensionsContext.Provider value={value}>{children}</ToolbarExtensionsContext.Provider>
