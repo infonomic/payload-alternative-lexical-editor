@@ -2,7 +2,7 @@ import type { CollectionConfig } from 'payload'
 
 import { isAdmin, isAdminOrEditor, publishedOnly } from '@/_payload/access'
 import { slugField } from '@/_payload/fields/slug'
-import { lexicalRichTextCompact } from '../fields/richtext-compact'
+import { lexicalRichTextCompact } from '../fields/richtext/compact'
 
 export const Compact: CollectionConfig = {
   slug: 'compact',

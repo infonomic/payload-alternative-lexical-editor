@@ -1,7 +1,7 @@
 import type { CollectionConfig } from 'payload'
 
 import { isAdmin, isAdminOrEditor, publishedOnly } from '@/_payload/access'
-import { lexicalRichTextMinimal } from '@/_payload/fields/richtext-minimal'
+import { lexicalRichTextMinimal } from '@/_payload/fields/richtext/minimal'
 import { slugField } from '@/_payload/fields/slug'
 
 export const Minimal: CollectionConfig = {

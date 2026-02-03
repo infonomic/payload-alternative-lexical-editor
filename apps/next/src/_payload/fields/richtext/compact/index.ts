@@ -3,29 +3,23 @@ import { lexicalEditor } from '@infonomic/payload-alternative-lexical-editor'
 import type { Field } from 'payload'
 
 import { collectionAliases } from '@/infonomic.config'
-import deepMerge from '../../utilities/deepMerge'
-
-// import type { LexicalRichTextAdapter } from '../../adapters/richtext-lexical/types'
+import deepMerge from '../../../utilities/deepMerge'
 
 type Options = Partial<Field> & { editor?: LexicalAdapter }
 
 type RichTextField = (options?: Options) => Field
 
-export const lexicalRichTextMinimal: RichTextField = (options = {}) =>
+export const lexicalRichTextCompact: RichTextField = (options = {}) =>
   deepMerge<Field, Options>(
     {
       name: 'richText',
       label: 'RichText',
       type: 'richText',
+      admin: {
+        className: 'lexical-compact',
+      },
       editor: lexicalEditor({
         collectionAliases,
-        features: {
-          beforeEditor: [
-            '/_payload/plugins/foo-feature#FooFeature',
-            '/_payload/plugins/bar-feature#BarFeature'
-          ],
-          children: ['/_payload/plugins/hello-feature#HelloFeature'],
-        },
         settings: (config) => {
           config.options.textAlignment = false
           config.options.tablePlugin = false
@@ -42,6 +36,10 @@ export const lexicalRichTextMinimal: RichTextField = (options = {}) =>
           config.options.codeHighlightPlugin = false
           config.options.layoutPlugin = false
           config.options.debug = false
+          config.options.undoRedo = false
+          config.options.textStyle = false
+          config.options.inlineCode = false
+          config.options.links = false
           return config
         },
       }),
