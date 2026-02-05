@@ -1,5 +1,11 @@
 # @infonomic/payload-alternative-lexical-editor
 
+## 1.4.0
+
+### Minor Changes
+
+- Updated deps.
+
 ## 1.3.0
 
 ### Minor Changes
