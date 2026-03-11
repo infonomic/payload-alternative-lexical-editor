@@ -1,0 +1,6 @@
+# Until we setup a GitHub action....
+pnpm changeset
+pnpm version-packages
+pnpm login
+cd packages/payload-alternative-lexical-editor
+pnpm publish --access public --no-git-checks
