@@ -7,16 +7,17 @@ import type {
 } from 'lexical'
 import { describe, expect, it } from 'vitest'
 
-import { createEmptyEditorState } from './createEmptyEditorState'
 import { hasText } from './hasText'
 
 type State = SerializedEditorState<SerializedLexicalNode>
+
+import { createEmptyEditorState } from './createEmptyEditorState'
 
 function rootState(children: SerializedRootNode['children']): State {
   return {
     root: {
       children,
-      direction: 'ltr',
+      direction: null,
       format: '',
       indent: 0,
       type: 'root',
@@ -30,11 +31,13 @@ function emptyParagraph(
 ): SerializedParagraphNode {
   return {
     children,
-    direction: 'ltr',
+    direction: null,
     format: '',
     indent: 0,
     type: 'paragraph',
     version: 1,
+    textFormat: 0,
+    textStyle: '',
   } as SerializedParagraphNode
 }
 
