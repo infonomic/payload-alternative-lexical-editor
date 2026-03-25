@@ -1,5 +1,13 @@
 # @infonomic/next
 
+## 1.6.1
+
+### Patch Changes
+
+- Updated deps.
+- Updated dependencies
+  - @infonomic/payload-alternative-lexical-editor@1.6.1
+
 ## 1.6.0
 
 ### Minor Changes
