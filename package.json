@@ -27,7 +27,7 @@
   "license": "MIT",
   "dependencies": {
     "turbo": "^2.8.20",
-    "typescript": "5.9.3"
+    "typescript": "6.0.2"
   },
   "devDependencies": {
     "@biomejs/biome": "2.4.8",

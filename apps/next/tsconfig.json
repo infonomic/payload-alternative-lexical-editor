@@ -1,6 +1,5 @@
 {
   "compilerOptions": {
-    "baseUrl": ".",
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
@@ -20,9 +19,9 @@
     ],
     "paths": {
       "@/*": ["./src/*"],
-      "@payload-config": ["src/payload.config.ts"]
+      "@payload-config": ["./src/payload.config.ts"]
     },
-    "target": "ES2017"
+    "target": "es2024"
   },
   "include": [
     "next-env.d.ts",
