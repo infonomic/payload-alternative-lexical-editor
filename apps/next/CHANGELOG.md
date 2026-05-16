@@ -1,5 +1,13 @@
 # @infonomic/next
 
+## 1.6.3
+
+### Patch Changes
+
+- Editor apply value fixes, and deps update.
+- Updated dependencies
+  - @infonomic/payload-alternative-lexical-editor@1.6.3
+
 ## 1.6.2
 
 ### Patch Changes
