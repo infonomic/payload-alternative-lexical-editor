@@ -3,6 +3,10 @@ packages:
   - apps/**
   - '!apps/next/.next/**'
 
+allowBuilds:
+  esbuild: true
+  sharp: true
+
 onlyBuiltDependencies:
   - '@biomejs/biome'
   - esbuild

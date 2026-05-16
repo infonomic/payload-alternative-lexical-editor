@@ -3,7 +3,7 @@
   "description": "",
   "main": "index.js",
   "private": true,
-  "packageManager": "pnpm@10.32.1",
+  "packageManager": "pnpm@11.1.2",
   "workspaces": [
     "apps/*",
     "packages/*"
@@ -26,11 +26,11 @@
   },
   "license": "MIT",
   "dependencies": {
-    "turbo": "^2.9.9",
+    "turbo": "^2.9.14",
     "typescript": "6.0.3"
   },
   "devDependencies": {
-    "@biomejs/biome": "2.4.14",
+    "@biomejs/biome": "2.4.15",
     "@changesets/cli": "^2.31.0"
   },
   "engines": {
