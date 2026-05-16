@@ -1,6 +1,7 @@
 'use client'
 
 import type * as React from 'react'
+import { useEffect } from 'react'
 
 import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext'
 import { formatDrawerSlug, useEditDepth, useModal } from '@payloadcms/ui'
@@ -26,18 +27,19 @@ export function TablePlugin(): React.JSX.Element {
     depth: editDepth,
   })
 
-  editor.registerCommand<null>(
-    OPEN_TABLE_MODAL_COMMAND,
-    () => {
-      const modalSlug = addTableDrawerSlug
-      if (modalSlug != null) {
-        toggleModal(modalSlug)
-        return true
-      }
-      return false
-    },
-    COMMAND_PRIORITY_NORMAL
-  )
+  useEffect(() => {
+    return editor.registerCommand<null>(
+      OPEN_TABLE_MODAL_COMMAND,
+      () => {
+        if (addTableDrawerSlug != null) {
+          toggleModal(addTableDrawerSlug)
+          return true
+        }
+        return false
+      },
+      COMMAND_PRIORITY_NORMAL
+    )
+  }, [editor, addTableDrawerSlug, toggleModal])
 
   return <TableDrawer drawerSlug={addTableDrawerSlug} />
 }
