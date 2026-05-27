@@ -1,15 +1,13 @@
 packages:
   - packages/**
   - apps/**
-  - '!apps/next/.next/**'
-
+  - "!apps/next/.next/**"
+minimumReleaseAge: 0
+minimumReleaseAgeExclude:
+  - "@infonomic/*"
 allowBuilds:
   esbuild: true
   sharp: true
-
-onlyBuiltDependencies:
-  - '@biomejs/biome'
-  - esbuild
-  - protobufjs
-  - sharp
-  - unrs-resolver
+  '@biomejs/biome': true
+  protobufjs: true
+  unrs-resolver: true

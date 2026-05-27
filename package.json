@@ -3,7 +3,7 @@
   "description": "",
   "main": "index.js",
   "private": true,
-  "packageManager": "pnpm@11.1.2",
+  "packageManager": "pnpm@11.3.0",
   "workspaces": [
     "apps/*",
     "packages/*"
@@ -26,7 +26,7 @@
   },
   "license": "MIT",
   "dependencies": {
-    "turbo": "^2.9.14",
+    "turbo": "^2.9.15",
     "typescript": "6.0.3"
   },
   "devDependencies": {
