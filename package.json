@@ -14,7 +14,7 @@
     "clean": "turbo run clean && rm -rf node_modules .turbo",
     "build": "turbo run build",
     "start": "turbo run start",
-    "dev": "turbo run dev --parallel",
+    "dev": "turbo run dev",
     "lint": "turbo run lint --continue",
     "test": "turbo run test",
     "test:e2e": "turbo run test:e2e",

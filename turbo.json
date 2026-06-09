@@ -9,7 +9,6 @@
     },
     "dev": {
       "cache": false,
-      "dependsOn": ["^dev"],
       "outputs": [],
       "env": ["NODE_ENV"],
       "persistent": true
