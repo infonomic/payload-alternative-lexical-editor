@@ -1,8 +1,14 @@
 # Until we setup a GitHub action....
 pnpm changeset
 pnpm version-packages
-pnpm release:tag
-git push --tags
+git add -A && git commit -m "chore(release): X.Y.Z"
 pnpm login
-cd packages/payload-alternative-lexical-editor
-pnpm publish --access public --no-git-checks
+./publish-packages.sh
+
+# publish-packages.sh builds, packs (rewriting workspace: deps), publishes via
+# plain `npm publish` (works under passkey 2FA), then tags and pushes the tag.
+# It is idempotent — re-run after a partial failure to finish the job.
+#
+#   ./publish-packages.sh --dry-run   # pack + verify only, no publish/tag/push
+#   ./publish-packages.sh --no-build  # skip the build, use existing dist/
+#   ./publish-packages.sh --yes       # skip the confirmation prompt
