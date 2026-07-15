@@ -3,6 +3,10 @@
 An alternative adapter-based [Lexical rich text editor](https://lexical.dev/) for Payload CMS.
 
 > [!IMPORTANT]
+> This package is in maintenance release only, and will no longer be maintained from around the end of 2026. 
+> We are focusing our efforts on our new extension-based lexical editor here in [Byline CMS](https://bylinecms.app)
+
+> [!IMPORTANT]
 > Unless you have very specific needs, or a lot of experience with Lexical and custom Payload fields, you should almost certainly be using the official [Payload Lexical Rich Text editor](https://payloadcms.com/docs/lexical/overview). 
 >
 
@@ -209,5 +213,4 @@ editor: lexicalEditor(),
 ```
 Follow the examples in this repo under apps/next for configuration options and settings for the editor (turning  editor features on or off).
 
-Thoughts, suggestions or contributions more than welcome. We hope that some of this helps. 
-
+Thoughts, suggestions or contributions more than welcome. We hope that some of this helps.
