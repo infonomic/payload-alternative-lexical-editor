@@ -145,8 +145,7 @@ function TextFormatFloatingToolbar({
       selection !== null &&
       nativeSelection !== null &&
       !nativeSelection.isCollapsed &&
-      rootElement !== null &&
-      rootElement.contains(nativeSelection.anchorNode)
+      rootElement?.contains(nativeSelection.anchorNode)
     ) {
       const rangeRect = getDOMRangeRect(nativeSelection, rootElement)
 

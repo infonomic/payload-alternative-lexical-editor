@@ -3,7 +3,6 @@
 import type * as React from 'react'
 
 export function BarFeature(): React.JSX.Element {
-
   return (
     <div
       style={{
