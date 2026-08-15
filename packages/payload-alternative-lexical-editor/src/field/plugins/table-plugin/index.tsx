@@ -5,12 +5,14 @@ import { useEffect } from 'react'
 
 import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext'
 import { formatDrawerSlug, useEditDepth, useModal } from '@payloadcms/ui'
-import { COMMAND_PRIORITY_NORMAL, createCommand } from 'lexical'
+import { COMMAND_PRIORITY_NORMAL, createCommand, type LexicalCommand } from 'lexical'
 
 import { useEditorConfig } from '../../config/editor-config-context'
 import { TableDrawer } from './table-drawer'
 
-export const OPEN_TABLE_MODAL_COMMAND = createCommand('OPEN_TABLE_MODAL_COMMAND')
+export const OPEN_TABLE_MODAL_COMMAND: LexicalCommand<null> = createCommand(
+  'OPEN_TABLE_MODAL_COMMAND'
+)
 
 export function TablePlugin(): React.JSX.Element {
   const [editor] = useLexicalComposerContext()

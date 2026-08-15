@@ -38,7 +38,10 @@ export function LinkPlugin(): null {
     return mergeRegister(
       editor.registerCommand(
         TOGGLE_LINK_COMMAND,
-        (payload: LinkAttributes & { text?: string }) => {
+        // TOGGLE_LINK_COMMAND carries a nullable payload - null is dispatched to
+        // remove the link from the current selection (see the floating link
+        // editor and the toolbar plugins).
+        (payload: (LinkAttributes & { text?: string }) | null) => {
           const linkAttributes = payload
           // TODO - revisit encoding / decoding of URL
           // validate

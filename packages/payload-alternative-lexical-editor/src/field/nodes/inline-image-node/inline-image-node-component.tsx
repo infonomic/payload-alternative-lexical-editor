@@ -162,7 +162,10 @@ export default function InlineImageComponent({
   )
 
   const onEnter = useCallback(
-    (event: KeyboardEvent) => {
+    // KEY_ENTER_COMMAND carries a nullable payload - Lexical synthesises the
+    // command with a null event (for example when an IME composition ends in a
+    // newline), so the event must be treated as optional here.
+    (event: KeyboardEvent | null) => {
       const latestSelection = $getSelection()
       const buttonElem = buttonRef.current
       if (
@@ -173,11 +176,11 @@ export default function InlineImageComponent({
         if (showCaption) {
           // Move focus into nested editor
           $setSelection(null)
-          event.preventDefault()
+          event?.preventDefault()
           caption.focus()
           return true
         } else if (buttonElem !== null && buttonElem !== document.activeElement) {
-          event.preventDefault()
+          event?.preventDefault()
           buttonElem.focus()
           return true
         }
