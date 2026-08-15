@@ -17,6 +17,7 @@ vi.mock('@infonomic/uikit/react', () => ({
 }))
 
 import { ApplyValuePlugin } from './apply-value-plugin'
+import { APPLY_VALUE_TAG } from './constants'
 import { hashSerializedState } from './utils/hashSerializedState'
 
 // Enable React act warnings suppression for this environment
@@ -105,7 +106,9 @@ describe('ApplyValuePlugin', () => {
     })
 
     expect(mockEditor.setEditorState).toHaveBeenCalledTimes(1)
-    expect(mockEditor.setEditorState).toHaveBeenLastCalledWith(stateA)
+    // The APPLY_VALUE_TAG marks the write as our own so that the onChange
+    // handler can ignore the resulting update and avoid an echo loop.
+    expect(mockEditor.setEditorState).toHaveBeenLastCalledWith(stateA, { tag: APPLY_VALUE_TAG })
 
     // Re-render with same value -> no new apply
     await act(async () => {
@@ -135,7 +138,7 @@ describe('ApplyValuePlugin', () => {
       )
     })
     expect(mockEditor.setEditorState).toHaveBeenCalledTimes(2)
-    expect(mockEditor.setEditorState).toHaveBeenLastCalledWith(stateB)
+    expect(mockEditor.setEditorState).toHaveBeenLastCalledWith(stateB, { tag: APPLY_VALUE_TAG })
 
     await act(async () => {
       root.unmount()

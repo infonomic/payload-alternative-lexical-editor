@@ -33,8 +33,8 @@
     "build": "tsc -p tsconfig.json && tsc-alias && node copy-assets.js",
     "lint": "biome check --write --unsafe --diagnostic-level=error",
     "clean": "rimraf node_modules dist build .turbo",
-    "test": "LOG_LEVEL=off tsx --env-file=.env --test $(find . -name \"*.test.ts\")",
-    "test:one": "LOG_LEVEL=off tsx --no-warnings --env-file=.env --test",
+    "test": "vitest run",
+    "test:watch": "vitest",
     "test:vitest": "vitest run"
   },
   "exports": {
