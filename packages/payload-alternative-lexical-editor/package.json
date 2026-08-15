@@ -83,7 +83,7 @@
     "@lexical/selection": "^0.49.0",
     "@lexical/table": "^0.49.0",
     "@lexical/utils": "^0.49.0",
-    "classnames": "^2.5.1",
+    "clsx": "^2.1.1",
     "cross-env": "^10.1.0",
     "eslint": "^10.8.1",
     "json-schema": "^0.4.0",

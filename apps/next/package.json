@@ -29,7 +29,7 @@
     "@payloadcms/next": "^3.88.0",
     "@payloadcms/translations": "^3.88.0",
     "@payloadcms/ui": "^3.88.0",
-    "classnames": "^2.5.1",
+    "clsx": "^2.1.1",
     "cross-env": "^10.1.0",
     "eslint": "^10.8.1",
     "graphql": "^17.0.2",
