@@ -1,5 +1,11 @@
 # @infonomic/payload-alternative-lexical-editor
 
+## 1.6.7
+
+### Patch Changes
+
+- Updated deps and refactored lexical editor
+
 ## 1.6.6
 
 ### Patch Changes
