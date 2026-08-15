@@ -26,12 +26,12 @@
   },
   "license": "MIT",
   "dependencies": {
-    "turbo": "^2.10.5",
+    "turbo": "^2.10.10",
     "typescript": "7.0.2"
   },
   "devDependencies": {
-    "@biomejs/biome": "2.5.3",
-    "@changesets/cli": "^2.31.0"
+    "@biomejs/biome": "2.5.8",
+    "@changesets/cli": "^3.0.0"
   },
   "engines": {
     "node": "^18.20.2 || >=20.9.0"
